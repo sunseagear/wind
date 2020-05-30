@@ -1,0 +1,54 @@
+#spring
+spring:
+  mail:                    #邮件发送
+    host: smtp.exmail.qq.com
+    username: liangwei@sunseagear.com
+    sender: liangwei@sunseagear.com
+    password: 您的密码
+    port: 465
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+  redis:   #redis 配置
+    host: localhost
+    port: 6379
+    password:
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+        max-wait: 10000
+
+  #DATABASE CONFIG
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/feilian?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+
+
+#文件上传配置
+#使用的上传存储空间,local本地,aliyun:阿里云
+oss:
+
+  local:
+    domain: http://localhost:8080
+    upload-file-path: D:/hhaha
+  aliyun:
+    #阿里云api的内或外网域名
+    endpoint: oss-cn-beijing.aliyuncs.com
+    #阿里云api的密钥access key id
+    access-key-id:
+    #阿里云api的密钥access key secret
+    access-key-secret:
+    #阿里云api的bucket名称
+    bucket-name:
+    #外部访问域名
+    domain:  http://xxxxx.oss-cn-beijing.aliyuncs.com
+
+
+

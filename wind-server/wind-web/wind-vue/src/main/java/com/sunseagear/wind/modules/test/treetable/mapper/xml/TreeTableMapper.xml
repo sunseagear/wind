@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sunseagear.wind.modules.test.treetable.mapper.TreeTableMapper">
+
+    <sql id="Base_Column_List">
+        a.id,
+        a.name,
+        a.geocoding,
+        a.postal_code,
+        a.parent_id,
+        a.parent_ids,
+        a.create_by,
+        a.create_date,
+        a.update_by,
+        a.update_date,
+        a.del_flag,
+        a.remarks,
+        (select count(*) from test_tree_table s
+        WHERE s.parent_id=a.id) as
+        hasChildren
+    </sql>
+    <sql id="tableJoins">
+
+    </sql>
+    <select
+        id="selectByTreeId"
+        resultType="com.sunseagear.wind.modules.test.treetable.entity.TreeTable">
+        select
+        <include refid="Base_Column_List"/>
+        from test_tree_table a
+        <include refid="tableJoins"/>
+        where a.id = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <select
+        id="selectTreeList"
+        resultType="com.sunseagear.wind.modules.test.treetable.entity.TreeTable">
+        select
+        <include refid="Base_Column_List"/>
+        from test_tree_table a
+        <include refid="tableJoins"/>
+        <where>
+            ${ew.sqlSegment}
+        </where>
+    </select>
+
+    <!-- 更新子树 -->
+    <update id="updateSunTreeParentIds">
+        update test_tree_table set parent_ids=
+        CONCAT(#{newParentIds},
+        <if test="'${dbType}' == 'mysql'">
+            substring(parent_ids, length(#{oldParentIds})+1,length(parent_ids)+1))
+        </if>
+        <if test="'${dbType}' == 'oracle'">
+            substr(parent_ids, length(#{oldParentIds})+1,length(parent_ids)+1))
+        </if>
+        where parent_ids like concat(#{oldParentIds}, '%')
+    </update>
+
+    <!-- 删除子树 -->
+    <delete
+        id="deleteSunTree"
+        parameterType="java.lang.String">
+        delete from test_tree_table
+        where parent_ids like concat(#{oldParentIds}, '%')
+    </delete>
+
+</mapper>

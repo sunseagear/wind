@@ -1,37 +1,56 @@
 # 飞廉
 
-#### 介绍
-飞廉是一个商用级别的开发平台，基于SpringBoot2.0+和element-vue-admin，集成了mybatis plus，shiro，websocket，多租户，数据规则等常用模块。
+### 介绍
+飞廉，山海经中神兽，身似鹿，头如雀，有角而蛇尾，虽不能飞，但身形敏捷，速度奇快。
+擅长御风，是传说中的风神，秦人的先祖。
 
-#### 软件架构
-软件架构说明
+<img width="30%" src="http://codegen.oss-cn-beijing.aliyuncs.com/doc/feilian.jpeg" alt="飞廉">
 
+图片来自网络
 
-#### 安装教程
+我们认为软件开发的第一要务就是速度。不论是做产品，接项目，甚至是接私活，速度都是成败的关键。
+高效是一个团队的追求，更高的效率意味着更高的利润。高效也是一个程序员的追求，意味着更少的加班和更多的头发。
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+取名飞廉，是因为我们希望能够设计出一款框架，简单，好用，具有极高的开发效率，但又不过度的封装，将技术细节能够原本的展现出来。让新手能用，老手爱用。
 
-#### 使用说明
+### 软件架构
+>* 整个系统采用前后端分离的模式
+>* 后端基于SpringBoot2、Mybatis plus构建核心架构，技术结构来自于JeeWeb（该项目原作者已经不维护）
+>* 前端采用vuejs，集成了element-vue-admin
+>* 采用Oauth2协议进行统一的Token下发与鉴权，保证系统安全性 
+>* 采用Shiro进行权限动态管理，能够做到按钮级别的权限管控。
+>* 支持webSocket
+>* 支持多租户
+>* 支持数据规则动态配置
+>* 支持jar包和war包两种部署
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+###我们做了什么
+>* 自2018年底开始独立演进，修复很多原框架已有的BUG
+>* 对原有框架进行了大量的简化，删除了不必要的代码，重新梳理了整个底层               
+>* 更新Mybatis plus到3.0+，更新了DAO层的代码实现
+>* 重写了element-vue-admin的菜单加载模式，使得后台配置菜单易用性大幅提高
+>* 新增了按钮级别的权限控制
+>* 新增了对websocket的支持
+>* 新增了多租户的支持
+>* 新增了动态数据规则的支持
+>* 改进后台配置，支持多种状态配置，支持两种打包模式
+>* 前端页面进行了大量的重写和优化
+>* 新增了百度地图套件（打点，画线，画框），系统部门选择组件，系统用户选择组件，文件图片上传组件，同时修复大量原有组件的BUG
+>* 提供了多种页面的代码样例以供参考
 
-#### 参与贡献
+###系统截图
+![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/summary/home.PNG)
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/summary/user.PNG)
 
+![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/summary/menu.PNG)
 
-#### 码云特技
+![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/summary/permission.PNG)
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5.  码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/summary/datarule.PNG)
+
+![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/summary/dataruleForm.PNG)
+
+![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/summary/dict.PNG)
+
+![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/summary/demo.PNG)

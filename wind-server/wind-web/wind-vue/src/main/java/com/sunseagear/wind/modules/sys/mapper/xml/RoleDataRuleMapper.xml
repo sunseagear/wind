@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sunseagear.wind.modules.sys.mapper.RoleDataRuleMapper" >
+
+	<sql id="Base_Column_List" >
+       a.id,
+       a.scope_category,
+       a.scope_id,
+       a.role_id
+	</sql>
+  <sql id="tableJoins">
+
+  </sql>
+</mapper>

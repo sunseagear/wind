@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sunseagear.wind.modules.sys.mapper.TenantMapper" >
+
+	<sql id="Base_Column_List" >
+       a.id,
+       a.create_by,
+       a.create_date,
+       a.update_by,
+       a.update_date,
+       a.del_flag,
+       a.remarks,
+       a.tenant_id,
+       a.contact,
+       a.phone,
+       a.name
+	</sql>
+  <sql id="tableJoins">
+
+  </sql>
+</mapper>

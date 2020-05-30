@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sunseagear.wind.modules.test.twotable.mapper.CarModelMapper">
+    <resultMap id="BaseResultMap" type="com.sunseagear.wind.modules.test.twotable.entity.CarModel">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="car_id" property="carId" jdbcType="VARCHAR"/>
+        <result column="label" property="label" jdbcType="VARCHAR"/>
+        <result column="value" property="value" jdbcType="VARCHAR"/>
+        <result column="sort" property="sort" jdbcType="INTEGER"/>
+        <result column="remarks" property="remarks" jdbcType="VARCHAR"/>
+        <result column="code" property="code" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        d.id,
+        d.car_id,
+        d.name,
+        d.value,
+        d.sort,
+        d.remarks,
+        g.code
+    </sql>
+    <select id="selectDictList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from test_car_model d
+        LEFT JOIN test_car g on d.car_id=g.id ORDER BY sort ASC
+    </select>
+</mapper>

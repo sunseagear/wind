@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sunseagear.wind.modules.sys.mapper.MenuMapper">
+
+    <sql id="Base_Column_List">
+        t.id,
+        t.name,
+        t.parent_ids AS parentIds,
+        t.parent_id AS parentId,
+        p.name AS parentName,
+        t.type,
+        t.path,
+        t.url,
+        t.enabled,
+        t.sort,
+        t.icon,
+        t.redirect,
+        t.cacheable,
+        t.require_auth AS requireAuth,
+        t.component,
+        t.remarks,
+        t.create_by AS createBy,
+        t.create_date AS createDate,
+        t.update_by AS updateBy,
+        t.update_date AS updateDate,
+        t.del_flag AS delFlag,
+        t.permission AS permission,
+        (select count(*) from sys_menu s
+        WHERE s.parent_id=t.id) as
+        hasChildren
+    </sql>
+    <sql id="parentJoins">
+        LEFT JOIN sys_menu p ON p.id = t.parent_id
+    </sql>
+    <!-- 查找通过ID查找树信息 -->
+    <select id="selectByTreeId" resultType="com.sunseagear.wind.modules.sys.entity.Menu"
+            parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_menu t
+        <include refid="parentJoins"/>
+        where t.id = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <!-- 查找树列表 -->
+    <select id="selectTreeList" resultType="com.sunseagear.wind.modules.sys.entity.Menu">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_menu t
+        <include refid="parentJoins"/>
+        <where>
+            ${ew.sqlSegment}
+        </where>
+    </select>
+
+    <!-- 更新子树 -->
+    <update id="updateSunTreeParentIds">
+        update sys_menu set parent_ids=
+        CONCAT(#{newParentIds},substring(parent_ids,
+        length(#{oldParentIds})+1,length(parent_ids)+1))
+        where parent_ids like concat(#{oldParentIds}, '%')
+    </update>
+
+    <!-- 删除子树 -->
+    <delete id="deleteSunTree" parameterType="java.lang.String">
+        delete from sys_menu
+        where parent_ids like concat(#{oldParentIds}, '%')
+    </delete>
+
+    <!-- 通过用户ID查询 -->
+    <select id="findMenuByUserId" resultType="com.sunseagear.wind.modules.sys.entity.Menu">
+        SELECT DISTINCT
+        <include refid="Base_Column_List"/>
+        from sys_menu t
+        <include refid="parentJoins"/>
+        LEFT JOIN sys_role_menu rm on t.id=rm.menu_id
+        LEFT JOIN sys_user_role ur on rm.role_id=ur.role_id
+        WHERE ur.user_id= #{userId}
+        and t.type <![CDATA[ <> ]]> 3
+        ORDER BY sort
+    </select>
+    <!-- 通过用户ID查询 -->
+    <select id="findAllMenuByUserId" resultType="com.sunseagear.wind.modules.sys.entity.Menu">
+        SELECT DISTINCT
+        <include refid="Base_Column_List"/>
+        from sys_menu t
+        <include refid="parentJoins"/>
+        LEFT JOIN sys_role_menu rm on t.id=rm.menu_id
+        LEFT JOIN sys_user_role ur on rm.role_id=ur.role_id
+        WHERE ur.user_id= #{userId}
+        ORDER BY sort
+    </select>
+
+    <!-- 通过用户ID查询 -->
+    <select id="findMenuByRoleId" resultType="com.sunseagear.wind.modules.sys.entity.Menu">
+        SELECT DISTINCT
+        <include refid="Base_Column_List"/>
+        from sys_menu t
+        <include refid="parentJoins"/>
+        LEFT JOIN sys_role_menu rm on t.id=rm.menu_id
+        WHERE rm.role_id= #{roleId}
+        and t.enabled = 1
+        ORDER BY sort
+    </select>
+
+
+    <!-- 通过用户ID查询 -->
+    <select id="findPermissionByUserId" resultType="java.lang.String">
+        SELECT DISTINCT
+        t.permission
+        from sys_menu t
+        <include refid="parentJoins"/>
+        LEFT JOIN sys_role_menu rm on t.id=rm.menu_id
+        LEFT JOIN sys_user_role ur on rm.role_id=ur.role_id
+        WHERE ur.user_id= #{userId} and t.enabled = 1
+    </select>
+
+    <!-- 通过角色ID查询 -->
+    <select id="findPermissionByRoleId" resultType="java.lang.String">
+        SELECT DISTINCT
+        t.permission
+        from sys_menu t
+        <include refid="parentJoins"/>
+        LEFT JOIN sys_role_menu rm on t.id=rm.menu_id
+        WHERE rm.role_id= #{roleId} and t.enabled = 1
+    </select>
+
+</mapper>

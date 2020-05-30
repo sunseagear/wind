@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sunseagear.wind.modules.sys.mapper.UserMapper">
+
+    <sql id="Base_Column_List">
+        DISTINCT
+        t.id,
+        t.realname,
+        t.username,
+        t.portrait,
+        t.password,
+        t.salt,
+        t.email,
+        t.phone,
+        t.status,
+        t.organization_id,
+        t.organization_id as "organization.id",
+        b.parent_ids as "organization.parentIds",
+        b.name as "organization.name"
+    </sql>
+
+    <sql id="userOrganizationJoins">
+        left join sys_organization b on b.id = t.organization_id
+    </sql>
+
+    <select
+        id="selectUserList"
+        resultType="com.sunseagear.wind.modules.sys.entity.User">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user t
+        <include refid="userOrganizationJoins"/>
+        <if test="ew.sqlSegment != '' and ew.sqlSegment != null">
+            <where>
+                ${ew.sqlSegment}
+            </where>
+        </if>
+    </select>
+
+    <insert id="insert">
+        insert into sys_user (
+            id,
+            realname,
+            username,
+            portrait,
+            password,
+            salt,
+            email,
+            phone,
+            status,
+            organization_id,
+            tenant_id
+        )value(
+            #{id},
+            #{realname},
+            #{username},
+            #{portrait},
+            #{password},
+            #{salt},
+            #{email},
+            #{phone},
+            #{status},
+            #{organization.id},
+            #{tenantId}
+        )
+    </insert>
+
+    <update id="updateById">
+        update sys_user
+        set
+        id = #{et.id},
+        realname = #{et.realname},
+        username = #{et.username},
+        portrait = #{et.portrait},
+        password = #{et.password},
+        salt = #{et.salt},
+        email = #{et.email},
+        phone = #{et.phone},
+        status = #{et.status},
+        organization_id = #{et.organization.id}
+        <where>
+            id = #{et.id}
+        </where>
+    </update>
+
+
+</mapper>

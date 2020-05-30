@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sunseagear.wind.modules.sys.mapper.DataRuleMapper" >
+
+	<sql id="Base_Column_List" >
+       a.id,
+       a.menu_id,
+       a.resource_code,
+       a.scope_name,
+       a.scope_field,
+       a.scope_class,
+       a.scope_column,
+       a.scope_type,
+       a.scope_value,
+       a.remark,
+       a.create_user,
+       a.create_dept,
+       a.create_time,
+       a.update_user,
+       a.update_time,
+       a.status,
+       a.is_deleted
+	</sql>
+  <sql id="tableJoins">
+
+  </sql>
+</mapper>

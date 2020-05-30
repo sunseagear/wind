@@ -1,0 +1,138 @@
+package com.sunseagear.wind.modules.sms.entity;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.sunseagear.common.mvc.entity.DataEntity;
+
+/**
+ * All rights Reserved, Designed By www.sunseagear.com
+ *
+ * @version V1.0
+ * @package com.sunseagear.wind.modules.sms.entity
+ * @title: 短信模板实体
+ * @description: 短信模板实体 * @date: 2018-09-14 09:47:35
+ * @copyright: 2018 www.sunseagear.com Inc. All rights reserved.
+ */
+
+@TableName("sms_template")
+@SuppressWarnings("serial")
+public class SmsTemplate extends DataEntity<String> {
+
+    /**
+     * id
+     */
+    @TableId(value = "id", type = IdType.UUID)
+    private String id;
+    /**
+     * 模版名称
+     */
+    @TableField(value = "name")
+    private String name;
+    /**
+     * 模版编码
+     */
+    @TableField(value = "code")
+    private String code;
+    /**
+     * 业务类型
+     */
+    @TableField(value = "business_type")
+    private String businessType;
+    /**
+     * 模版内容
+     */
+    @TableField(value = "template_content")
+    private String templateContent;
+
+    /**
+     * 获取  id
+     *
+     * @return String  id
+     */
+    public String getId() {
+        return this.id;
+    }
+
+    /**
+     * 设置  id
+     *
+     * @param id id
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * 获取  name
+     *
+     * @return String  模版名称
+     */
+    public String getName() {
+        return this.name;
+    }
+
+    /**
+     * 设置  name
+     *
+     * @param name 模版名称
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * 获取  code
+     *
+     * @return String  模版编码
+     */
+    public String getCode() {
+        return this.code;
+    }
+
+    /**
+     * 设置  code
+     *
+     * @param code 模版编码
+     */
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    /**
+     * 获取  businessType
+     *
+     * @return String  业务类型
+     */
+    public String getBusinessType() {
+        return this.businessType;
+    }
+
+    /**
+     * 设置  businessType
+     *
+     * @param businessType 业务类型
+     */
+    public void setBusinessType(String businessType) {
+        this.businessType = businessType;
+    }
+
+    /**
+     * 获取  templateContent
+     *
+     * @return String  模版内容
+     */
+    public String getTemplateContent() {
+        return this.templateContent;
+    }
+
+    /**
+     * 设置  templateContent
+     *
+     * @param templateContent 模版内容
+     */
+    public void setTemplateContent(String templateContent) {
+        this.templateContent = templateContent;
+    }
+}
