@@ -4,7 +4,7 @@
 飞廉，山海经中神兽，身似鹿，头如雀，有角而蛇尾，虽不能飞，但身形敏捷，速度奇快。
 擅长御风，是传说中的风神，秦人的先祖。
 
-<img width="30%" src="http://codegen.oss-cn-beijing.aliyuncs.com/doc/feilian.jpeg" alt="飞廉">
+<img width="30%" src="http://feilian.oss-cn-beijing.aliyuncs.com/doc/feilian.jpeg" alt="飞廉">
 
 图片来自网络
 
