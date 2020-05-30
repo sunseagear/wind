@@ -19,6 +19,7 @@
 >* 前端采用vuejs，集成了element-vue-admin
 >* 采用Oauth2协议进行统一的Token下发与鉴权，保证系统安全性 
 >* 采用Shiro进行权限动态管理，能够做到按钮级别的权限管控。
+>* 支持Quartz定时任务
 >* 支持webSocket
 >* 支持多租户
 >* 支持数据规则动态配置
