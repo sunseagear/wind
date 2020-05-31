@@ -15,6 +15,7 @@ import java.util.List;
 
 @Transactional
 public class CommonServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, T> implements ICommonService<T> {
+    protected boolean isDemo =true;
 
     public Page<T> selectPage(Page<T> page) {
         return (Page<T>) page(page);
@@ -22,26 +23,41 @@ public class CommonServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M
 
     @Override
     public boolean deleteById(Serializable id) {
+        if (isDemo){
+            return true;
+        }
         return removeById(id);
     }
 
     @Override
     public boolean update(T entity) {
+        if (isDemo){
+            return true;
+        }
         return updateById(entity);
     }
 
     @Override
     public boolean insert(T entity) {
+        if (isDemo){
+            return true;
+        }
         return save(entity);
     }
 
     @Override
     public boolean insertOrUpdate(T entity) {
+        if (isDemo){
+            return true;
+        }
         return saveOrUpdate(entity);
     }
 
     @Override
     public boolean insertOrUpdateBatch(List<T> list) {
+        if (isDemo){
+            return true;
+        }
         return saveOrUpdateBatch(list);
     }
 
@@ -52,6 +68,9 @@ public class CommonServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M
 
     @Override
     public void insertBatch(List<T> userRoleList) {
+        if (isDemo){
+            return;
+        }
         saveOrUpdateBatch(userRoleList);
 
     }
@@ -59,6 +78,9 @@ public class CommonServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M
 
     @Override
     public void deleteBatchIds(List<Serializable> idList) {
+        if (isDemo){
+            return;
+        }
         removeByIds(idList);
     }
 
@@ -82,6 +104,9 @@ public class CommonServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M
 
     @Override
     public boolean delete(Wrapper<T> wrapper) {
+        if (isDemo){
+            return true;
+        }
         return remove(wrapper);
     }
 

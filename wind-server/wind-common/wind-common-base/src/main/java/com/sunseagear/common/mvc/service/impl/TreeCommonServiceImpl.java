@@ -28,6 +28,10 @@ public class TreeCommonServiceImpl<M extends BaseTreeMapper<T>, T extends Serial
 
     @Override
     public boolean insert(T entity) {
+        if (isDemo){
+            return true;
+        }
+
         if (!ObjectUtils.isNullOrEmpty(entity.getParentId())) {
             T parent = selectById(entity.getParentId());
             entity.setParentId(parent.getId());
@@ -40,6 +44,10 @@ public class TreeCommonServiceImpl<M extends BaseTreeMapper<T>, T extends Serial
 
     @Override
     public boolean insertOrUpdate(T entity) {
+        if (isDemo){
+            return true;
+        }
+
         if (!ObjectUtils.isNullOrEmpty(entity.getParentId())) {
             T parent = selectById(entity.getParentId());
             updateSelftAndChild(entity, parent.getId(), parent.makeSelfAsNewParentIds());
@@ -52,6 +60,10 @@ public class TreeCommonServiceImpl<M extends BaseTreeMapper<T>, T extends Serial
 
 
     private void updateSelftAndChild(T entity, ID newParentId, String newParentIds) {
+        if (isDemo){
+            return;
+        }
+
         T oldEntity = selectById(entity.getId());
         String oldChildrenParentIds = oldEntity.makeSelfAsNewParentIds();
         entity.setParentId(newParentId);
