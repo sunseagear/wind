@@ -19,7 +19,7 @@
         <!-- 工具包 -->
         <guava.version>17.0</guava.version>
         <fastjson.version>1.2.15</fastjson.version>
-        <jackson.version>2.9.5</jackson.version>
+        <jackson.version>2.11.0</jackson.version>
         <jaxb.version>2.0.1</jaxb.version>
         <commons-text.version>1.8</commons-text.version>
         <commons-beanutils.version>1.9.3</commons-beanutils.version>
