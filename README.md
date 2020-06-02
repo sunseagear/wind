@@ -14,7 +14,9 @@
 取名飞廉，是因为我们希望能够设计出一款框架，简单，好用，具有极高的开发效率，但又不过度的封装，将技术细节能够原本的展现出来。让新手能用，老手爱用。
 
 ### 源码地址
-https://gitee.com/sunseagear/wind
+gitee:https://gitee.com/sunseagear/wind
+
+github:https://github.com/sunseagear/wind
 ### 在线预览
 http://182.92.226.35:8080/dist/
 
@@ -53,6 +55,60 @@ http://182.92.226.35:8080/dist/
 >* 前端页面进行了大量的重写和优化
 >* 新增了百度地图套件（打点，画线，画框），系统部门选择组件，系统用户选择组件，文件图片上传组件，同时修复大量原有组件的BUG
 >* 提供了多种页面的代码样例以供参考
+
+### 项目文件组成
+* sql 为数据库脚本
+* wind-admin 为前端系统页面
+* wind-server 为后台系统
+### 前端运行（命令行）
+```
+# 安装依赖
+npm install --registry=https://registry.npm.taobao.org
+
+# 启动服务
+npm run serve
+
+# 打包部署
+npm run build
+
+```
+
+### 前端运行（IDEA）
+1. 在IDEA中打开前端项目<br>
+![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/install/openAdmin.PNG)
+2. 在命令行中输入npm install<br>
+![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/install/npmInstall.PNG)
+3. 点击 add configuration，弹出配置对话框<br>
+![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/install/setting.PNG)
+4. 点击左上角“+”， 添加npm项目<br>
+![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/install/npm.PNG)
+5. 在右侧Scripts下拉框，选择dev<br>
+![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/install/npmDev.PNG)
+6. 再次点击左上角“+”，添加npm项目<br>
+![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/install/npm.PNG)
+7. 在右侧Scripts下拉框，选择build:prod<br>
+![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/install/npmBuild.PNG)
+8. 创建好两个项目后点击“OK”，关闭对话框
+9. 选择dev项目，点击运行，便可以运行项目<br>
+![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/install/runDev.PNG)
+10. 出现如下提示的时候，说明项目启动项目<br>
+![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/install/run.PNG)
+11. 点击链接http://localhost:9527或者http://192.168.1.101:9527，自动打开浏览器，出现如下界面，说明系统启动成功<br>
+![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/install/home.PNG)
+
+### 后端运行
+1. 使用数据库工具导入数据脚本，可以使用自己的常用的数据库工具导入数据<br>
+2. 在IDEA中打开后端项目<br>
+![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/install/server/open.PNG)
+3. 打开application-dev.yml文件，配置数据库连接信息<br>
+![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/install/server/database.PNG)
+4. 如果是第一次打开项目，在idea右下角会弹出对话框，点击Add as maven project，或者选择根目录pom.xml文件，右键选择Add as maven project<br>
+![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/install/server/maven.PNG)
+5. 同步完成以后，会自动识别为springBoot项目, 点击运行即可<br>
+![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/install/server/run.PNG)
+6. 系统运行成功<br>
+![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/install/server/start.PNG)
+
 
 ### 系统截图
 首页
