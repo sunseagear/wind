@@ -140,13 +140,13 @@ oss:
     #阿里云api的内或外网域名
     endpoint: oss-cn-beijing.aliyuncs.com
     #阿里云api的密钥access key id
-    access-key-id: IxEvdtmLhdV0yGmL
+    access-key-id:
     #阿里云api的密钥access key secret
-    access-key-secret: MUhGpiTF6xhgBUoU7a4r41WVIFScPU
+    access-key-secret:
     #阿里云api的bucket名称
-    bucket-name: harbouross
+    bucket-name: wind
     #外部访问域名
-    domain:  http://harbouross.oss-cn-beijing.aliyuncs.com
+    domain:  http://wind.oss-cn-beijing.aliyuncs.com
 
 #短信配置
 sms:
