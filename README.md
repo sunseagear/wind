@@ -47,18 +47,16 @@ http://182.92.226.35:8080/dist/
 
 ### 系统截图
 首页
-![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/summary/home.PNG)
+![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/summary/home.png)
 用户
-![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/summary/user.PNG)
+![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/summary/user.png)
 菜单
-![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/summary/menu.PNG)
+![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/summary/menu.png)
 权限
-![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/summary/permission.PNG)
-数据规则
-![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/summary/datarule.PNG)
+![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/summary/permission.png)
 数据规则配置
-![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/summary/dataruleForm.PNG)
+![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/summary/dataruleForm.png)
 字典
-![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/summary/dict.PNG)
+![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/summary/dict.png)
 代码样例
-![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/summary/demo.PNG)
+![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/summary/demo.png)

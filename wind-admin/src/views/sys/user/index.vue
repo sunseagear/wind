@@ -45,11 +45,6 @@
               <span>{{ scope.row.phone }}</span>
             </template>
           </el-table-column>
-          <el-table-column width="160" align="center" label="邮箱">
-            <template slot-scope="scope">
-              <span>{{ scope.row.email }}</span>
-            </template>
-          </el-table-column>
           <el-table-column width="160" align="center" label="可否登录">
             <template slot-scope="scope">
               <el-tag :type="scope.row.status | statusFilter">
