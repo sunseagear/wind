@@ -209,5 +209,14 @@ public class JsonUtils {
         return gson.toJson(new ServerPageResult(status, message, total, data));
     }
 
+    public static class ContextUrlAdapter implements JsonSerializer<String> {
 
+        @Override
+        public JsonElement serialize(String s, Type type, JsonSerializationContext jsonSerializationContext) {
+            if (!StringUtils.startsWith(s,"http")){
+                return new JsonPrimitive(ServletUtils.getContextUrl(ServletUtils.getRequest()) + s);
+            }
+            return new JsonPrimitive(s);
+        }
+    }
 }

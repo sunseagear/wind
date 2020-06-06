@@ -68,4 +68,15 @@ public class ServletUtils {
         }
     }
 
+    /**
+     * 获取域名
+     * @param request
+     * @return
+     */
+    public static String getContextUrl (HttpServletRequest request){
+        StringBuffer url = request.getRequestURL();
+        String tempContextUrl = url.delete(url.length() - request.getRequestURI().length(), url.length()).toString();
+        return tempContextUrl + "/";
+    }
+
 }
