@@ -18,7 +18,9 @@ gitee:https://gitee.com/sunseagear/wind
 
 github:https://github.com/sunseagear/wind
 ### 在线预览
-http://182.92.226.35:8080/dist/
+http://182.92.226.35/dist/
+### 在线文档
+http://182.92.226.35/
 
     演示系统数据无法修改
 ### 系统要求(推荐)

@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>wind-vue</artifactId>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <version>1.1.5.RELEASE</version>
     <properties>
         <bitwalker.version>1.19</bitwalker.version>
@@ -31,13 +31,6 @@
     </properties>
     <dependencies>
         <!--引入标签-->
-<!--
-        <dependency>
-            <groupId>com.sunseagear</groupId>
-            <artifactId>wind-common-security</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
--->
         <dependency>
             <groupId>com.sunseagear</groupId>
             <artifactId>wind-common-datarule</artifactId>
