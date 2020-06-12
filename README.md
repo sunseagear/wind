@@ -68,7 +68,7 @@ http://182.92.226.35/
 npm install --registry=https://registry.npm.taobao.org
 
 # 启动服务
-npm run serve
+npm run dev
 
 # 打包部署
 npm run build
