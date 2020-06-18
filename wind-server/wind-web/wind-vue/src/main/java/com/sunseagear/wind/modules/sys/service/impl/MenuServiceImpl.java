@@ -1,14 +1,12 @@
-package com.gangwantech.web.modules.sys.service.impl;
+package com.sunseagear.wind.modules.sys.service.impl;
 
+import com.sunseagear.common.mvc.service.impl.TreeCommonServiceImpl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.gangwantech.common.mvc.service.impl.TreeCommonServiceImpl;
-import com.gangwantech.common.mvc.wrapper.EntityWrapper;
-import com.gangwantech.common.utils.StringUtils;
-import com.gangwantech.web.modules.sys.entity.Menu;
-import com.gangwantech.web.modules.sys.mapper.MenuMapper;
-import com.gangwantech.web.modules.sys.service.IMenuService;
-import com.gangwantech.web.utils.UserUtils;
-import org.apache.log4j.Logger;
+import com.sunseagear.common.utils.StringUtils;
+import com.sunseagear.wind.modules.sys.entity.Menu;
+import com.sunseagear.wind.modules.sys.mapper.MenuMapper;
+import com.sunseagear.wind.modules.sys.service.IMenuService;
+import com.sunseagear.wind.utils.UserUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +18,7 @@ public class MenuServiceImpl extends TreeCommonServiceImpl<MenuMapper, Menu, Str
 
     @Override
     public List<Menu> getCurrentUserMenus() {
-        List<Menu> treeNodeList = baseMapper.findAllMenuByUserId(UserUtils.getUser().getId());
+        List<Menu> treeNodeList = baseMapper.findMenuByUserId(UserUtils.getUser().getId());
         List<Menu> list = getMenus(treeNodeList);
         List<Menu> newList = new ArrayList<>();
         for (Menu menu : list) {
@@ -39,7 +37,7 @@ public class MenuServiceImpl extends TreeCommonServiceImpl<MenuMapper, Menu, Str
     }
 
     private List<Menu> getMenus(List<Menu> treeNodeList) {
-        List<Menu> menuListAll = list(new QueryWrapper<Menu>());
+        List<Menu> menuListAll = list(new QueryWrapper());
         HashMap<String, Menu> menuHashMapAll = new HashMap<>();
         menuListAll.forEach(menu -> {
             menuHashMapAll.put(menu.getId(), menu);
@@ -54,7 +52,6 @@ public class MenuServiceImpl extends TreeCommonServiceImpl<MenuMapper, Menu, Str
                 });
             }
             menuHashMap.put(treeNode.getId(), menuHashMapAll.get(treeNode.getId()));
-            Logger.getLogger(this.getClass()).info(String.format("menuHashSet.add(is:%s,name:%s)", treeNode.getId(), treeNode.getName()));
 
         });
         List<Menu> menuList = new ArrayList<>();
@@ -104,15 +101,14 @@ public class MenuServiceImpl extends TreeCommonServiceImpl<MenuMapper, Menu, Str
                                String[] permissions,
                                String[] permissionTitles, Boolean additional) {
         if (!additional) {
-            EntityWrapper<Menu> deleteEntityWrapper = new EntityWrapper();
+            QueryWrapper<Menu> deleteEntityWrapper = new QueryWrapper();
             deleteEntityWrapper.eq("parent_id", menuId);
             deleteEntityWrapper.eq("type", 3);
             delete(deleteEntityWrapper);
         }
-        EntityWrapper<Menu> countEntityWrapper = new EntityWrapper();
-        countEntityWrapper.setTableAlias("t");
-        countEntityWrapper.eq("parent_id", menuId);
-        countEntityWrapper.eq("type", 3);
+        QueryWrapper<Menu> countEntityWrapper = new QueryWrapper();
+        countEntityWrapper.eq("t.parent_id", menuId);
+        countEntityWrapper.eq("t.type", 3);
 
         int count = selectTreeList(countEntityWrapper).size();
 
