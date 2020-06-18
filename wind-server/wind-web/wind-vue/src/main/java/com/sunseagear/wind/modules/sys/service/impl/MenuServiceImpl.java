@@ -1,12 +1,14 @@
-package com.sunseagear.wind.modules.sys.service.impl;
+package com.gangwantech.web.modules.sys.service.impl;
 
-import com.sunseagear.common.mvc.service.impl.TreeCommonServiceImpl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.sunseagear.common.utils.StringUtils;
-import com.sunseagear.wind.modules.sys.entity.Menu;
-import com.sunseagear.wind.modules.sys.mapper.MenuMapper;
-import com.sunseagear.wind.modules.sys.service.IMenuService;
-import com.sunseagear.wind.utils.UserUtils;
+import com.gangwantech.common.mvc.service.impl.TreeCommonServiceImpl;
+import com.gangwantech.common.mvc.wrapper.EntityWrapper;
+import com.gangwantech.common.utils.StringUtils;
+import com.gangwantech.web.modules.sys.entity.Menu;
+import com.gangwantech.web.modules.sys.mapper.MenuMapper;
+import com.gangwantech.web.modules.sys.service.IMenuService;
+import com.gangwantech.web.utils.UserUtils;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,7 +20,7 @@ public class MenuServiceImpl extends TreeCommonServiceImpl<MenuMapper, Menu, Str
 
     @Override
     public List<Menu> getCurrentUserMenus() {
-        List<Menu> treeNodeList = baseMapper.findMenuByUserId(UserUtils.getUser().getId());
+        List<Menu> treeNodeList = baseMapper.findAllMenuByUserId(UserUtils.getUser().getId());
         List<Menu> list = getMenus(treeNodeList);
         List<Menu> newList = new ArrayList<>();
         for (Menu menu : list) {
@@ -37,24 +39,26 @@ public class MenuServiceImpl extends TreeCommonServiceImpl<MenuMapper, Menu, Str
     }
 
     private List<Menu> getMenus(List<Menu> treeNodeList) {
-        List<Menu> menuListAll = list(new QueryWrapper());
+        List<Menu> menuListAll = list(new QueryWrapper<Menu>());
         HashMap<String, Menu> menuHashMapAll = new HashMap<>();
         menuListAll.forEach(menu -> {
             menuHashMapAll.put(menu.getId(), menu);
         });
-        HashSet<Menu> menuHashSet = new HashSet<>();
+        HashMap<String, Menu> menuHashMap = new HashMap<>();
         treeNodeList.forEach(treeNode -> {
             String parentIds = treeNode.getParentIds();
             if (!StringUtils.isEmpty(parentIds)) {
                 Arrays.asList(parentIds.split("/")).forEach(id -> {
                     Menu menu = menuHashMapAll.get(id);
-                    menuHashSet.add(menu);
+                    menuHashMap.put(id, menu);
                 });
             }
-            menuHashSet.add(menuHashMapAll.get(treeNode.getId()));
+            menuHashMap.put(treeNode.getId(), menuHashMapAll.get(treeNode.getId()));
+            Logger.getLogger(this.getClass()).info(String.format("menuHashSet.add(is:%s,name:%s)", treeNode.getId(), treeNode.getName()));
+
         });
         List<Menu> menuList = new ArrayList<>();
-        menuHashSet.forEach(item -> {
+        menuHashMap.values().forEach(item -> {
             menuList.add(item);
         });
         menuList.sort(new Comparator<Menu>() {
@@ -100,14 +104,15 @@ public class MenuServiceImpl extends TreeCommonServiceImpl<MenuMapper, Menu, Str
                                String[] permissions,
                                String[] permissionTitles, Boolean additional) {
         if (!additional) {
-            QueryWrapper<Menu> deleteEntityWrapper = new QueryWrapper();
+            EntityWrapper<Menu> deleteEntityWrapper = new EntityWrapper();
             deleteEntityWrapper.eq("parent_id", menuId);
             deleteEntityWrapper.eq("type", 3);
             delete(deleteEntityWrapper);
         }
-        QueryWrapper<Menu> countEntityWrapper = new QueryWrapper();
-        countEntityWrapper.eq("t.parent_id", menuId);
-        countEntityWrapper.eq("t.type", 3);
+        EntityWrapper<Menu> countEntityWrapper = new EntityWrapper();
+        countEntityWrapper.setTableAlias("t");
+        countEntityWrapper.eq("parent_id", menuId);
+        countEntityWrapper.eq("type", 3);
 
         int count = selectTreeList(countEntityWrapper).size();
 
