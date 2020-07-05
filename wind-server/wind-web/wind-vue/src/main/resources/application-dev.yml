@@ -26,9 +26,9 @@ spring:
 
   #DATABASE CONFIG
   datasource:
-    username: root
-    password: root
-    url: jdbc:mysql://localhost:3306/wind?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: appdev
+    password: Lw820602
+    url: jdbc:mysql://rm-2zej6285404z242zao.mysql.rds.aliyuncs.com:3306/wind?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
 
 
 #文件上传配置

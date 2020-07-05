@@ -11,11 +11,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 @Transactional
 public class CommonServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, T> implements ICommonService<T> {
-    protected boolean isDemo =true;
+    protected boolean isDemo = false;
 
     public Page<T> selectPage(Page<T> page) {
         return (Page<T>) page(page);
@@ -23,7 +24,7 @@ public class CommonServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M
 
     @Override
     public boolean deleteById(Serializable id) {
-        if (isDemo){
+        if (isDemo) {
             return true;
         }
         return removeById(id);
@@ -31,7 +32,7 @@ public class CommonServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M
 
     @Override
     public boolean update(T entity) {
-        if (isDemo){
+        if (isDemo) {
             return true;
         }
         return updateById(entity);
@@ -39,7 +40,7 @@ public class CommonServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M
 
     @Override
     public boolean insert(T entity) {
-        if (isDemo){
+        if (isDemo) {
             return true;
         }
         return save(entity);
@@ -47,7 +48,7 @@ public class CommonServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M
 
     @Override
     public boolean insertOrUpdate(T entity) {
-        if (isDemo){
+        if (isDemo) {
             return true;
         }
         return saveOrUpdate(entity);
@@ -55,7 +56,7 @@ public class CommonServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M
 
     @Override
     public boolean insertOrUpdateBatch(List<T> list) {
-        if (isDemo){
+        if (isDemo) {
             return true;
         }
         return saveOrUpdateBatch(list);
@@ -67,21 +68,36 @@ public class CommonServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M
     }
 
     @Override
-    public void insertBatch(List<T> userRoleList) {
-        if (isDemo){
+    public void insertBatch(List<T> entityList) {
+        if (isDemo) {
             return;
         }
-        saveOrUpdateBatch(userRoleList);
+        saveOrUpdateBatch(entityList);
 
     }
 
+    @Override
+    public boolean saveBatch(Collection<T> entityList) {
+        if (isDemo) {
+            return true;
+        }
+        return super.saveBatch(entityList);
+    }
 
     @Override
     public void deleteBatchIds(List<Serializable> idList) {
-        if (isDemo){
+        if (isDemo) {
             return;
         }
         removeByIds(idList);
+    }
+
+    @Override
+    public boolean removeByIds(Collection<? extends Serializable> idList) {
+        if (isDemo) {
+            return true;
+        }
+        return super.removeByIds(idList);
     }
 
     @Override
@@ -104,10 +120,18 @@ public class CommonServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M
 
     @Override
     public boolean delete(Wrapper<T> wrapper) {
-        if (isDemo){
+        if (isDemo) {
             return true;
         }
         return remove(wrapper);
+    }
+
+    @Override
+    public boolean remove(Wrapper<T> wrapper) {
+        if (isDemo) {
+            return true;
+        }
+        return super.remove(wrapper);
     }
 
     @Override

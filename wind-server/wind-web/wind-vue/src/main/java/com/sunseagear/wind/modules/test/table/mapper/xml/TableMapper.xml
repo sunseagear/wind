@@ -3,24 +3,22 @@
 <mapper namespace="com.sunseagear.wind.modules.test.table.mapper.TableMapper">
 
     <sql id="Base_Column_List">
-       a.id,
-       a.title,
-       a.author,
-       a.type,
-       a.level,
-       a.content,
-       a.status,
-       a.tag,
-       a.readings,
-       a.publish_date,
-       a.create_date,
-       a.update_by,
-       a.update_date,
-       a.remarks,
-       a.del_flag,
-       a.create_by
+       a.*,
+       b.realname as `user.realname`,
+       b.username as `user.username`
 	</sql>
     <sql id="tableJoins">
-
+        left join sys_user b on b.id = a.author
     </sql>
+    <select
+        id="selectPage"
+        resultType="com.sunseagear.wind.modules.test.table.entity.Table">
+        select
+        <include refid="Base_Column_List"/>
+        from test_table a
+        <include refid="tableJoins"/>
+        <if test="ew.sqlSegment != '' and ew.sqlSegment != null">
+                ${ew.sqlSegment}
+        </if>
+    </select>
 </mapper>

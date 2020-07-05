@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.sunseagear.common.mvc.entity.DataEntity;
+import com.sunseagear.wind.modules.sys.entity.User;
 import lombok.Data;
 
 import java.util.Date;
@@ -53,4 +54,7 @@ public class Table extends DataEntity<String> {
 
     @TableField(value = "publish_date")
     private Date publishDate; //发布时间
+
+    @TableField(exist = false)
+    private User user; //发布时间
 }
