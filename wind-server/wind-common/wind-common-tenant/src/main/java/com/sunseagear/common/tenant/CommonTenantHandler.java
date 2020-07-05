@@ -40,6 +40,9 @@ public class CommonTenantHandler implements TenantHandler {
      */
     @Override
     public boolean doTableFilter(String tableName) {
+        if (!TenantProperties.getInstance().getEnable()){
+            return true;
+        }
         return StringUtils.isBlank(UserUtils.getTenantId()) || TenantProperties.getInstance().getIgnoreTables().contains(tableName);
     }
 }

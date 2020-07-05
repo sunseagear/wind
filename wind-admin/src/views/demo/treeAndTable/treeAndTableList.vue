@@ -35,8 +35,7 @@
           border
           fit
           highlight-current-row
-          style="width: 100%;"
-          @sort-change="sortChange">
+          style="width: 100%;">
           <el-table-column label="部门名称" min-width="150px">
             <template slot-scope="{row}">
               <span>{{ row.name }}</span>

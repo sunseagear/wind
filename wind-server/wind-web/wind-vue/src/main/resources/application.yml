@@ -4,7 +4,7 @@ server:
 #spring
 spring:
   profiles:
-    active: dev
+      active: dev
   resources:
     static-locations: file:${oss.local.upload-file-path}
   session:

@@ -118,7 +118,7 @@ public class RoleDataRuleController extends BaseBeanController<RoleDataRule> {
     public String update(String roleId, String[] ids) {
         QueryWrapper<RoleDataRule> roleDataRuleEntityWrapper = new QueryWrapper<>();
         roleDataRuleEntityWrapper.eq("role_id", roleId);
-        roleDataRuleService.delete(roleDataRuleEntityWrapper);
+        roleDataRuleService.remove(roleDataRuleEntityWrapper);
         if (ids == null) {
             return Response.ok("更新成功");
         }
@@ -130,7 +130,7 @@ public class RoleDataRuleController extends BaseBeanController<RoleDataRule> {
             roleDataRule.setScopeId(item);
             roleDataRuleList.add(roleDataRule);
         });
-        roleDataRuleService.saveBatch(roleDataRuleList);
+        roleDataRuleService.insertBatch(roleDataRuleList);
         dataRuleHandler.refreshRole();
         return Response.ok("更新成功");
     }

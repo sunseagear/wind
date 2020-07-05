@@ -12,6 +12,8 @@ public class TenantProperties {
 
     private static TenantProperties instance;
 
+    private Boolean enable = true;
+
     private String defaultTenantId = "00000000";
 
     /**
