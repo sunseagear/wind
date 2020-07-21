@@ -1,21 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.sunseagear.wind.modules.sys.mapper.TenantMapper" >
+<mapper namespace="com.sunseagear.wind.modules.sys.mapper.TenantMapper">
 
-	<sql id="Base_Column_List" >
-       a.id,
-       a.create_by,
-       a.create_date,
-       a.update_by,
-       a.update_date,
-       a.del_flag,
-       a.remarks,
-       a.tenant_id,
-       a.contact,
-       a.phone,
-       a.name
+    <sql id="Base_Column_List">
+       a.*,
+       b.username as 'username'
 	</sql>
-  <sql id="tableJoins">
-
+    <sql id="tableJoins">
+    left join sys_user b on b.id = a.user_id
   </sql>
+    <select
+        id="selectPage"
+        resultType="com.sunseagear.wind.modules.sys.entity.Tenant">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_tenant a
+        <include refid="tableJoins"/>
+        <if test="ew.sqlSegment != '' and ew.sqlSegment != null">
+            ${ew.sqlSegment}
+        </if>
+    </select>
+    <select
+        id="selectById"
+        resultType="com.sunseagear.wind.modules.sys.entity.Tenant">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_tenant a
+        <include refid="tableJoins"/>
+        where a.id = #{id,jdbcType=VARCHAR}
+    </select>
 </mapper>

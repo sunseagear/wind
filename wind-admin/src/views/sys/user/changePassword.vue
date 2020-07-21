@@ -54,7 +54,7 @@ export default {
           myUpdateChangePassword(this.userForm).then(response => {
             if (response.data.code === 0) {
               this.$message.success(response.data.msg)
-              this.$store.dispatch('user/LogOut').then(() => {
+              this.$store.dispatch('user/logout').then(() => {
                 location.reload()// In order to re-instantiate the vue-router object to avoid bugs
               })
             } else {

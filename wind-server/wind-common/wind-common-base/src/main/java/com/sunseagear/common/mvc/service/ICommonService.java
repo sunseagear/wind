@@ -12,31 +12,31 @@ public interface ICommonService<T> extends IService<T> {
 
     Boolean doValid(DuplicateValid duplicateValid, Wrapper<T> wrapper);
 
-    boolean delete(Wrapper<T> wrapper);
-
-    T selectById(Serializable id);
-
-    Page<T> selectPage(Page<T> page, Wrapper<T> wrapper);
-
-    T selectOne(Wrapper<T> wrapper);
-
-    boolean deleteById(Serializable id);
-
-    boolean update(T entity);
-
     boolean insert(T entity);
+
+    void insertBatch(List<T> userRoleList);
 
     boolean insertOrUpdate(T entity);
 
     boolean insertOrUpdateBatch(List<T> list);
 
-    int selectCount(Wrapper<T> wrapper);
+    boolean deleteById(Serializable id);
 
-
-    void insertBatch(List<T> userRoleList);
+    boolean delete(Wrapper<T> wrapper);
 
     void deleteBatchIds(List<Serializable> idList);
 
+    boolean update(T entity);
+
+    T selectById(Serializable id);
+
+    T selectOne(Wrapper<T> wrapper);
+
+    Page<T> selectPage(Page<T> page, Wrapper<T> wrapper);
+
+    int selectCount(Wrapper<T> wrapper);
+
     List<T> selectList(Wrapper<T> wrapper);
+
 
 }

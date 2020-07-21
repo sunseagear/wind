@@ -42,19 +42,20 @@ public class MenuServiceImpl extends TreeCommonServiceImpl<MenuMapper, Menu, Str
         menuListAll.forEach(menu -> {
             menuHashMapAll.put(menu.getId(), menu);
         });
-        HashSet<Menu> menuHashSet = new HashSet<>();
+        HashMap<String, Menu> menuHashMap = new HashMap<>();
         treeNodeList.forEach(treeNode -> {
             String parentIds = treeNode.getParentIds();
             if (!StringUtils.isEmpty(parentIds)) {
                 Arrays.asList(parentIds.split("/")).forEach(id -> {
                     Menu menu = menuHashMapAll.get(id);
-                    menuHashSet.add(menu);
+                    menuHashMap.put(id, menu);
                 });
             }
-            menuHashSet.add(menuHashMapAll.get(treeNode.getId()));
+            menuHashMap.put(treeNode.getId(), menuHashMapAll.get(treeNode.getId()));
+
         });
         List<Menu> menuList = new ArrayList<>();
-        menuHashSet.forEach(item -> {
+        menuHashMap.values().forEach(item -> {
             menuList.add(item);
         });
         menuList.sort(new Comparator<Menu>() {
