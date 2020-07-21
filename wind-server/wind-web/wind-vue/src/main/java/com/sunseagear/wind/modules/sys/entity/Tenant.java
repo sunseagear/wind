@@ -35,6 +35,8 @@ public class Tenant extends DataEntity<String> {
     private String name;  //租户名称
     @TableField(value = "tenant_id")
     private String tenantId;
+    @TableField(value = "user_id")
+    private String userId;
     @TableField(exist = false)
     private String userName;
 }

@@ -10,8 +10,9 @@
       <el-form-item label="电话" prop="phone">
         <el-input v-model="temp.phone" />
       </el-form-item>
-      <el-form-item v-if="dialogStatus==='create'" label="用户名" prop="userName">
-        <el-input v-model="temp.userName" />
+      <el-form-item label="用户名" prop="userName">
+        <el-input v-if="dialogStatus==='create'" v-model="temp.userName" />
+        <span v-else> {{ temp.userName }}</span>
       </el-form-item>
       <el-form-item label="备注" prop="remarks">
         <el-input v-model="temp.remarks" type="textarea" />

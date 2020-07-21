@@ -53,6 +53,11 @@
           <span>{{ row.name }}</span>
         </template>
       </el-table-column>
+      <el-table-column label="登录名" min-width="150px">
+        <template slot-scope="{row}">
+          <span>{{ row.userName }}</span>
+        </template>
+      </el-table-column>
       <el-table-column label="操作" align="center" width="230" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
           <el-button v-permission="['sys:tenant:update']" size="small" type="text" icon="el-icon-edit" @click="handleUpdate(row)">
