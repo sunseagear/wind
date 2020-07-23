@@ -58,11 +58,21 @@ export default {
       path: undefined
     }
   },
-  created() {
-    if (this.value) {
-      this.polylinePath = JSON.parse(this.value)
-      this.path = this.value
+  watch: {
+    value: {
+      immediate: true,
+      handler(val) {
+        if (this.value) {
+          this.polylinePath = JSON.parse(this.value)
+          this.path = this.value
+        } else {
+          this.polylinePath = []
+          this.path = undefined
+        }
+      }
     }
+  },
+  created() {
   },
   methods: {
     syncCenterAndZoom(e) {
