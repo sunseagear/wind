@@ -35,7 +35,7 @@ CREATE TABLE `email_send_log` (
   `remarks` varchar(255) DEFAULT NULL COMMENT '备注信息',
   `tenant_id` varchar(64) DEFAULT '00000000' COMMENT '租户ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 /*Data for the table `email_send_log` */
 
@@ -59,7 +59,7 @@ CREATE TABLE `email_template` (
   `update_date` varchar(19) DEFAULT NULL COMMENT '更新时间',
   `tenant_id` varchar(64) NOT NULL DEFAULT '00000000' COMMENT '租户ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='邮件发送模板';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='邮件发送模板';
 
 /*Data for the table `email_template` */
 
@@ -82,7 +82,7 @@ CREATE TABLE `oa_notification` (
   `remarks` varchar(255) DEFAULT NULL COMMENT '备注信息',
   `tenant_id` varchar(64) NOT NULL DEFAULT '00000000' COMMENT '租户ID',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `oa_notification` */
 
@@ -112,7 +112,7 @@ CREATE TABLE `oss_attachment` (
   `del_flag` char(1) DEFAULT NULL,
   `tenant_id` varchar(64) NOT NULL DEFAULT '00000000' COMMENT '租户ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 /*Data for the table `oss_attachment` */
 
@@ -137,7 +137,7 @@ CREATE TABLE `sms_send_log` (
   `response_date` datetime DEFAULT NULL COMMENT '响应时间',
   `tenant_id` varchar(64) DEFAULT '00000000' COMMENT '租户ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 /*Data for the table `sms_send_log` */
 
@@ -161,7 +161,7 @@ CREATE TABLE `sms_template` (
   `remarks` varchar(255) DEFAULT NULL COMMENT '备注信息',
   `tenant_id` varchar(64) NOT NULL DEFAULT '00000000' COMMENT '租户ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 /*Data for the table `sms_template` */
 
@@ -185,7 +185,7 @@ CREATE TABLE `sys_config` (
   `is_sys` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否是系统配置，如果是，该配置不可以删除',
   `tenant_id` varchar(11) NOT NULL DEFAULT '00000000',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `sys_config` */
 
@@ -245,7 +245,7 @@ CREATE TABLE `sys_data_source` (
   `del_flag` char(1) DEFAULT NULL,
   `tenant_id` varchar(64) NOT NULL DEFAULT '00000000' COMMENT '租户ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `sys_data_source` */
 
@@ -270,7 +270,7 @@ CREATE TABLE `sys_dict` (
   PRIMARY KEY (`id`),
   KEY `sys_dict_groupid_key` (`gid`),
   CONSTRAINT `sys_dict_groupid_key` FOREIGN KEY (`gid`) REFERENCES `sys_dict_group` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='数据字典';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='数据字典';
 
 /*Data for the table `sys_dict` */
 
@@ -291,7 +291,7 @@ CREATE TABLE `sys_dict_group` (
   `update_date` datetime DEFAULT NULL,
   `del_flag` char(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='字典分组';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='字典分组';
 
 /*Data for the table `sys_dict_group` */
 
@@ -313,7 +313,7 @@ CREATE TABLE `sys_login_log` (
   `login_time` datetime DEFAULT NULL COMMENT '访问时间',
   `tenant_id` varchar(64) NOT NULL DEFAULT '00000000' COMMENT '租户ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='系统访问记录';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='系统访问记录';
 
 /*Data for the table `sys_login_log` */
 
@@ -348,7 +348,7 @@ CREATE TABLE `sys_menu` (
   PRIMARY KEY (`id`),
   KEY `idx_sys_resource_parent_id` (`parent_id`),
   KEY `idx_sys_resource_parent_ids` (`parent_ids`(255))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `sys_menu` */
 
@@ -371,7 +371,7 @@ CREATE TABLE `sys_message` (
   PRIMARY KEY (`id`),
   KEY `sys_message_read_uid` (`read_uid`),
   CONSTRAINT `sys_message_read_uid` FOREIGN KEY (`read_uid`) REFERENCES `sys_user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='发送消息';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='发送消息';
 
 /*Data for the table `sys_message` */
 
@@ -389,7 +389,7 @@ CREATE TABLE `sys_message_template` (
   `template_content` text NOT NULL COMMENT '模版内容',
   `tenant_id` varchar(64) NOT NULL DEFAULT '00000000' COMMENT '租户ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='发送消息模板';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='发送消息模板';
 
 /*Data for the table `sys_message_template` */
 
@@ -420,7 +420,7 @@ CREATE TABLE `sys_operation_log` (
   KEY `sys_log_create_by` (`create_by`),
   KEY `sys_log_request_uri` (`operation_ip`),
   KEY `sys_log_create_date` (`create_date`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='日志表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='日志表';
 
 /*Data for the table `sys_operation_log` */
 
@@ -443,7 +443,7 @@ CREATE TABLE `sys_organization` (
   PRIMARY KEY (`id`),
   KEY `idx_sys_organization_parent_id` (`parent_id`),
   KEY `idx_sys_organization_parent_ids` (`parent_ids`(255))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `sys_organization` */
 
@@ -469,7 +469,7 @@ CREATE TABLE `sys_role` (
   PRIMARY KEY (`id`),
   KEY `sys_role_del_flag` (`del_flag`),
   KEY `sys_role_enname` (`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='角色表';
 
 /*Data for the table `sys_role` */
 
@@ -501,7 +501,7 @@ CREATE TABLE `sys_role_menu` (
   PRIMARY KEY (`id`),
   KEY `sys_role_menu_menuid` (`menu_id`),
   KEY `sys_role_menu_roleid` (`role_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色-菜单';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='角色-菜单';
 
 /*Data for the table `sys_role_menu` */
 
@@ -515,7 +515,7 @@ CREATE TABLE `sys_sessions` (
   `id` varchar(200) NOT NULL DEFAULT '',
   `session` varchar(2000) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `sys_sessions` */
 
@@ -565,7 +565,7 @@ CREATE TABLE `sys_user` (
   `organization_id` varchar(64) DEFAULT NULL COMMENT '所属组织ID',
   `tenant_id` varchar(64) NOT NULL DEFAULT '00000000' COMMENT '租户ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `sys_user` */
 
@@ -582,7 +582,7 @@ CREATE TABLE `sys_user_role` (
   PRIMARY KEY (`id`),
   KEY `sys_user_role_userid` (`user_id`),
   KEY `sys_user_role_roleid` (`role_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户-角色';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户-角色';
 
 /*Data for the table `sys_user_role` */
 
@@ -610,7 +610,7 @@ CREATE TABLE `task_schedule_job` (
   `job_name` varchar(255) DEFAULT NULL COMMENT '任务名',
   `load_way` varchar(1) DEFAULT NULL COMMENT '加载任务方式',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `task_schedule_job` */
 
@@ -632,7 +632,7 @@ CREATE TABLE `task_schedule_job_log` (
   `exception_info` text COMMENT '异常信息',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='定时任务调度日志表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='定时任务调度日志表';
 
 /*Data for the table `task_schedule_job_log` */
 
@@ -654,7 +654,7 @@ CREATE TABLE `test_car` (
   `del_flag` char(1) DEFAULT NULL,
   `tenant_id` varchar(64) NOT NULL DEFAULT '00000000' COMMENT '租户ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='字典分组';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='字典分组';
 
 /*Data for the table `test_car` */
 
@@ -679,7 +679,7 @@ CREATE TABLE `test_car_model` (
   PRIMARY KEY (`id`),
   KEY `test_car_model_car_id` (`car_id`),
   CONSTRAINT `test_car_model_car_id` FOREIGN KEY (`car_id`) REFERENCES `test_car` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='数据字典';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='数据字典';
 
 /*Data for the table `test_car_model` */
 
@@ -707,7 +707,7 @@ CREATE TABLE `test_expand_table` (
   `tenant_id` varchar(64) NOT NULL DEFAULT '00000000' COMMENT '租户ID',
   `image` text COMMENT '图片',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `test_expand_table` */
 
@@ -737,7 +737,7 @@ CREATE TABLE `test_table` (
   `tenant_id` varchar(64) NOT NULL DEFAULT '00000000' COMMENT '租户ID',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_test_table_title` (`title`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `test_table` */
 
@@ -760,7 +760,7 @@ CREATE TABLE `test_tree_and_table` (
   `del_flag` char(1) DEFAULT NULL,
   `create_by` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `test_tree_and_table` */
 
@@ -785,7 +785,7 @@ CREATE TABLE `test_tree_table` (
   `remarks` varchar(255) DEFAULT NULL,
   `tenant_id` varchar(64) NOT NULL DEFAULT '00000000' COMMENT '租户ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `test_tree_table` */
 
