@@ -4,6 +4,7 @@
     <el-button v-if="showText" type="primary" @click="addPath">数据画点</el-button>
     <baidu-map :center="center" :scroll-wheel-zoom="true" :zoom="zoom" :style="{height:height,width:width}" @click="getClickInfo">
       <bm-marker
+        v-if="point.lng"
         :position="{lng:point.lng, lat: point.lat}"
         :dragging="true"
       >
@@ -53,10 +54,22 @@ export default {
       point: {}
     }
   },
-  created() {
-    if (this.value) {
-      this.location = this.value
+  watch: {
+    value: {
+      immediate: true,
+      handler(val) {
+        if (this.value) {
+          this.point = JSON.parse(this.value)
+          this.location = this.value
+        } else {
+          this.point = {}
+          this.location = undefined
+          console.log('this.point = {}', this.point)
+        }
+      }
     }
+  },
+  created() {
   },
   methods: {
     addPath() {

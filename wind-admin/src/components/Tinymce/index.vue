@@ -85,8 +85,11 @@ export default {
       // console.log('this.hasInit', this.hasInit)
       if (!this.hasChange && this.hasInit) {
         // console.log('val', val)
-        this.$nextTick(() =>
-          window.tinymce.get(this.tinymceId).setContent(val || ''))
+        window.tinymce.get(this.tinymceId).setContent(val || '')
+
+        // this.$nextTick(() => {
+        //   window.tinymce.get(this.tinymceId).setContent(val || '')
+        // })
       }
     }
   },
@@ -141,10 +144,13 @@ export default {
             editor.setContent(_this.value)
           }
           _this.hasInit = true
-          editor.on('NodeChange Change KeyUp', () => {
+          editor.on('Change SetContent', (evt) => {
+            // console.log('evt:', evt)
             this.hasChange = true
+            // console.log('this.hasChange = true')
             this.$emit('input', editor.getContent()).$nextTick(() => {
               this.hasChange = false
+              // console.log('this.hasChange = false')
             })
           })
         },
