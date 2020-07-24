@@ -20,7 +20,7 @@
 * 轻松减少70%的代码开发量，让开发人员从重复的增删改查中解放出来，专注业务的开发。
 
 文档地址:http://www.sunseagear.com/#/doc/cangjie/start
-有兴趣参与内测的小伙伴，加QQ:553671691
+有兴趣参与内测的小伙伴，加QQ:553671691,加人请注明“飞廉”
 
 ### 源码地址
 gitee:https://gitee.com/sunseagear/wind
