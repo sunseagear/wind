@@ -213,7 +213,7 @@ public class JsonUtils {
 
         @Override
         public JsonElement serialize(String s, Type type, JsonSerializationContext jsonSerializationContext) {
-            if (!StringUtils.startsWith(s,"http")){
+            if (!StringUtils.isEmpty(s) && !StringUtils.startsWith(s,"http")){
                 return new JsonPrimitive(ServletUtils.getContextUrl(ServletUtils.getRequest()) + s);
             }
             return new JsonPrimitive(s);
