@@ -3,34 +3,49 @@ import validator from 'validator'
 
 export default {
   validateNumberRule(rule, value, callback) {
-    if (!validator.isNumeric(value)) {
+    if (value === undefined || value === null || value === '') {
+      callback()
+    }
+    if (!validator.isNumeric('' + value)) {
       callback(new Error('请输入数字'))
     } else {
       callback()
     }
   },
   validateNumberGTZRule(rule, value, callback) {
-    if (validator.isNumeric(value, [{ no_symbols: false }]) && value > 0) {
+    if (value === undefined || value === null || value === '') {
+      callback()
+    }
+    if (validator.isNumeric('' + value, [{ no_symbols: false }]) && value > 0) {
       callback()
     } else {
       callback(new Error('请输入正数'))
     }
   },
   validateIntegerRule(rule, value, callback) {
-    if (!validator.isInt(value)) {
+    if (value === undefined || value === null || value === '') {
+      callback()
+    }
+    if (!validator.isInt('' + value)) {
       callback(new Error('请输入整数'))
     } else {
       callback()
     }
   },
   validateIngeterGTZRule(rule, value, callback) {
-    if (!validator.isInt(value, { gt: 0 })) {
+    if (value === undefined || value === null || value === '') {
+      callback()
+    }
+    if (!validator.isInt('' + value, { gt: 0 })) {
       callback(new Error('请输入正整数'))
     } else {
       callback()
     }
   },
   validateAlphaRule(rule, value, callback) {
+    if (value === undefined || value === null || value === '') {
+      callback()
+    }
     if (!validator.isAlpha(value, 'en-US')) {
       callback(new Error('请输入纯字母'))
     } else {
@@ -40,6 +55,9 @@ export default {
 
   /*  是否身份证号码*/
   validateIdNoRule(rule, value, callback) {
+    if (value === undefined || value === null || value === '') {
+      callback()
+    }
     const reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/
     if (value === '' || value === undefined || value === null) {
       callback()
@@ -53,6 +71,9 @@ export default {
   },
   /*  是否身份证号码,详细规则校验*/
   validateIdNoStrictRule(rule, code, callback) {
+    if (code === undefined || code === null || code === '') {
+      callback()
+    }
     var city = { 11: '北京', 12: '天津', 13: '河北', 14: '山西', 15: '内蒙古', 21: '辽宁', 22: '吉林', 23: '黑龙江 ',
       31: '上海', 32: '江苏', 33: '浙江', 34: '安徽', 35: '福建', 36: '江西', 37: '山东', 41: '河南', 42: '湖北 ',
       43: '湖南', 44: '广东', 45: '广西', 46: '海南', 50: '重庆', 51: '四川', 52: '贵州', 53: '云南', 54: '西藏 ',
@@ -99,6 +120,9 @@ export default {
   },
 
   validateURLRule(rule, value, callback) {
+    if (value === undefined || value === null || value === '') {
+      callback()
+    }
     if (!validator.isURL(value)) {
       callback(new Error('请输入正确的网址'))
     } else {
@@ -107,6 +131,9 @@ export default {
   },
   /*  是否邮箱*/
   validateEMailRule(rule, value, callback) {
+    if (value === undefined || value === null || value === '') {
+      callback()
+    }
     const reg = /^([a-zA-Z0-9]+[-_\.]?)+@[a-zA-Z0-9]+\.[a-z]+$/
     if (value === '' || value === undefined || value === null) {
       callback()
@@ -120,6 +147,9 @@ export default {
   },
   /*  是否手机号码*/
   validateMobileRule(rule, value, callback) {
+    if (value === undefined || value === null || value === '') {
+      callback()
+    }
     const reg = /^[1][3,4,5,7,8,9][0-9]{9}$/
     if (value === '' || value === undefined || value === null) {
       callback()
@@ -133,6 +163,9 @@ export default {
   },
   /*  是否手机号码或者固话*/
   validateTelOrMobileRule(rule, value, callback) {
+    if (value === undefined || value === null || value === '') {
+      callback()
+    }
     const reg = /^((0\d{2,3}-\d{7,8})|(1[34578]\d{9}))$/
     if (value === '' || value === undefined || value === null) {
       callback()
@@ -146,6 +179,9 @@ export default {
   },
   /*  是否固话*/
   validateTelphoneRule(rule, value, callback) {
+    if (value === undefined || value === null || value === '') {
+      callback()
+    }
     const reg = /0\d{2}-\d{7,8}/
     if (value === '' || value === undefined || value === null) {
       callback()
