@@ -13,6 +13,19 @@
 
 取名飞廉，是因为我们希望能够设计出一款框架，简单，好用，具有极高的开发效率，但又不过度的封装，将技术细节能够原本的展现出来。让新手能用，老手爱用。
 
+### 代码生成器上线了内测了
+* 一个运行在云端的代码生成工具。
+* 能够自动生成单表，树表，展开表，级联表（主子表），左树右表等常见的后台系统页面。
+* 支持人员选择，图片上传，百度地图，富文本等多达十几种的常用组件的自动生成，十多种表单验证的自动集成。
+* 轻松减少70%的代码开发量，让开发人员从重复的增删改查中解放出来，专注业务的开发。
+
+文档地址:http://www.sunseagear.com/#/doc/cangjie/start
+
+有兴趣参与内测的小伙伴，加QQ:553671691,或者微信: Dothegod，加人请注明“飞廉”
+
+<img width="20%" src="http://feilian.oss-cn-beijing.aliyuncs.com/qq.jpg" alt="QQ">        
+<img width="20%" src="http://feilian.oss-cn-beijing.aliyuncs.com/wx.jpg" alt="微信" style="margin-left: 200px">
+
 ### 源码地址
 gitee:https://gitee.com/sunseagear/wind
 
@@ -127,3 +140,14 @@ npm run build
 ![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/summary/dict.png)
 代码样例
 ![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/summary/demo.png)
+
+
+### 代码生成器
+创建模块
+<img src="http://feilian.oss-cn-beijing.aliyuncs.com/cangjie/createTable.png" style="border: 1px solid #a9a9a9;"><br>
+块配置
+<img src="http://feilian.oss-cn-beijing.aliyuncs.com/cangjie/jdbc.png" style="border: 1px solid #a9a9a9;"><br>
+<img src="http://feilian.oss-cn-beijing.aliyuncs.com/cangjie/form.png" style="border: 1px solid #a9a9a9;"><br>
+<img src="http://feilian.oss-cn-beijing.aliyuncs.com/cangjie/list.png" style="border: 1px solid #a9a9a9;"><br>
+代码生成
+<img src="http://feilian.oss-cn-beijing.aliyuncs.com/cangjie/save.png" style="border: 1px solid #a9a9a9;"><br>

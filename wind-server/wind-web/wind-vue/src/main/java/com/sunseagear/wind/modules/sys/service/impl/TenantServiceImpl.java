@@ -51,6 +51,7 @@ public class TenantServiceImpl extends CommonServiceImpl<TenantMapper, Tenant> i
         user.setPassword(entity.getTenantId());
         userService.insert(user);
         userRoleService.insertByRoleId(user.getId(), "1");
+        entity.setUserId(user.getId());
         return super.insert(entity);
     }
 }
