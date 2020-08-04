@@ -21,7 +21,10 @@
 
 文档地址:http://www.sunseagear.com/#/doc/cangjie/start
 
-有兴趣参与内测的小伙伴，加QQ:553671691,加人请注明“飞廉”
+有兴趣参与内测的小伙伴，加QQ:553671691,或者微信: Dothegod，加人请注明“飞廉”
+
+<img width="20%" src="http://feilian.oss-cn-beijing.aliyuncs.com/qq.jpg" alt="QQ">        
+<img width="20%" src="http://feilian.oss-cn-beijing.aliyuncs.com/wx.jpg" alt="微信" style="margin-left: 200px">
 
 ### 源码地址
 gitee:https://gitee.com/sunseagear/wind
@@ -137,3 +140,14 @@ npm run build
 ![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/summary/dict.png)
 代码样例
 ![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/summary/demo.png)
+
+
+### 代码生成器
+创建模块
+<img src="http://feilian.oss-cn-beijing.aliyuncs.com/cangjie/createTable.png" style="border: 1px solid #a9a9a9;"><br>
+块配置
+<img src="http://feilian.oss-cn-beijing.aliyuncs.com/cangjie/jdbc.png" style="border: 1px solid #a9a9a9;"><br>
+<img src="http://feilian.oss-cn-beijing.aliyuncs.com/cangjie/form.png" style="border: 1px solid #a9a9a9;"><br>
+<img src="http://feilian.oss-cn-beijing.aliyuncs.com/cangjie/list.png" style="border: 1px solid #a9a9a9;"><br>
+代码生成
+<img src="http://feilian.oss-cn-beijing.aliyuncs.com/cangjie/save.png" style="border: 1px solid #a9a9a9;"><br>
