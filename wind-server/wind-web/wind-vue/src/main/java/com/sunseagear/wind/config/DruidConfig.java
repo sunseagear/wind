@@ -2,10 +2,14 @@ package com.sunseagear.wind.config;
 
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
+import org.apache.ibatis.mapping.DatabaseIdProvider;
+import org.apache.ibatis.mapping.VendorDatabaseIdProvider;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.Properties;
 
 /**
  * All rights Reserved, Designed By www.sunseagear.com
@@ -58,6 +62,17 @@ public class DruidConfig {
         //添加不需要忽略的格式信息.
         filterRegistrationBean.addInitParameter("exclusions", "/static/*,*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*");
         return filterRegistrationBean;
+    }
+
+    @Bean
+    public DatabaseIdProvider getDatabaseIdProvider() {
+        DatabaseIdProvider databaseIdProvider = new VendorDatabaseIdProvider();
+        Properties properties = new Properties();
+        properties.setProperty("Oracle", "oracle");
+        properties.setProperty("Microsoft SQL Server", "sqlServer");
+        properties.setProperty("MySQL", "mysql");
+        databaseIdProvider.setProperties(properties);
+        return databaseIdProvider;
     }
 
 }

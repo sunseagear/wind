@@ -66,11 +66,14 @@
     <update id="updateSunTreeParentIds">
         update sys_organization set parent_ids=
         CONCAT(#{newParentIds},
-        <if test="'${dbType}' == 'mysql'">
+        <if test="_databaseId == 'mysql'">
             substring(parent_ids, length(#{oldParentIds})+1,length(parent_ids)+1))
         </if>
-        <if test="'${dbType}' == 'oracle'">
+        <if test="_databaseId == 'oracle'">
             substr(parent_ids, length(#{oldParentIds})+1,length(parent_ids)+1))
+        </if>
+        <if test="_databaseId == 'sqlServer'">
+            substring(parent_ids, len(#{oldParentIds})+1,len(parent_ids)+1))
         </if>
         where parent_ids like concat(#{oldParentIds}, '%')
     </update>

@@ -55,7 +55,7 @@ public class TenantController extends BaseBeanController<Tenant> {
     public String list(HttpServletRequest request) throws IOException {
         //加入条件
         QueryWrapper<Tenant> entityWrapper = new QueryWrapper<>();
-        entityWrapper.orderByDesc( "create_date");
+        entityWrapper.orderByDesc( "a.create_date");
         String tenantId = request.getParameter("tenantId");
         if (!StringUtils.isEmpty(tenantId)) {
             entityWrapper.eq("tenant_id", tenantId);

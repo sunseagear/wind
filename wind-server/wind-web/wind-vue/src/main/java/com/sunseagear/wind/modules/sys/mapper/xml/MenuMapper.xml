@@ -57,7 +57,8 @@
     <update id="updateSunTreeParentIds">
         update sys_menu set parent_ids=
         CONCAT(#{newParentIds},substring(parent_ids,
-        length(#{oldParentIds})+1,length(parent_ids)+1))
+        <if test="_databaseId == 'mysql'">length(#{oldParentIds})+1,length(parent_ids)+1))</if>
+        <if test="_databaseId == 'sqlServer'">len(#{oldParentIds})+1,len(parent_ids)+1))</if>
         where parent_ids like concat(#{oldParentIds}, '%')
     </update>
 
