@@ -27,7 +27,7 @@ spring:
 
   #DATABASE CONFIG
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
     type: com.alibaba.druid.pool.DruidDataSource   #这里是配置druid连接池，以下都是druid的配置信息
     filters: config,stat,wall,log4j
     maxActive: 20
