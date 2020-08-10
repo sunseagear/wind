@@ -12,7 +12,7 @@
  Target Server Version : 11003128
  File Encoding         : 65001
 
- Date: 05/08/2020 20:11:57
+ Date: 10/08/2020 21:05:53
 */
 
 
@@ -1203,6 +1203,207 @@ GO
 
 
 -- ----------------------------
+-- Table structure for sys_dict
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[sys_dict]') AND type IN ('U'))
+	DROP TABLE [dbo].[sys_dict]
+GO
+
+CREATE TABLE [dbo].[sys_dict] (
+  [id] nvarchar(32) COLLATE Chinese_PRC_CI_AS  NOT NULL,
+  [gid] nvarchar(32) COLLATE Chinese_PRC_CI_AS  NULL,
+  [label] nvarchar(100) COLLATE Chinese_PRC_CI_AS  NULL,
+  [value] nvarchar(100) COLLATE Chinese_PRC_CI_AS  NULL,
+  [sort] int  NULL,
+  [remarks] nvarchar(100) COLLATE Chinese_PRC_CI_AS  NULL,
+  [create_by] nvarchar(32) COLLATE Chinese_PRC_CI_AS  NULL,
+  [create_date] datetime2(0)  NULL,
+  [update_by] nvarchar(32) COLLATE Chinese_PRC_CI_AS  NULL,
+  [update_date] datetime2(0)  NULL,
+  [del_flag] nchar(1) COLLATE Chinese_PRC_CI_AS  NULL
+)
+GO
+
+ALTER TABLE [dbo].[sys_dict] SET (LOCK_ESCALATION = TABLE)
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'主键',
+'SCHEMA', N'dbo',
+'TABLE', N'sys_dict',
+'COLUMN', N'id'
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'分组ID',
+'SCHEMA', N'dbo',
+'TABLE', N'sys_dict',
+'COLUMN', N'gid'
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'键值键',
+'SCHEMA', N'dbo',
+'TABLE', N'sys_dict',
+'COLUMN', N'label'
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'值',
+'SCHEMA', N'dbo',
+'TABLE', N'sys_dict',
+'COLUMN', N'value'
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'排序',
+'SCHEMA', N'dbo',
+'TABLE', N'sys_dict',
+'COLUMN', N'sort'
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'描述',
+'SCHEMA', N'dbo',
+'TABLE', N'sys_dict',
+'COLUMN', N'remarks'
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'数据字典',
+'SCHEMA', N'dbo',
+'TABLE', N'sys_dict'
+GO
+
+
+-- ----------------------------
+-- Records of sys_dict
+-- ----------------------------
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'04e4a4b8af5b6590f609ab29f1d920f1', N'e4ed989ab589d1be4b708bd285c24f1e', N'所在机构及下级可见', N'4', N'4', N'', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2019-11-29 14:35:36', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2020-01-25 21:44:43', N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'0578673152dd43afb7e2c65a4e3463b5', NULL, N'wey7', N'002', N'1', N'', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2019-04-27 00:02:02', NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'0b05a99bb7c24053bb06ddb9b41068c8', N'9dc0d8aceb9046559f0fcd3acfd4fb8d', N'按钮', N'3', N'3', N'', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2018-10-30 14:47:23', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2018-11-06 12:38:29', N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'2a6cb5048f204a6d99f5ea6e8cf450bf', N'0bf0a5f4378748c1b6b759aea7da9c72', N'修改', N'update', N'2', N'修改', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2018-09-30 23:55:04', NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'2abd99f7a44e4ef0937b97109b31db87', N'9f28ef405c63412f9ef6524edb4adc68', N'继续执行', N'1', N'1', N'继续执行', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2018-09-17 15:37:58', NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'30bf1683c3a54772bbc75193d8cc48ab', N'0bf0a5f4378748c1b6b759aea7da9c72', N'删除', N'delete', N'5', N'删除', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2018-09-30 23:55:29', NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'32143ca22bd14795910255281934c340', NULL, N'H6', N'001', N'1', N'', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2019-04-27 00:01:36', NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'33a22077c3b8e79d93a1c78e23a0a050', N'e4ed989ab589d1be4b708bd285c24f1e', N'本人可见', N'2', N'2', N'', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2019-11-29 14:35:00', NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'35f74a4053fa4880af41819297c9823f', N'69c0d7e407184b339b055215b3b719a5', N'25', N'25', N'1', N'', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2019-04-22 11:32:20', NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'3e285e6650cb47f88f452e156b5bf903', N'0bf0a5f4378748c1b6b759aea7da9c72', N'导出', N'export', N'7', N'导出', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2018-09-30 23:56:28', NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'3eb18e509ffb4dd5a069e6ea10a14001', N'1044ab256fd2468289c6f876905ff8aa', N'是', N'true', N'1', N'', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2018-10-30 14:41:25', NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'40281e815ced1f27015ced2f83bc000b', N'40281e815ced1f27015ced2be5330003', N'男', N'1', N'1', N'1', NULL, NULL, NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'40281e815cef4f99015cef6f7d070005', N'40281e815ced1f27015ced2be5330003', N'女', N'2', N'1', N'女', NULL, NULL, NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'40288ab85a20b609015a20c422e90003', N'40288ab85a20b609015a20c3f7bf0002', N'是', N'1', N'1', N'1', NULL, NULL, NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'40288ab85a5eecc6015a5eede8720000', N'40288ab85a20b609015a20c3f7bf0002', N'否', N'0', N'2', N'否', NULL, NULL, NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'40288ab85bf1549e015bf175152a0001', N'40288ab85bf1549e015bf17370ff0000', N'在线', N'on_line', N'1', N'在线', NULL, NULL, NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'40288ab85bf1549e015bf17559ac0002', N'40288ab85bf1549e015bf17370ff0000', N'隐身', N'hidden', N'2', N'隐身', NULL, NULL, NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'40288ab85bf1549e015bf17590820003', N'40288ab85bf1549e015bf17370ff0000', N'强制退出', N'force_logout', N'3', N'强制退出', NULL, NULL, NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'40288ab85c8593cd015c859b70010011', N'40288ab85c8593cd015c859b1fcf0010', N'验证码', N'1', N'1', N'验证码', NULL, NULL, NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'40288ab85c8593cd015c859b8ff50012', N'40288ab85c8593cd015c859b1fcf0010', N'通知', N'2', N'2', N'通知', NULL, NULL, NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'40288ab85c86382b015c863993a30002', N'40288ab85c8593cd015c859b1fcf0010', N'其他', N'99', N'99', N'其他', NULL, NULL, NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'4e23f0cd2a154d62bdd9417610ca2679', N'0bf0a5f4378748c1b6b759aea7da9c72', N'新增', N'insert', N'1', N'新增', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2018-09-30 23:54:48', NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'5b905a49c182491988865986e4cc48e3', N'9f28ef405c63412f9ef6524edb4adc68', N'放弃执行', N'3', N'3', N'放弃执行', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2018-09-17 15:38:20', NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'6aeb216b950740c9ba61ba2994b4ce98', N'9f28ef405c63412f9ef6524edb4adc68', N'一次执行', N'2', N'2', N'一次执行', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2018-09-17 15:38:10', NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'72a55df5480c48b79e095eb5c6a4728f', N'd8fd027d0743468c828d7d068239d483', N'成功', N'1', N'1', N'成功', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2018-09-28 13:15:31', NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'7da9613b9af54ea19fd6b2ba349fc8ea', N'9dc0d8aceb9046559f0fcd3acfd4fb8d', N'菜单', N'2', N'2', N'', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2018-10-30 14:47:13', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2018-11-06 12:38:26', N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'821adedf100644382102418b6bb9fd9f', N'e4ed989ab589d1be4b708bd285c24f1e', N'全部可见', N'1', N'1', N'', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2019-11-29 14:34:43', NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'839273eee78947759bd8a980fcf77e99', N'0bf0a5f4378748c1b6b759aea7da9c72', N'查询', N'select', N'3', N'查询', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2018-09-30 23:55:13', NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'90f97d607fb745019c88e126b989fa8d', N'7a4ed165f128484787a119179b7c18fd', N'普通类', N'2', N'2', N'普通类', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2018-08-20 15:00:56', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2018-09-17 17:57:04', N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'929342ef5d29f0db17df321cb48d54b5', N'e4ed989ab589d1be4b708bd285c24f1e', N'所在机构可见', N'3', N'3', N'', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2019-11-29 14:35:10', NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'94be09dc54b345e7b170711b14003b48', N'69c0d7e407184b339b055215b3b719a5', N'50', N'50', N'2', N'', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2019-04-22 11:32:30', NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'97a7d2a2669a47b5a55565d906eef341', N'9dc0d8aceb9046559f0fcd3acfd4fb8d', N'目录', N'1', N'1', N'', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2018-10-30 14:47:01', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2018-11-06 12:38:23', N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'a94650c480914ad69f4820b01086a8be', N'7a4ed165f128484787a119179b7c18fd', N'SpringBean', N'1', N'1', N'SpringBean', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2018-08-20 15:00:31', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2018-08-24 12:36:33', N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'aa6aeaf0fcaa42098f039b5e15494ebb', N'0bf0a5f4378748c1b6b759aea7da9c72', N'其他', N'other', N'6', N'其他', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2018-09-30 23:55:59', NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'b568561ffaa5459e8c79fd71d58eede2', N'0bf0a5f4378748c1b6b759aea7da9c72', N'导入', N'import', N'8', N'导入', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2018-09-30 23:56:44', NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'b9e6addb28b8487299413f5346bb621f', N'69c0d7e407184b339b055215b3b719a5', N'150', N'150', N'4', N'', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2019-04-22 15:18:46', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2019-04-22 15:29:22', N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'bbaa5726c9dd4e33bd9aa8b6003ec6e0', N'69c0d7e407184b339b055215b3b719a5', N'100', N'100', N'3', N'', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2019-04-22 11:33:15', NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'de1ad2226ae04bb98f6db78ff9e7fee0', N'd8fd027d0743468c828d7d068239d483', N'失败', N'-1', N'1', N'失败', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2018-09-28 13:15:39', NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'e64158128fd1400fb9f834c7a96a1046', N'd8fd027d0743468c828d7d068239d483', N'退出', N'0', N'0', N'退出', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2018-09-28 13:15:54', NULL, NULL, N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'e76f306325a0675d51f1dc25359a568e', N'e4ed989ab589d1be4b708bd285c24f1e', N'自定义', N'5', N'5', N'', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2019-11-29 14:36:04', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2019-11-29 14:36:18', N'0')
+GO
+
+INSERT INTO [dbo].[sys_dict] ([id], [gid], [label], [value], [sort], [remarks], [create_by], [create_date], [update_by], [update_date], [del_flag]) VALUES (N'e7a5f8f4fbb94cc2a3db0487340cccb4', N'1044ab256fd2468289c6f876905ff8aa', N'否', N'false', N'1', N'', N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2018-10-30 14:41:31', NULL, NULL, N'0')
+GO
+
+
+-- ----------------------------
 -- Table structure for sys_dict_group
 -- ----------------------------
 IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[sys_dict_group]') AND type IN ('U'))
@@ -1317,7 +1518,7 @@ CREATE TABLE [dbo].[sys_login_log] (
   [status] nchar(2) COLLATE Chinese_PRC_CI_AS  NULL,
   [msg] nvarchar(255) COLLATE Chinese_PRC_CI_AS  NULL,
   [login_time] datetime2(0)  NULL,
-  [tenant_id] nvarchar(64) COLLATE Chinese_PRC_CI_AS  NOT NULL
+  [tenant_id] nvarchar(64) COLLATE Chinese_PRC_CI_AS DEFAULT ('00000000') NOT NULL
 )
 GO
 
@@ -2709,7 +2910,7 @@ GO
 INSERT INTO [dbo].[sys_organization] ([id], [name], [parent_id], [parent_ids], [create_by], [create_date], [update_by], [update_date], [del_flag], [remarks], [tenant_id]) VALUES (N'397f2b2f1f92bd4fd4ef893cee61c354', N'测试', NULL, NULL, N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2020-07-21 14:30:26', NULL, NULL, N'0', NULL, N'01208100')
 GO
 
-INSERT INTO [dbo].[sys_organization] ([id], [name], [parent_id], [parent_ids], [create_by], [create_date], [update_by], [update_date], [del_flag], [remarks], [tenant_id]) VALUES (N'40288ab85b6080e1015b60996d690005', N'山海', NULL, NULL, NULL, NULL, N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2020-05-30 22:08:30', N'0', NULL, N'00000000')
+INSERT INTO [dbo].[sys_organization] ([id], [name], [parent_id], [parent_ids], [create_by], [create_date], [update_by], [update_date], [del_flag], [remarks], [tenant_id]) VALUES (N'40288ab85b6080e1015b60996d690005', N'山海', NULL, NULL, NULL, NULL, N'4028ea815a3d2a8c015a3d2f8d2a0002', N'2020-08-05 21:46:27', N'0', NULL, N'00000000')
 GO
 
 INSERT INTO [dbo].[sys_organization] ([id], [name], [parent_id], [parent_ids], [create_by], [create_date], [update_by], [update_date], [del_flag], [remarks], [tenant_id]) VALUES (N'4ca062d0ed5803df2e4b86754c1b3e7e', N'张三的租户', NULL, NULL, N'ff803cb98718d47127fd5291ab959a49', N'2020-07-18 10:52:27', NULL, NULL, N'0', NULL, N'82517141')
@@ -5243,6 +5444,25 @@ GO
 
 
 -- ----------------------------
+-- Indexes structure for table sys_dict
+-- ----------------------------
+CREATE NONCLUSTERED INDEX [sys_dict_groupid_key]
+ON [dbo].[sys_dict] (
+  [gid] ASC
+)
+GO
+
+
+-- ----------------------------
+-- Primary Key structure for table sys_dict
+-- ----------------------------
+ALTER TABLE [dbo].[sys_dict] ADD CONSTRAINT [PK__sys_dict__3213E83FEC807BB2] PRIMARY KEY CLUSTERED ([id])
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)  
+ON [PRIMARY]
+GO
+
+
+-- ----------------------------
 -- Primary Key structure for table sys_dict_group
 -- ----------------------------
 ALTER TABLE [dbo].[sys_dict_group] ADD CONSTRAINT [PK__sys_dict__3213E83F11090991] PRIMARY KEY CLUSTERED ([id])
@@ -5551,6 +5771,13 @@ GO
 ALTER TABLE [dbo].[test_tree_table] ADD CONSTRAINT [PK__test_tre__3213E83FEDD37246] PRIMARY KEY CLUSTERED ([id])
 WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)  
 ON [PRIMARY]
+GO
+
+
+-- ----------------------------
+-- Foreign Keys structure for table sys_dict
+-- ----------------------------
+ALTER TABLE [dbo].[sys_dict] ADD CONSTRAINT [sys_dict_groupid_key] FOREIGN KEY ([gid]) REFERENCES [dbo].[sys_dict_group] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION
 GO
 
 
