@@ -23,9 +23,6 @@
 
 有兴趣参与内测的小伙伴，加QQ:553671691,或者微信: Dothegod，加人请注明“飞廉”
 
-<img width="20%" src="http://feilian.oss-cn-beijing.aliyuncs.com/qq.jpg" alt="QQ">        
-<img width="20%" src="http://feilian.oss-cn-beijing.aliyuncs.com/wx.jpg" alt="微信" style="margin-left: 200px">
-
 ### 源码地址
 gitee:https://gitee.com/sunseagear/wind
 
