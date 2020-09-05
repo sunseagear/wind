@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!token" id="rootView" class="login-container">
+  <div v-if="!token" id="rootView" class="login-container" :style="{backgroundImage: 'url(' + coverImgUrl + ')'}">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on" label-position="left">
 
       <div class="title-container">
@@ -99,6 +99,7 @@ export default {
     }
     return {
       isLogin: false,
+      coverImgUrl: require('@/assets/img/bg6.jpg'),
       loginForm: {
         username: 'admin',
         password: '123456'
@@ -134,6 +135,7 @@ export default {
   },
   created() {
     // window.addEventListener('storage', this.afterQRScan)
+    this.coverImgUrl = require('@/assets/img/bg' + this.getRandomArbitrary(1, 7) + '.jpg')
   },
   mounted() {
     if (this.loginForm.username === '') {
@@ -141,7 +143,6 @@ export default {
     } else if (this.loginForm.password === '') {
       this.$refs.password.focus()
     }
-    window.document.getElementById('rootView').setAttribute('bgImage', '~@/assets/img/bg.jpg')
   },
   destroyed() {
     // window.removeEventListener('storage', this.afterQRScan)
@@ -191,6 +192,9 @@ export default {
           return false
         }
       })
+    },
+    getRandomArbitrary(min, max) {
+      return Math.floor(Math.random() * (max - min) + min)
     },
     getOtherQuery(query) {
       return Object.keys(query).reduce((acc, cur) => {
@@ -268,9 +272,6 @@ $bg:#2d3a4b;
 $dark_gray:#889aa4;
 $light_gray:#eee;
 $bgImage: '~@/assets/img/bg5.jpg';
-@mixin bgImage($url){ //@mixin 后面的函数名称为自定义。
-  background: url($url);   //背景色默认为参数
-}
 .login-container {
 
   position:fixed;
@@ -282,7 +283,7 @@ $bgImage: '~@/assets/img/bg5.jpg';
   z-index:-10;
   zoom: 1;
   background-color: #fff;
-  @include bgImage($bgImage);
+  background: url($bgImage);
   background-repeat: no-repeat;
   background-size: cover;
   -webkit-background-size: cover;
