@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!token" class="login-container">
+  <div v-if="!token" id="rootView" class="login-container">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on" label-position="left">
 
       <div class="title-container">
@@ -24,7 +24,7 @@
         />
       </el-form-item>
 
-      <el-tooltip v-model="capsTooltip" content="Caps lock is On" placement="right" manual>
+      <el-tooltip v-model="capsTooltip" content="大写键已打开" placement="left" manual>
         <el-form-item prop="password">
           <span class="svg-container">
             <svg-icon icon-class="password" />
@@ -92,7 +92,7 @@ export default {
   data() {
     const validatePassword = (rule, value, callback) => {
       if (value.length < 6) {
-        callback(new Error('The password can not be less than 6 digits'))
+        callback(new Error('密码不能小于6位'))
       } else {
         callback()
       }
@@ -141,6 +141,7 @@ export default {
     } else if (this.loginForm.password === '') {
       this.$refs.password.focus()
     }
+    window.document.getElementById('rootView').setAttribute('bgImage', '~@/assets/img/bg.jpg')
   },
   destroyed() {
     // window.removeEventListener('storage', this.afterQRScan)
@@ -229,12 +230,6 @@ $bg:#283443;
 $light_gray:#fff;
 $cursor: #fff;
 
-@supports (-webkit-mask: none) and (not (cater-color: $cursor)) {
-  .login-container .el-input input {
-    color: $cursor;
-  }
-}
-
 /* reset element-ui css */
 .login-container {
   .el-input {
@@ -272,19 +267,34 @@ $cursor: #fff;
 $bg:#2d3a4b;
 $dark_gray:#889aa4;
 $light_gray:#eee;
-
+$bgImage: '~@/assets/img/bg5.jpg';
+@mixin bgImage($url){ //@mixin 后面的函数名称为自定义。
+  background: url($url);   //背景色默认为参数
+}
 .login-container {
-  min-height: 100%;
-  width: 100%;
-  background-color: $bg;
-  overflow: hidden;
+
+  position:fixed;
+  top: 0;
+  left: 0;
+  width:100%;
+  height:100%;
+  min-width: 1000px;
+  z-index:-10;
+  zoom: 1;
+  background-color: #fff;
+  @include bgImage($bgImage);
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  background-position: center 0;
 
   .login-form {
+    padding: 20px;
+    background: rgba(0,0,0,.3);
     position: relative;
-    width: 520px;
     max-width: 100%;
-    padding: 160px 35px 0;
-    margin: 0 auto;
+    margin: calc((100vh - 425px) / 2) 35% 35%;
     overflow: hidden;
   }
 
