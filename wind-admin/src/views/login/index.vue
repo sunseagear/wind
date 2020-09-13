@@ -4,7 +4,7 @@
 
       <div class="title-container">
         <h3 class="title">
-          {{ $t('login.title') }}
+          欢迎使用飞廉
         </h3>
         <lang-select class="set-language" />
       </div>
@@ -280,7 +280,6 @@ $bgImage: '~@/assets/img/bg5.jpg';
   width:100%;
   height:100%;
   min-width: 1000px;
-  z-index:-10;
   zoom: 1;
   background-color: #fff;
   background: url($bgImage);
