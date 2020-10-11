@@ -11,7 +11,6 @@ import com.sunseagear.wind.aspectj.annotation.Log;
 import com.sunseagear.wind.aspectj.enums.LogType;
 import com.sunseagear.wind.modules.monitor.entity.OperationLog;
 import com.sunseagear.wind.modules.monitor.service.IOperationLogService;
-import com.sunseagear.wind.utils.PageRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -66,7 +65,7 @@ public class OperationLogController extends BaseBeanController<OperationLog> {
         }
 
         // 预处理
-        Page pageBean = operationLogService.selectPage(PageRequest.getPage(), entityWrapper);
+        Page pageBean = operationLogService.selectPage(getPage(), entityWrapper);
         return Response.successPageJson(pageBean);
     }
 

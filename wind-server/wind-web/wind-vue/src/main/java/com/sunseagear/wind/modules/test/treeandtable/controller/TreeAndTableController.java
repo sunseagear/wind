@@ -10,7 +10,6 @@ import com.sunseagear.wind.aspectj.annotation.Log;
 import com.sunseagear.wind.aspectj.enums.LogType;
 import com.sunseagear.wind.modules.test.treeandtable.entity.TreeAndTable;
 import com.sunseagear.wind.modules.test.treeandtable.service.ITreeAndTableService;
-import com.sunseagear.wind.utils.PageRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -69,7 +68,7 @@ public class TreeAndTableController extends BaseBeanController<TreeAndTable> {
             entityWrapper.eq("area_id", areaId);
         }
         // 预处理
-        Page pageBean = treeAndTableService.selectPage(PageRequest.getPage(), entityWrapper);
+        Page pageBean = treeAndTableService.selectPage(getPage(), entityWrapper);
         return Response.successPageJson(pageBean);
     }
 

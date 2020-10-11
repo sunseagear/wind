@@ -15,7 +15,6 @@ import com.sunseagear.wind.modules.sys.entity.Role;
 import com.sunseagear.wind.modules.sys.service.IMenuService;
 import com.sunseagear.wind.modules.sys.service.IRoleMenuService;
 import com.sunseagear.wind.modules.sys.service.IRoleService;
-import com.sunseagear.wind.utils.PageRequest;
 import com.sunseagear.wind.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -79,7 +78,7 @@ public class RoleController extends BaseBeanController<Role> {
             entityWrapper.like("name", name);
         }
         // 预处理
-        Page pageBean = roleService.selectPage(PageRequest.getPage(), entityWrapper);
+        Page pageBean = roleService.selectPage(getPage(), entityWrapper);
         return Response.successPageJson(pageBean, "id,name,code,isSys,usable,tenantId");
     }
 

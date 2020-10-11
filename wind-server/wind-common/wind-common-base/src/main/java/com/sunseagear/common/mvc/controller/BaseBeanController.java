@@ -1,8 +1,10 @@
 package com.sunseagear.common.mvc.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sunseagear.common.mvc.exception.ValidationException;
 import com.sunseagear.common.utils.MessageUtils;
 import com.sunseagear.common.utils.ReflectionUtils;
+import com.sunseagear.common.utils.ServletUtils;
 import com.sunseagear.common.utils.StringUtils;
 import com.sunseagear.common.utils.convert.DateConvertEditor;
 import com.sunseagear.common.utils.convert.StringConvertEditor;
@@ -46,6 +48,14 @@ public abstract class BaseBeanController<Entity extends Serializable> {
         binder.registerCustomEditor(String.class, new StringConvertEditor());
         // 日期格式
         binder.registerCustomEditor(Date.class, new DateConvertEditor());
+    }
+
+    public Page getPage() {
+        String page = ServletUtils.getRequest().getParameter("page");
+        String limit = ServletUtils.getRequest().getParameter("limit");
+        int pageInt = !StringUtils.isEmpty(page) ? Integer.parseInt(page) : 1;
+        int limitInt = !StringUtils.isEmpty(limit) ? Integer.parseInt(limit) : 20;
+        return new Page(pageInt, limitInt);
     }
 
     /**

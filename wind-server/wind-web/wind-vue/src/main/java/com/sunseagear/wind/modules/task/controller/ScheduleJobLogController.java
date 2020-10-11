@@ -10,7 +10,6 @@ import com.sunseagear.wind.aspectj.annotation.Log;
 import com.sunseagear.wind.aspectj.enums.LogType;
 import com.sunseagear.wind.modules.task.entity.ScheduleJobLog;
 import com.sunseagear.wind.modules.task.service.IScheduleJobLogService;
-import com.sunseagear.wind.utils.PageRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -59,7 +58,7 @@ public class ScheduleJobLogController extends BaseBeanController<ScheduleJobLog>
             entityWrapper.eq("status", status);
         }
         // 预处理
-        Page pageBean = scheduleJobLogService.selectPage(PageRequest.getPage(), entityWrapper);
+        Page pageBean = scheduleJobLogService.selectPage(getPage(), entityWrapper);
         return Response.successPageJson(pageBean, "id,jobName,executeClass,jobGroup,methodName,methodParams,jobMessage,status,exceptionInfo,createTime");
     }
 

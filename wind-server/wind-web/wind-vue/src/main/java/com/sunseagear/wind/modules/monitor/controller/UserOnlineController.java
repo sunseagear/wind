@@ -1,11 +1,13 @@
 package com.sunseagear.wind.modules.monitor.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sunseagear.common.http.Response;
+import com.sunseagear.common.mvc.controller.BaseBeanController;
+import com.sunseagear.common.utils.entity.Principal;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import com.sunseagear.wind.aspectj.annotation.Log;
 import com.sunseagear.wind.aspectj.enums.LogType;
 import com.sunseagear.wind.modules.sso.service.IOAuthService;
-import com.sunseagear.wind.utils.PageRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +24,7 @@ import java.io.IOException;
 @RequestMapping(value = "/monitor/user/online")
 @RequiresPermissions("monitor:user:online")
 @Log(title = "在线用户")
-public class UserOnlineController {
+public class UserOnlineController extends BaseBeanController<Principal> {
 
     @Autowired
     private IOAuthService oAuthService;
@@ -37,7 +39,7 @@ public class UserOnlineController {
     @RequiresPermissions("monitor:user:online:list")
     public String list(HttpServletRequest request) throws IOException {
         // 预处理
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page pageBean = oAuthService.activePrincipal(PageRequest.getPage(),request);
+        Page pageBean = oAuthService.activePrincipal(getPage(),request);
         return Response.successPageJson(pageBean);
     }
 

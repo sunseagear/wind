@@ -12,7 +12,6 @@ import com.sunseagear.wind.aspectj.annotation.Log;
 import com.sunseagear.wind.aspectj.enums.LogType;
 import com.sunseagear.wind.modules.task.entity.ScheduleJob;
 import com.sunseagear.wind.modules.task.service.IScheduleJobService;
-import com.sunseagear.wind.utils.PageRequest;
 import org.quartz.CronExpression;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -47,7 +46,7 @@ public class ScheduleJobController extends BaseBeanController<ScheduleJob> {
             entityWrapper.like("job_name", jobName);
         }
         // 预处理
-        Page pageBean = scheduleJobService.selectPage(PageRequest.getPage(), entityWrapper);
+        Page pageBean = scheduleJobService.selectPage(getPage(), entityWrapper);
         return Response.successPageJson(pageBean, "id,jobName,cronExpression,executeClass,methodName,methodParams,misfirePolicy,loadWay,isConcurrent,description,jobStatus,jobGroup");
     }
 

@@ -11,7 +11,6 @@ import com.sunseagear.wind.aspectj.enums.LogType;
 import com.sunseagear.wind.modules.sys.entity.Dict;
 import com.sunseagear.wind.modules.sys.service.IDictService;
 import com.sunseagear.wind.utils.DictUtils;
-import com.sunseagear.wind.utils.PageRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -80,7 +79,7 @@ public class DictController extends BaseBeanController<Dict> {
         }
 
         // 预处理
-        Page pageBean = dictService.selectPage(PageRequest.getPage(), entityWrapper);
+        Page pageBean = dictService.selectPage(getPage(), entityWrapper);
         return Response.successPageJson(pageBean);
     }
 

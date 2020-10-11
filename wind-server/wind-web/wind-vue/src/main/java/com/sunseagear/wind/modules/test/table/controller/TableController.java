@@ -9,7 +9,6 @@ import com.sunseagear.wind.aspectj.annotation.Log;
 import com.sunseagear.wind.aspectj.enums.LogType;
 import com.sunseagear.wind.modules.test.table.entity.Table;
 import com.sunseagear.wind.modules.test.table.service.ITableService;
-import com.sunseagear.wind.utils.PageRequest;
 import org.apache.commons.text.StringEscapeUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,7 +69,7 @@ public class TableController extends BaseBeanController<Table> {
             entityWrapper.eq("type", type);
         }
         // 预处理
-        Page pageBean = tableService.selectPage(PageRequest.getPage(), entityWrapper);
+        Page pageBean = tableService.selectPage(getPage(), entityWrapper);
         return Response.successPageJson(pageBean, "content", false);
     }
 

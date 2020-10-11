@@ -10,7 +10,6 @@ import com.sunseagear.wind.aspectj.annotation.Log;
 import com.sunseagear.wind.aspectj.enums.LogType;
 import com.sunseagear.wind.modules.oss.entity.Attachment;
 import com.sunseagear.wind.modules.oss.service.IAttachmentService;
-import com.sunseagear.wind.utils.PageRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -56,7 +55,7 @@ public class AttachmentController extends BaseBeanController<Attachment> {
             entityWrapper.like("file_name", fileName);
         }
         // 预处理
-        Page pageBean = attachmentService.selectPage(PageRequest.getPage(), entityWrapper);
+        Page pageBean = attachmentService.selectPage(getPage(), entityWrapper);
         return Response.successPageJson(pageBean);
     }
 

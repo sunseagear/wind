@@ -15,7 +15,6 @@ import com.sunseagear.wind.aspectj.enums.LogType;
 import com.sunseagear.wind.common.response.ResponseError;
 import com.sunseagear.wind.modules.monitor.entity.LoginLog;
 import com.sunseagear.wind.modules.monitor.service.ILoginLogService;
-import com.sunseagear.wind.utils.PageRequest;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -68,7 +67,7 @@ public class LoginLogController extends BaseBeanController<LoginLog> {
         }
 
         // 预处理
-        Page pageBean = loginLogService.selectPage(PageRequest.getPage(), entityWrapper);
+        Page pageBean = loginLogService.selectPage(getPage(), entityWrapper);
         return Response.successPageJson(pageBean);
     }
 
@@ -98,7 +97,7 @@ public class LoginLogController extends BaseBeanController<LoginLog> {
             //加入条件
             QueryWrapper<LoginLog> entityWrapper = new QueryWrapper<>();
             entityWrapper.orderByDesc( "login_time");
-            Page pageBean = loginLogService.selectPage(PageRequest.getPage(), entityWrapper);
+            Page pageBean = loginLogService.selectPage(getPage(), entityWrapper);
             String title = "登陆日志";
             Workbook book = ExcelExportUtil.exportExcel(new ExportParams(
                     title, title, title), LoginLog.class, pageBean.getRecords());

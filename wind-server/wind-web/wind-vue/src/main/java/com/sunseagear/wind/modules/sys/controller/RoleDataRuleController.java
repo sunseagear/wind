@@ -13,7 +13,6 @@ import com.sunseagear.wind.modules.sys.entity.DataRule;
 import com.sunseagear.wind.modules.sys.entity.RoleDataRule;
 import com.sunseagear.wind.modules.sys.service.IDataRuleService;
 import com.sunseagear.wind.modules.sys.service.IRoleDataRuleService;
-import com.sunseagear.wind.utils.PageRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -79,7 +78,7 @@ public class RoleDataRuleController extends BaseBeanController<RoleDataRule> {
             entityWrapper.eq("scope_name", scopeName);
         }
         // 预处理
-        Page<DataRule> pageBean = dataRuleService.selectPage(PageRequest.getPage(), entityWrapper);
+        Page<DataRule> pageBean = dataRuleService.selectPage(getPage(), entityWrapper);
         pageBean.getRecords().forEach(item -> {
             list.forEach(roleDataRule -> {
                 if (item.getId().equals(roleDataRule.getScopeId())) {

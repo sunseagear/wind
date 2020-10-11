@@ -10,7 +10,6 @@ import com.sunseagear.wind.aspectj.annotation.Log;
 import com.sunseagear.wind.aspectj.enums.LogType;
 import com.sunseagear.wind.modules.sys.entity.Tenant;
 import com.sunseagear.wind.modules.sys.service.ITenantService;
-import com.sunseagear.wind.utils.PageRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -73,7 +72,7 @@ public class TenantController extends BaseBeanController<Tenant> {
             entityWrapper.eq("name", name);
         }
         // 预处理
-        Page pageBean = tenantService.selectPage(PageRequest.getPage(), entityWrapper);
+        Page pageBean = tenantService.selectPage(getPage(), entityWrapper);
         return Response.successPageJson(pageBean, "remarks", false);
     }
 

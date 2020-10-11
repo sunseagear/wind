@@ -2,7 +2,7 @@ import { fetchDicts } from '@/api/sys/dict'
 
 const state = {
   dicts: [],
-  pageArray: [20, 50, 100],
+  pageArray: [25, 50, 100, 150],
   defaultPageSize: 25
 }
 

@@ -10,7 +10,6 @@ import com.sunseagear.wind.aspectj.annotation.Log;
 import com.sunseagear.wind.aspectj.enums.LogType;
 import com.sunseagear.wind.modules.email.entity.EmailSendLog;
 import com.sunseagear.wind.modules.email.service.IEmailSendLogService;
-import com.sunseagear.wind.utils.PageRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -60,7 +59,7 @@ public class EmailSendLogController extends BaseBeanController<EmailSendLog> {
             entityWrapper.eq("status", status);
         }
         // 预处理
-        Page pageBean = emailSendLogService.selectPage(PageRequest.getPage(), entityWrapper);
+        Page pageBean = emailSendLogService.selectPage(getPage(), entityWrapper);
         return Response.successPageJson(pageBean, "id,email,subject,content,sendData,sendCode,responseDate,tryNum,msg,status,delFlag,emarks");
     }
 

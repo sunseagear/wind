@@ -10,7 +10,6 @@ import com.sunseagear.wind.aspectj.annotation.Log;
 import com.sunseagear.wind.aspectj.enums.LogType;
 import com.sunseagear.wind.modules.sms.entity.SmsSendLog;
 import com.sunseagear.wind.modules.sms.service.ISmsSendLogService;
-import com.sunseagear.wind.utils.PageRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -60,7 +59,7 @@ public class SmsSendLogController extends BaseBeanController<SmsSendLog> {
             entityWrapper.eq("status", status);
         }
         // 预处理
-        Page pageBean = smsSendLogService.selectPage(PageRequest.getPage(), entityWrapper);
+        Page pageBean = smsSendLogService.selectPage(getPage(), entityWrapper);
         return Response.successPageJson(pageBean, "id,phone,templateName,sendData,sendCode,tryNum,status,smsid,code,msg,delFlag,responseDate");
     }
 

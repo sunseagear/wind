@@ -10,7 +10,6 @@ import com.sunseagear.wind.aspectj.annotation.Log;
 import com.sunseagear.wind.aspectj.enums.LogType;
 import com.sunseagear.wind.modules.sys.entity.DataRule;
 import com.sunseagear.wind.modules.sys.service.IDataRuleService;
-import com.sunseagear.wind.utils.PageRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -65,7 +64,7 @@ public class DataRuleController extends BaseBeanController<DataRule> {
             entityWrapper.eq("scope_name", scopeName);
         }
         // 预处理
-        Page pageBean = dataRuleService.selectPage(PageRequest.getPage(), entityWrapper);
+        Page pageBean = dataRuleService.selectPage(getPage(), entityWrapper);
         return Response.successPageJson(pageBean, "scopeValue", false);
     }
 

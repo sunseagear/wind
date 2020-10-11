@@ -10,7 +10,6 @@ import com.sunseagear.wind.aspectj.annotation.Log;
 import com.sunseagear.wind.aspectj.enums.LogType;
 import com.sunseagear.wind.modules.sms.entity.SmsTemplate;
 import com.sunseagear.wind.modules.sms.service.ISmsTemplateService;
-import com.sunseagear.wind.utils.PageRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -59,7 +58,7 @@ public class SmsTemplateController extends BaseBeanController<SmsTemplate> {
             entityWrapper.like("name", name);
         }
         // 预处理
-        Page pageBean = smsTemplateService.selectPage(PageRequest.getPage(), entityWrapper);
+        Page pageBean = smsTemplateService.selectPage(getPage(), entityWrapper);
         return Response.successPageJson(pageBean, "id,name,code,businessType,templateContent");
     }
 

@@ -10,7 +10,6 @@ import com.sunseagear.wind.aspectj.enums.LogType;
 import com.sunseagear.wind.common.helper.SysConfigHelper;
 import com.sunseagear.wind.modules.sys.entity.SysConfig;
 import com.sunseagear.wind.modules.sys.service.ISysConfigService;
-import com.sunseagear.wind.utils.PageRequest;
 import com.sunseagear.wind.utils.UserUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +56,7 @@ public class SysConfigController extends BaseBeanController<SysConfig> {
             entityWrapper.eq("name", name);
         }
         // 预处理
-        Page pageBean = sysConfigService.selectPage(PageRequest.getPage(), entityWrapper);
+        Page pageBean = sysConfigService.selectPage(getPage(), entityWrapper);
         return Response.successPageJson(pageBean);
     }
 

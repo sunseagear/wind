@@ -10,7 +10,6 @@ import com.sunseagear.wind.aspectj.annotation.Log;
 import com.sunseagear.wind.aspectj.enums.LogType;
 import com.sunseagear.wind.modules.test.twotable.entity.CarModel;
 import com.sunseagear.wind.modules.test.twotable.service.ICarModelService;
-import com.sunseagear.wind.utils.PageRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -63,7 +62,7 @@ public class CarModelController extends BaseBeanController<CarModel> {
         }
 
         // 预处理
-        Page pageBean = carModelService.selectPage(PageRequest.getPage(), entityWrapper);
+        Page pageBean = carModelService.selectPage(getPage(), entityWrapper);
         return Response.successPageJson(pageBean);
     }
 

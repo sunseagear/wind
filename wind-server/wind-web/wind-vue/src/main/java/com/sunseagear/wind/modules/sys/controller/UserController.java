@@ -21,7 +21,6 @@ import com.sunseagear.wind.modules.sys.service.IOrganizationService;
 import com.sunseagear.wind.modules.sys.service.IRoleService;
 import com.sunseagear.wind.modules.sys.service.IUserRoleService;
 import com.sunseagear.wind.modules.sys.service.IUserService;
-import com.sunseagear.wind.utils.PageRequest;
 import com.sunseagear.wind.utils.UserUtils;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.BeanUtils;
@@ -94,7 +93,7 @@ public class UserController extends BaseBeanController<User> {
             entityWrapper.apply(String.format("t.organization_id = '%s' or b.parent_ids like '%%%s%%'", organizationId, organizationId));
         }
         // 预处理
-        Page pageBean = userService.selectPage(PageRequest.getPage(), entityWrapper);
+        Page pageBean = userService.selectPage(getPage(), entityWrapper);
         return Response.successPageJson(pageBean);
     }
 
@@ -219,7 +218,7 @@ public class UserController extends BaseBeanController<User> {
             if (!StringUtils.isEmpty(organizationid)) {
                 entityWrapper.eq("uo.organization_id", organizationid);
             }
-            Page pageBean = userService.selectPage(PageRequest.getPage(), entityWrapper);
+            Page pageBean = userService.selectPage(getPage(), entityWrapper);
             String title = "用户信息";
             Workbook book = ExcelExportUtil.exportExcel(new ExportParams(
                     title, title, title), User.class, pageBean.getRecords());

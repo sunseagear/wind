@@ -10,7 +10,6 @@ import com.sunseagear.wind.aspectj.annotation.Log;
 import com.sunseagear.wind.aspectj.enums.LogType;
 import com.sunseagear.wind.modules.sys.entity.DictGroup;
 import com.sunseagear.wind.modules.sys.service.IDictGroupService;
-import com.sunseagear.wind.utils.PageRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -47,7 +46,7 @@ public class DictGroupController extends BaseBeanController<DictGroup> {
             entityWrapper.like("name", keyword).or().like("code", keyword);
         }
         // 预处理
-        Page pageBean = dictGroupService.selectPage(PageRequest.getPage(), entityWrapper);
+        Page pageBean = dictGroupService.selectPage(getPage(), entityWrapper);
         return Response.successPageJson(pageBean, "id,name,code,remarks,usable");
     }
 
