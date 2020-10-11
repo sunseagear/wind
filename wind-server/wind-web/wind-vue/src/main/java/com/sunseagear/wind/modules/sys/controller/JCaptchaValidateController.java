@@ -1,4 +1,4 @@
-package com.sunseagear.wind.common.controller;
+package com.sunseagear.wind.modules.sys.controller;
 
 import com.sunseagear.common.http.Response;
 import com.sunseagear.common.utils.jcaptcha.JCaptcha;

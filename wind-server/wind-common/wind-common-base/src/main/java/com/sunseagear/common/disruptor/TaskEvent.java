@@ -1,4 +1,4 @@
-package com.sunseagear.wind.common.disruptor;
+package com.sunseagear.common.disruptor;
 
 /**
  * All rights Reserved, Designed By www.sunseagear.com

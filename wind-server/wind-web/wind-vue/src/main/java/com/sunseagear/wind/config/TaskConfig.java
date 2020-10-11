@@ -1,7 +1,6 @@
 package com.sunseagear.wind.config;
 
-import com.sunseagear.wind.common.disruptor.TaskHelper;
-import com.sunseagear.wind.common.disruptor.TaskHelper;
+import com.sunseagear.common.disruptor.TaskHelper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
