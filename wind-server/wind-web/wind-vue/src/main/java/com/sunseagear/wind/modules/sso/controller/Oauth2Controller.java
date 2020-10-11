@@ -70,7 +70,7 @@ public class Oauth2Controller {
     /**
      * 请求授权
      *
-     * @param model
+     * @param request
      * @param request
      * @return
      * @throws URISyntaxException

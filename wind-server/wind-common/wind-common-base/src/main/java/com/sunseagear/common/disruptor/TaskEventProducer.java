@@ -1,4 +1,4 @@
-package com.sunseagear.wind.common.disruptor;
+package com.sunseagear.common.disruptor;
 
 import com.lmax.disruptor.RingBuffer;
 import org.slf4j.Logger;

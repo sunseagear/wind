@@ -14,6 +14,7 @@
     <url>http://www.sunseagear.com</url>
     <properties>
         <hibernate.validator.version>5.1.1.Final</hibernate.validator.version>
+        <disruptor.version>3.3.6</disruptor.version>
         <mybatis-plus-boot-starter.version>3.1.2</mybatis-plus-boot-starter.version>
     </properties>
 
@@ -33,6 +34,12 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-text</artifactId>
             <version>1.6</version>
+        </dependency>
+        <dependency>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
+            <version>${disruptor.version}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
