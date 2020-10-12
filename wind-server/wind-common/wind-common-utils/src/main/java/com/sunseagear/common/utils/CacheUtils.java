@@ -1,8 +1,9 @@
 package com.sunseagear.common.utils;
 
-import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
+import org.springframework.data.redis.core.BoundHashOperations;
+import org.springframework.data.redis.core.RedisTemplate;
 
 /**
  * All rights Reserved, Designed By www.sunseagear.com
@@ -15,7 +16,7 @@ import net.sf.ehcache.Element;
  */
 public class CacheUtils {
 
-    private static CacheManager cacheManager = CacheManager.getInstance();
+    private static RedisTemplate redisTemplate;
     private static final String SYS_CACHE = "sysCache";
 
     /**
@@ -56,8 +57,7 @@ public class CacheUtils {
      * @return
      */
     public static Object get(String cacheName, String key) {
-        Element element = getCache(cacheName).get(key);
-        return element == null ? null : element.getObjectValue();
+        return getCache(cacheName).get(key);
     }
 
     /**
@@ -68,8 +68,7 @@ public class CacheUtils {
      * @param value
      */
     public static void put(String cacheName, String key, Object value) {
-        Element element = new Element(key, value);
-        getCache(cacheName).put(element);
+        getCache(cacheName).put(key, value);
     }
 
     /**
@@ -79,7 +78,7 @@ public class CacheUtils {
      * @param key
      */
     public static void remove(String cacheName, String key) {
-        getCache(cacheName).remove(key);
+        getCache(cacheName).delete(key);
     }
 
     /**
@@ -88,18 +87,11 @@ public class CacheUtils {
      * @param cacheName
      * @return
      */
-    private static Cache getCache(String cacheName) {
-        Cache cache = cacheManager.getCache(cacheName);
-        if (cache == null) {
-            cacheManager.addCache(cacheName);
-            cache = cacheManager.getCache(cacheName);
-            //cache.getCacheConfiguration().setEternal(true);
+    private static BoundHashOperations getCache(String cacheName) {
+        if (redisTemplate == null){
+            redisTemplate = SpringContextHolder.getBean("redisTemplate");
         }
-        return cache;
-    }
-
-    public static CacheManager getCacheManager() {
-        return cacheManager;
+        return redisTemplate.boundHashOps(cacheName);
     }
 
 }
