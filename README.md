@@ -25,6 +25,25 @@
 
 文档地址:http://www.sunseagear.com/#/doc/cangjie/start
 
+#### 1.创建模块
+<img src="http://feilian.oss-cn-beijing.aliyuncs.com/cangjie/createTable.png" style="border: 1px solid #a9a9a9;"><br>
+#### 2.表单设计
+<img src="http://feilian.oss-cn-beijing.aliyuncs.com/cangjie/formDesign.png" style="border: 1px solid #a9a9a9;"><br>
+
+#### 3.模块配置
+数据库配置
+<img src="http://feilian.oss-cn-beijing.aliyuncs.com/cangjie/jdbc.png" style="border: 1px solid #a9a9a9;"><br>
+表单配置
+<img src="http://feilian.oss-cn-beijing.aliyuncs.com/cangjie/form.png" style="border: 1px solid #a9a9a9;"><br>
+列表配置
+<img src="http://feilian.oss-cn-beijing.aliyuncs.com/cangjie/list.png" style="border: 1px solid #a9a9a9;"><br>
+关联查询
+<img src="http://feilian.oss-cn-beijing.aliyuncs.com/cangjie/tableJoin.PNG" style="border: 1px solid #a9a9a9;"><br>
+#### 4.代码生成
+<img src="http://feilian.oss-cn-beijing.aliyuncs.com/cangjie/save.png" style="border: 1px solid #a9a9a9;"><br>
+
+
+
 ### 源码地址
 gitee:https://gitee.com/sunseagear/wind
 
@@ -141,12 +160,3 @@ npm run build
 ![Image text](http://feilian.oss-cn-beijing.aliyuncs.com/doc/summary/demo.png)
 
 
-### 代码生成器
-创建模块
-<img src="http://feilian.oss-cn-beijing.aliyuncs.com/cangjie/createTable.png" style="border: 1px solid #a9a9a9;"><br>
-块配置
-<img src="http://feilian.oss-cn-beijing.aliyuncs.com/cangjie/jdbc.png" style="border: 1px solid #a9a9a9;"><br>
-<img src="http://feilian.oss-cn-beijing.aliyuncs.com/cangjie/form.png" style="border: 1px solid #a9a9a9;"><br>
-<img src="http://feilian.oss-cn-beijing.aliyuncs.com/cangjie/list.png" style="border: 1px solid #a9a9a9;"><br>
-代码生成
-<img src="http://feilian.oss-cn-beijing.aliyuncs.com/cangjie/save.png" style="border: 1px solid #a9a9a9;"><br>
