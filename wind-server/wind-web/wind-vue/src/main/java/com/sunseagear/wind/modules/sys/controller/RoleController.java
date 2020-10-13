@@ -95,6 +95,7 @@ public class RoleController extends BaseBeanController<Role> {
         } else {
             entityWrapper.nested(i -> i.eq("tenant_id", UserUtils.getTenantId()).or().eq("tenant_id", TenantProperties.getInstance().getDefaultTenantId())).eq("is_sys", "0");
         }
+        entityWrapper.eq("usable","1");
         entityWrapper.orderByDesc( "create_date");
         List<Role> usableLst = roleService.selectList(entityWrapper);
         return Response.successJson(usableLst);

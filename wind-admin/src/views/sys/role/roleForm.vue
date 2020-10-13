@@ -7,7 +7,7 @@
       <el-form-item label="角色编码" prop="code">
         <el-input v-model="temp.code" />
       </el-form-item>
-      <el-form-item label="是否系统数据" prop="isSys">
+      <el-form-item v-if="isDefaultTenant" label="是否系统数据" prop="isSys">
         <el-radio
           v-for="item in dictList('sf')"
           :key="item.id"
@@ -52,6 +52,7 @@ export default {
   data() {
     return {
       temp: {},
+      tenantId: this.$store.getters.info.id,
       dialogFormVisible: false,
       dialogStatus: '',
       textMap: {
@@ -67,6 +68,11 @@ export default {
 
     }
   },
+  computed: {
+    isDefaultTenant() {
+      return this.tenantId === '00000000'
+    }
+  },
   methods: {
     getList() {
       this.$emit('refreshList')
@@ -74,7 +80,7 @@ export default {
     resetTemp() {
       this.temp = {
         id: undefined,
-        isSys: '1',
+        isSys: this.isDefaultTenant ? '1' : '0',
         usable: '1',
         name: '',
         code: '',
