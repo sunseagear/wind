@@ -33,7 +33,7 @@
         </template>
       </el-table-column>
       <el-table-column :label="$t('table.actions')" align="center" class-name="small-padding fixed-width">
-        <template slot-scope="scope">
+        <template v-if="scope.row.tenantId === tenantId" slot-scope="scope">
           <el-button size="small" type="text" icon="el-icon-setting" @click="toSetMenu(scope.row)">设置权限</el-button>
           <el-button size="small" type="text" icon="el-icon-finished" @click="toSetDataRule(scope.row)">数据权限</el-button>
           <el-button size="small" type="text" icon="el-icon-edit" @click="handleUpdate(scope.row)">{{ $t('table.edit') }}</el-button>
@@ -80,6 +80,7 @@ export default {
   data() {
     return {
       tableKey: 0,
+      tenantId: this.$store.getters.info.id,
       list: null,
       total: null,
       listLoading: true,
