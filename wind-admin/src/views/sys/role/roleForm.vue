@@ -93,7 +93,7 @@ export default {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           addRole(this.temp).then(() => {
-            this.list.unshift(this.temp)
+            this.getList()
             this.dialogFormVisible = false
             this.$message.success('添加成功')
           })
@@ -113,13 +113,7 @@ export default {
         if (valid) {
           const tempData = Object.assign({}, this.temp)
           updateRole(tempData).then(() => {
-            for (const v of this.list) {
-              if (v.id === this.temp.id) {
-                const index = this.list.indexOf(v)
-                this.list.splice(index, 1, this.temp)
-                break
-              }
-            }
+            this.getList()
             this.dialogFormVisible = false
             this.$message.success('更新成功')
           })
