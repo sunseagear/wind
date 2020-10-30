@@ -196,7 +196,7 @@ insert  into `sys_config`(`id`,`create_by`,`create_date`,`update_by`,`update_dat
 DROP TABLE IF EXISTS `sys_data_rule`;
 
 CREATE TABLE `sys_data_rule` (
-  `id` varchar(64) DEFAULT NULL COMMENT '主键',
+  `id` varchar(64) NOT NULL COMMENT '主键',
   `menu_id` varchar(64) DEFAULT NULL COMMENT '菜单主键',
   `resource_code` varchar(255) NOT NULL COMMENT '资源编号',
   `scope_name` varchar(255) NOT NULL COMMENT '数据权限名称',
@@ -216,40 +216,13 @@ CREATE TABLE `sys_data_rule` (
   `table_name` varchar(64) DEFAULT NULL COMMENT '数据库表',
   `user_column` varchar(64) DEFAULT NULL COMMENT '用户表对应字段',
   `tenant_id` varchar(64) NOT NULL DEFAULT '00000000' COMMENT '租户ID',
-  `user_entity_field` varchar(64) DEFAULT NULL COMMENT 'user实体类对应字段'
+  `user_entity_field` varchar(64) DEFAULT NULL COMMENT 'user实体类对应字段',
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='数据权限表';
 
 /*Data for the table `sys_data_rule` */
 
-insert  into `sys_data_rule`(`id`,`menu_id`,`resource_code`,`scope_name`,`scope_field`,`scope_class`,`scope_column`,`scope_type`,`scope_value`,`remarks`,`create_by`,`create_dept`,`create_date`,`update_by`,`update_date`,`status`,`del_flag`,`table_name`,`user_column`,`tenant_id`,`user_entity_field`) values ('dfc71dbeb4f8f15f9e00a945c177d2a6',NULL,'table','test','id,title,author,type,level,content,`user.realname`,`user.username`,status','com.sunseagear.wind.modules.test.table.mapper.TableMapper.selectPage','author',2,NULL,NULL,'4028ea815a3d2a8c015a3d2f8d2a0002',NULL,'2019-11-29 15:18:25','4028ea815a3d2a8c015a3d2f8d2a0002','2020-07-05 16:26:10',NULL,0,'sys_organization','organization_id','00000000','organizationId'),('2d1d11805de287aa9b9108350cf45eac',NULL,'expandTable','test1','*','com.sunseagear.wind.modules.test.expandtable.mapper.ExpandTableMapper.selectPage','organization_id',4,NULL,NULL,'4028ea815a3d2a8c015a3d2f8d2a0002',NULL,'2019-12-03 07:30:19','4028ea815a3d2a8c015a3d2f8d2a0002','2020-05-29 22:54:32',NULL,0,'sys_organization','organizationId','00000000',NULL);
-
-/*Table structure for table `sys_data_source` */
-
-DROP TABLE IF EXISTS `sys_data_source`;
-
-CREATE TABLE `sys_data_source` (
-  `id` varchar(36) NOT NULL,
-  `db_key` varchar(50) NOT NULL COMMENT '索引关键字',
-  `description` varchar(50) NOT NULL COMMENT '描述',
-  `driver_class` varchar(50) NOT NULL COMMENT '驱动',
-  `url` varchar(200) NOT NULL COMMENT 'URL',
-  `db_user` varchar(50) NOT NULL COMMENT '帐号',
-  `db_password` varchar(50) DEFAULT NULL COMMENT '密码',
-  `db_type` varchar(50) DEFAULT NULL COMMENT '数据库类型',
-  `db_name` varchar(50) DEFAULT NULL COMMENT '数据库名称',
-  `create_by` varchar(32) DEFAULT NULL,
-  `create_date` datetime DEFAULT NULL,
-  `update_by` varchar(32) DEFAULT NULL,
-  `update_date` datetime DEFAULT NULL,
-  `remarks` varchar(255) DEFAULT NULL,
-  `del_flag` char(1) DEFAULT NULL,
-  `tenant_id` varchar(64) NOT NULL DEFAULT '00000000' COMMENT '租户ID',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-/*Data for the table `sys_data_source` */
-
-insert  into `sys_data_source`(`id`,`db_key`,`description`,`driver_class`,`url`,`db_user`,`db_password`,`db_type`,`db_name`,`create_by`,`create_date`,`update_by`,`update_date`,`remarks`,`del_flag`,`tenant_id`) values ('402880e74e064fc5014e0652f72b0001','neiwangbaogong','微信运营数据库','com.mysql.jdbc.Driver','jdbc:mysql://localhost:3306/attendance?useUnicode=true&amp;amp;amp;amp;amp;characterEncoding=UTF-8','root','gliwang123456','mysql','attendance',NULL,NULL,'4028ea815a3d2a8c015a3d2f8d2a0002','2017-08-03 08:40:26',NULL,'0','00000000'),('8a8aada9486347c001486401180a0003','PMS','sap db','oracle.jdbc.driver.OracleDriver','jdbc:oracle:thin:@localhost:1521:oral','PMS','tz','oracle','PMS',NULL,NULL,NULL,NULL,NULL,'0','00000000');
+insert  into `sys_data_rule`(`id`,`menu_id`,`resource_code`,`scope_name`,`scope_field`,`scope_class`,`scope_column`,`scope_type`,`scope_value`,`remarks`,`create_by`,`create_dept`,`create_date`,`update_by`,`update_date`,`status`,`del_flag`,`table_name`,`user_column`,`tenant_id`,`user_entity_field`) values ('2d1d11805de287aa9b9108350cf45eac',NULL,'expandTable','test1','*','com.sunseagear.wind.modules.test.expandtable.mapper.ExpandTableMapper.selectPage','organization_id',4,NULL,NULL,'4028ea815a3d2a8c015a3d2f8d2a0002',NULL,'2019-12-03 07:30:19','4028ea815a3d2a8c015a3d2f8d2a0002','2020-05-29 22:54:32',NULL,0,'sys_organization','organizationId','00000000',NULL),('dfc71dbeb4f8f15f9e00a945c177d2a6',NULL,'table','test','id,title,author,type,level,content,`user.realname`,`user.username`,status','com.sunseagear.wind.modules.test.table.mapper.TableMapper.selectPage','author',2,NULL,NULL,'4028ea815a3d2a8c015a3d2f8d2a0002',NULL,'2019-11-29 15:18:25','4028ea815a3d2a8c015a3d2f8d2a0002','2020-07-05 16:26:10',NULL,0,'sys_organization','organization_id','00000000','organizationId');
 
 /*Table structure for table `sys_dict` */
 
@@ -479,10 +452,11 @@ insert  into `sys_role`(`id`,`name`,`code`,`is_sys`,`usable`,`create_by`,`create
 DROP TABLE IF EXISTS `sys_role_data_rule`;
 
 CREATE TABLE `sys_role_data_rule` (
-  `id` varchar(64) DEFAULT NULL COMMENT '主键',
+  `id` varchar(64) NOT NULL COMMENT '主键',
   `data_rule_category` int(2) DEFAULT NULL COMMENT '权限类型(1:数据权限、2:接口权限)',
   `data_rule_id` varchar(64) DEFAULT NULL COMMENT '权限id',
-  `role_id` varchar(64) DEFAULT NULL COMMENT '角色id'
+  `role_id` varchar(64) DEFAULT NULL COMMENT '角色id',
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='角色数据权限关联表';
 
 /*Data for the table `sys_role_data_rule` */
