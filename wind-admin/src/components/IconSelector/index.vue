@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :title="title" :visible.sync="iconFormVisible" :close-on-click-modal="false">
+  <el-dialog :title="title" :visible.sync="iconFormVisible" :close-on-click-modal="false" append-to-body="true">
     <el-form ref="addIconForm" :model="temp" label-position="left" label-width="120px" style="width: 90%; margin-left:9%;">
       <el-scrollbar style="height: 550px">
         <ui-icons @listenIcon="showIcon" />
