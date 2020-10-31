@@ -10,7 +10,7 @@
         d.remarks,
         g.code
     </sql>
-    <select id="selectDictList" resultMap="BaseResultMap">
+    <select id="selectDictList" resultType="com.sunseagear.wind.modules.test.twotable.entity.CarModel">
         select
         <include refid="Base_Column_List"/>
         from test_car_model d
