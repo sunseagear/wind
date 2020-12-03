@@ -1,8 +1,6 @@
 package com.sunseagear.wind.utils;
 
-import com.sunseagear.common.utils.CacheUtils;
-import com.sunseagear.common.utils.SpringContextHolder;
-import com.sunseagear.common.utils.StringUtils;
+import com.sunseagear.common.utils.*;
 import com.sunseagear.common.utils.entity.Principal;
 import com.sunseagear.wind.modules.sys.entity.Role;
 import com.sunseagear.wind.modules.sys.entity.User;
@@ -94,14 +92,14 @@ public class UserUtils extends com.sunseagear.common.utils.UserUtils {
      * @return 取不到返回null
      */
     public static User get(String id) {
-        User user = (User) CacheUtils.get(USER_CACHE, USER_CACHE_ID_ + id);
+        User user = CacheUtils.getJson(USER_CACHE, USER_CACHE_ID_ + id, User.class);
         if (user == null) {
             user = userService.selectById(id);
             if (user == null) {
                 return null;
             }
-            CacheUtils.put(USER_CACHE, USER_CACHE_ID_ + user.getId(), user);
-            CacheUtils.put(USER_CACHE, USER_CACHE_USER_NAME_ + user.getUsername(), user);
+            CacheUtils.putJson(USER_CACHE, USER_CACHE_ID_ + user.getId(), user);
+            CacheUtils.putJson(USER_CACHE, USER_CACHE_USER_NAME_ + user.getUsername(), user);
         }
         return user;
     }
@@ -111,8 +109,8 @@ public class UserUtils extends com.sunseagear.common.utils.UserUtils {
         if (user == null) {
             return;
         }
-        CacheUtils.put(USER_CACHE, USER_CACHE_ID_ + user.getId(), user);
-        CacheUtils.put(USER_CACHE, USER_CACHE_USER_NAME_ + user.getUsername(), user);
+        CacheUtils.putJson(USER_CACHE, USER_CACHE_ID_ + user.getId(), user);
+        CacheUtils.putJson(USER_CACHE, USER_CACHE_USER_NAME_ + user.getUsername(), user);
     }
 
     /**
@@ -122,14 +120,14 @@ public class UserUtils extends com.sunseagear.common.utils.UserUtils {
      * @return
      */
     public static User getByUserName(String username) {
-        User user = (User) CacheUtils.get(USER_CACHE, USER_CACHE_USER_NAME_ + username);
+        User user = CacheUtils.getJson(USER_CACHE, USER_CACHE_USER_NAME_ + username, User.class);
         if (user == null) {
             user = userService.findByUsername(username);
             if (user == null) {
                 return null;
             }
-            CacheUtils.put(USER_CACHE, USER_CACHE_ID_ + user.getId(), user);
-            CacheUtils.put(USER_CACHE, USER_CACHE_USER_NAME_ + user.getUsername(), user);
+            CacheUtils.putJson(USER_CACHE, USER_CACHE_ID_ + user.getId(), user);
+            CacheUtils.putJson(USER_CACHE, USER_CACHE_USER_NAME_ + user.getUsername(), user);
         }
         return user;
     }
@@ -159,11 +157,11 @@ public class UserUtils extends com.sunseagear.common.utils.UserUtils {
      */
     public static List<Role> getRoleList() {
         User user = getUser();
-        List<Role> roleList = (List<Role>) CacheUtils.get(USER_CACHE, CACHE_ROLE_LIST_ + user.getId());
-        if (roleList == null || roleList.size() == 0) {
+        List<Role> roleList = CacheUtils.getJsonListBean(USER_CACHE, CACHE_ROLE_LIST_ + user.getId(), Role.class);
+        if (ObjectUtils.isNullOrEmpty(roleList)) {
             roleList = roleService.findListByUserId(user.getId());
             // 不加入缓存
-            CacheUtils.put(USER_CACHE, CACHE_ROLE_LIST_ + user.getId(), roleList);
+            CacheUtils.putJson(USER_CACHE, CACHE_ROLE_LIST_ + user.getId(), roleList);
         }
         return roleList;
     }
@@ -211,9 +209,8 @@ public class UserUtils extends com.sunseagear.common.utils.UserUtils {
      */
     public static List<String> getPermissionList() {
         User user = getUser();
-        List<String> permissionList = (List<String>) CacheUtils.get(USER_CACHE, CACHE_PERMISSION_LIST_ + user.getId());
-        permissionList = null;
-        if (permissionList == null) {
+        List<String> permissionList = CacheUtils.getJsonListBean(USER_CACHE, CACHE_PERMISSION_LIST_ + user.getId(), String.class);
+        if (ObjectUtils.isNullOrEmpty(permissionList)) {
             permissionList = menuService.findPermissionByUserId(user.getId());
             // 不加入缓存
             CacheUtils.put(USER_CACHE, CACHE_PERMISSION_LIST_ + user.getId(), permissionList);

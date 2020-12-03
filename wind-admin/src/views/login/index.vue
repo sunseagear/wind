@@ -175,10 +175,10 @@ export default {
         if (valid) {
           this.loading = true
           this.$store.dispatch('user/login', this.loginForm)
-            .then(() => {
+            .then((res) => {
               this.loading = false
               if (!this.$store.getters.token) {
-                Message.error('登录失败')
+                Message.error(res.data.msg)
                 return
               }
 

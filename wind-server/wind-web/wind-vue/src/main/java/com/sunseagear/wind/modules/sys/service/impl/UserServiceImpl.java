@@ -46,6 +46,9 @@ public class UserServiceImpl extends CommonServiceImpl<UserMapper, User> impleme
             return null;
         }
         User user = selectOne(new QueryWrapper<User>().eq("username", username));
+        if (user == null){
+            return null;
+        }
         user.setRoles(roleService.findListByUserId(user.getId()));
         return user;
     }
@@ -56,6 +59,9 @@ public class UserServiceImpl extends CommonServiceImpl<UserMapper, User> impleme
             return null;
         }
         User user = selectOne(new QueryWrapper<User>().eq("email", email));
+        if (user == null){
+            return null;
+        }
         user.setRoles(roleService.findListByUserId(user.getId()));
         return user;
 
@@ -67,6 +73,9 @@ public class UserServiceImpl extends CommonServiceImpl<UserMapper, User> impleme
             return null;
         }
         User user = selectOne(new QueryWrapper<User>().eq("phone", phone));
+        if (user == null){
+            return null;
+        }
         user.setRoles(roleService.findListByUserId(user.getId()));
         return user;
     }

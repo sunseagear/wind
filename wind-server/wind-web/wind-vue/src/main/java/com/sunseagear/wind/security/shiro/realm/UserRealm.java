@@ -56,11 +56,11 @@ public class UserRealm extends AuthorizingRealm {
             }
         }
         if (user == null) {
-            throw new UnknownAccountException();// 没找到帐号
+            throw new RuntimeException("用户不存在");// 没找到帐号
         }
 
         if (User.STATUS_LOCKED.equals(user.getStatus())) {
-            throw new LockedAccountException(); // 帐号锁定
+            throw new LockedAccountException("账户被锁定"); // 帐号锁定
         }
         // 交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配，如果觉得人家的不好可以自定义实现
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(

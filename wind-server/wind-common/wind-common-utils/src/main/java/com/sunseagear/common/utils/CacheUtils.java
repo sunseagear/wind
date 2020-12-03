@@ -1,9 +1,12 @@
 package com.sunseagear.common.utils;
 
+import com.google.gson.Gson;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
 import org.springframework.data.redis.core.BoundHashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
+
+import java.util.List;
 
 /**
  * All rights Reserved, Designed By www.sunseagear.com
@@ -29,6 +32,13 @@ public class CacheUtils {
         return get(SYS_CACHE, key);
     }
 
+    public static <T> T getJson(String key, Class<T> clazz) {
+        return getJson(SYS_CACHE, key, clazz);
+    }
+    public static <T> List<T> getJsonListBean(String key, Class<T> clazz) {
+        return getJsonListBean(SYS_CACHE, key, clazz);
+    }
+
     /**
      * 写入SYS_CACHE缓存
      *
@@ -37,6 +47,10 @@ public class CacheUtils {
      */
     public static void put(String key, Object value) {
         put(SYS_CACHE, key, value);
+    }
+
+    public static void putJson(String key, Object value) {
+        putJson(SYS_CACHE, key, value);
     }
 
     /**
@@ -60,6 +74,15 @@ public class CacheUtils {
         return getCache(cacheName).get(key);
     }
 
+    public static <T> T getJson(String cacheName, String key, Class<T> clazz) {
+        String json = (String) getCache(cacheName).get(key);
+        return new Gson().fromJson(json, clazz);
+    }
+    public static <T> List<T> getJsonListBean(String cacheName, String key, Class<T> clazz) {
+        String json = (String) getCache(cacheName).get(key);
+        return JsonUtils.jsonStringToListBean(json,clazz);
+    }
+
     /**
      * 写入缓存
      *
@@ -69,6 +92,12 @@ public class CacheUtils {
      */
     public static void put(String cacheName, String key, Object value) {
         getCache(cacheName).put(key, value);
+    }
+
+
+    public static void putJson(String cacheName, String key, Object value) {
+        String json = new Gson().toJson(value);
+        getCache(cacheName).put(key, json);
     }
 
     /**
@@ -88,7 +117,7 @@ public class CacheUtils {
      * @return
      */
     private static BoundHashOperations getCache(String cacheName) {
-        if (redisTemplate == null){
+        if (redisTemplate == null) {
             redisTemplate = SpringContextHolder.getBean("redisTemplate");
         }
         return redisTemplate.boundHashOps(cacheName);

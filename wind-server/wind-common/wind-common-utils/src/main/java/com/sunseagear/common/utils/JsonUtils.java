@@ -123,7 +123,7 @@ public class JsonUtils {
     }
 
     public static <T> List<T> jsonStringToListBean(String jsonString, Class<T> clazz) {
-        if (StringUtils.isBlank(jsonString)) {
+        if (StringUtils.isEmpty(jsonString)) {
             return new ArrayList();
         }
         JsonParser parser = new JsonParser();
