@@ -213,7 +213,7 @@ public class UserUtils extends com.sunseagear.common.utils.UserUtils {
         if (ObjectUtils.isNullOrEmpty(permissionList)) {
             permissionList = menuService.findPermissionByUserId(user.getId());
             // 不加入缓存
-            CacheUtils.put(USER_CACHE, CACHE_PERMISSION_LIST_ + user.getId(), permissionList);
+            CacheUtils.putJson(USER_CACHE, CACHE_PERMISSION_LIST_ + user.getId(), permissionList);
         }
         return permissionList;
     }
