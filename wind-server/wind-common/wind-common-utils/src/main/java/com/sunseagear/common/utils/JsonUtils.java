@@ -209,14 +209,19 @@ public class JsonUtils {
         return gson.toJson(new ServerPageResult(status, message, total, data));
     }
 
-    public static class ContextUrlAdapter implements JsonSerializer<String> {
+    public static class ContextUrlAdapter implements JsonSerializer<String>, JsonDeserializer<String> {
 
         @Override
         public JsonElement serialize(String s, Type type, JsonSerializationContext jsonSerializationContext) {
-            if (!StringUtils.startsWith(s,"http")){
+            if (!StringUtils.startsWith(s, "http")) {
                 return new JsonPrimitive(ServletUtils.getContextUrl(ServletUtils.getRequest()) + s);
             }
             return new JsonPrimitive(s);
+        }
+
+        @Override
+        public String deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+            return json.getAsJsonPrimitive().getAsString();
         }
     }
 }
