@@ -26,6 +26,7 @@ import org.apache.oltu.oauth2.common.message.types.ResponseType;
 import org.apache.oltu.oauth2.common.utils.OAuthUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -179,13 +180,17 @@ public class Oauth2Controller {
             subject.login(token);
             LoginLogUtils.recordSuccessLoginLog(UserUtils.getUser().getUsername(), "登陆成功");
             return true;
-        } catch (AuthenticationException e) {
+        } catch (IncorrectCredentialsException e) {
             request.setAttribute("error", "用户名或密码错误");
             LoginLogUtils.recordFailLoginLog(username, "用户名或密码错误");
             return false;
+        } catch (AuthenticationException e) {
+            request.setAttribute("error", e.getMessage());
+            LoginLogUtils.recordFailLoginLog(username, e.getMessage());
+            return false;
         } catch (Exception e) {
-            request.setAttribute("error", "登录失败:" + e.getClass().getName());
-            LoginLogUtils.recordFailLoginLog(username, "登录失败:" + e.getClass().getName());
+            request.setAttribute("error", e.getMessage());
+            LoginLogUtils.recordFailLoginLog(username, e.getMessage());
             return false;
         }
     }

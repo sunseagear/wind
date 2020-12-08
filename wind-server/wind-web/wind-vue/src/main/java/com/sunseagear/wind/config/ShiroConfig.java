@@ -1,6 +1,7 @@
 package com.sunseagear.wind.config;
 
 import com.sunseagear.wind.config.autoconfigure.ShiroConfigProperties;
+import com.sunseagear.wind.security.shiro.authenticator.MyModularRealmAuthenticator;
 import com.sunseagear.wind.security.shiro.factory.StatelessSubjectFactory;
 import com.sunseagear.wind.security.shiro.filter.authc.Oauth2Filter;
 import com.sunseagear.wind.security.shiro.realm.Oauth2Realm;
@@ -89,6 +90,8 @@ public class ShiroConfig {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setSessionManager(sessionManager);
         securityManager.setSubjectFactory(subjectFactory);
+        securityManager.setAuthenticator(new MyModularRealmAuthenticator());
+
         /*
          * 禁用使用Sessions 作为存储策略的实现，但它没有完全地禁用Sessions
          * 所以需要配合context.setSessionCreationEnabled(false);

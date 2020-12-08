@@ -56,7 +56,7 @@ public class UserRealm extends AuthorizingRealm {
             }
         }
         if (user == null) {
-            throw new RuntimeException("用户不存在");// 没找到帐号
+            throw new UnknownAccountException("用户不存在");// 没找到帐号
         }
 
         if (User.STATUS_LOCKED.equals(user.getStatus())) {
