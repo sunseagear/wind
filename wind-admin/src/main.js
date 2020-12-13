@@ -18,7 +18,8 @@ import i18n from './lang' // internationalization
 import './icons' // icon
 import './permission' // permission control
 import './utils/error-log' // error log
-import formValidate from './utils/formValidate' // error log
+import formValidate from './utils/formValidate' // 表单验证
+import { isNull } from './utils/index' // 判空
 
 import * as filters from './filters' // global filters
 
@@ -52,6 +53,7 @@ Vue.prototype.dictList = function(code) {
 Vue.prototype.formValidate = formValidate
 
 Vue.config.productionTip = false
+Vue.prototype.isNull = isNull
 
 new Vue({
   el: '#app',

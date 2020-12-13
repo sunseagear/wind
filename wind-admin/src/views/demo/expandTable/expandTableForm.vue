@@ -20,18 +20,7 @@
         <el-input v-model="temp.tag" />
       </el-form-item>
       <el-form-item label="图片" prop="image">
-        <el-input v-model="temp.image" />
-        <el-upload
-          ref="uploader"
-          class="avatar-uploader"
-          :action="uploadUrl"
-          accept="image/jpeg,image/png,image/jpg"
-          :show-file-list="false"
-          :on-success="handleUploadSuccess"
-          :before-upload="beforeUpload">
-          <img v-if="temp.image" :src="temp.image" class="avatar">
-          <i v-else class="el-icon-plus avatar-uploader-icon" />
-        </el-upload>
+        <upload-image v-model="temp.image" />
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -47,9 +36,11 @@
 
 <script>
 import { createExpandTable, updateExpandTable, getExpandTable } from '@/api/demo/expandTable/expandTable'
+import UploadImage from '../../../components/Upload/uploadImage'
 
 export default {
   name: 'ExpandTableForm',
+  components: { UploadImage },
   data() {
     return {
       rules: {
