@@ -1,4 +1,5 @@
 // translate router.meta.title, be used in breadcrumb sidebar tagsview
+import store from '@/store'
 export function generateTitle(title) {
   const hasKey = this.$te('route.' + title)
 
@@ -10,3 +11,12 @@ export function generateTitle(title) {
   }
   return title
 }
+export function setTagsViewTitle(route, title) {
+  if (title === undefined) {
+    return
+  }
+  const tempRoute = Object.assign({}, route)
+  const routeObj = Object.assign({}, tempRoute, { meta: { title: `${title}` }})
+  store.dispatch('tagsView/updateVisitedView', routeObj)
+}
+

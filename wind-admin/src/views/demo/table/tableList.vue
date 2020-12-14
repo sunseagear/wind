@@ -66,6 +66,9 @@
           <el-button v-permission="['test:table:table:update']" size="small" type="text" icon="el-icon-edit" @click="handleUpdate(row)">
             {{ $t('table.edit') }}
           </el-button>
+          <el-button v-permission="['test:table:table:update']" size="small" type="text" icon="el-icon-edit" @click="handleUpdateView(row)">
+            {{ $t('table.edit') }}(新页签)
+          </el-button>
           <el-button v-if="row.status!='published'" size="mini" type="success" @click="handleModifyStatus(row,'published')">
             {{ $t('table.publish') }}
           </el-button>
@@ -177,6 +180,11 @@ export default {
     },
     handleUpdate(row) {
       this.$refs.form.handleUpdate(row.id)
+    },
+    handleUpdateView(row) {
+      this.$router.push({
+        path: '/demo/tableView/' + row.id + '/' + row.title
+      })
     },
     handleDelete(row) {
       deleteTable(row.id).then(response => {

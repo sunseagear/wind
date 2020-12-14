@@ -119,7 +119,6 @@ export default {
   created() {
     this.name = undefined
     this.listQuery = objectMerge(this.listQuery, this.query)
-    console.log('listQuery', this.listQuery)
     this.getList()
   },
   methods: {
