@@ -1,5 +1,5 @@
 <template>
-  <div class="menu-wrapper">
+  <div>
     <template v-for="item in menu">
       <app-link v-if="isExternalUrl(item.path) && !item.children && !item.hidden" :key="item.id" :to="item.path">
         <el-menu-item index="">
@@ -23,6 +23,7 @@
         <!-- 递归 -->
         <sidebar-item
           :menu="item.children"
+          class="nest-menu"
         />
       </el-submenu>
     </template>
