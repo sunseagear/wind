@@ -1,6 +1,9 @@
 package com.sunseagear.wind.utils;
 
-import com.sunseagear.common.utils.*;
+import com.sunseagear.common.utils.CacheUtils;
+import com.sunseagear.common.utils.ObjectUtils;
+import com.sunseagear.common.utils.SpringContextHolder;
+import com.sunseagear.common.utils.StringUtils;
 import com.sunseagear.common.utils.entity.Principal;
 import com.sunseagear.wind.modules.sys.entity.Role;
 import com.sunseagear.wind.modules.sys.entity.User;
@@ -15,6 +18,7 @@ import org.apache.shiro.UnavailableSecurityManagerException;
 import org.apache.shiro.session.InvalidSessionException;
 import org.apache.shiro.subject.Subject;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -150,6 +154,10 @@ public class UserUtils extends com.sunseagear.common.utils.UserUtils {
         CacheUtils.remove(USER_CACHE, CACHE_ROLE_LIST_ + user.getId());
     }
 
+    public static void clearPermissionCache(String roleId) {
+        CacheUtils.remove(USER_CACHE, CACHE_PERMISSION_LIST_ + roleId);
+    }
+
     /**
      * 获取当前用户角色列表
      *
@@ -208,13 +216,15 @@ public class UserUtils extends com.sunseagear.common.utils.UserUtils {
      * @return
      */
     public static List<String> getPermissionList() {
-        User user = getUser();
-        List<String> permissionList = CacheUtils.getJsonListBean(USER_CACHE, CACHE_PERMISSION_LIST_ + user.getId(), String.class);
-        if (ObjectUtils.isNullOrEmpty(permissionList)) {
-            permissionList = menuService.findPermissionByUserId(user.getId());
-            // 不加入缓存
-            CacheUtils.putJson(USER_CACHE, CACHE_PERMISSION_LIST_ + user.getId(), permissionList);
-        }
+        final List<String> permissionList = new ArrayList<>();
+        getRoleList().forEach(item -> {
+           permissionList.addAll(CacheUtils.getJsonListBean(USER_CACHE, CACHE_PERMISSION_LIST_ + item.getId(), String.class));
+            if (ObjectUtils.isNullOrEmpty(permissionList)) {
+                permissionList.addAll(menuService.findPermissionByRoleId(item.getId()));
+                // 不加入缓存
+                CacheUtils.putJson(USER_CACHE, CACHE_PERMISSION_LIST_ + item.getId(), permissionList);
+            }
+        });
         return permissionList;
     }
 }

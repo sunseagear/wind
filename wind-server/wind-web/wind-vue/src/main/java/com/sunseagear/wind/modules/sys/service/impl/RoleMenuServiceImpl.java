@@ -7,6 +7,7 @@ import com.sunseagear.wind.modules.sys.entity.RoleMenu;
 import com.sunseagear.wind.modules.sys.mapper.RoleMenuMapper;
 import com.sunseagear.wind.modules.sys.service.IMenuService;
 import com.sunseagear.wind.modules.sys.service.IRoleMenuService;
+import com.sunseagear.wind.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,6 +36,7 @@ public class RoleMenuServiceImpl extends CommonServiceImpl<RoleMenuMapper, RoleM
                 roleMenuList.add(roleMenu);
             }
             insertOrUpdateBatch(roleMenuList);
+            UserUtils.clearPermissionCache(roleId);
         }
     }
 
