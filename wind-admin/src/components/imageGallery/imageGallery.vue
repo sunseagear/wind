@@ -2,7 +2,7 @@
   <div>
     <el-row :gutter="gutter">
       <el-col v-for="(item, index) in imageList" :key="index" :span="span">
-        <el-image :src="item" :preview-src-list="imageList" :style="{'margin-top': gutter}" style="width: 50px;height: 50px;" :fit="fit" />
+        <el-image :src="item" :preview-src-list="imageList" :style="{'margin-top': gutter, width: width, height: height}" :fit="fit" />
       </el-col>
     </el-row>
   </div>
