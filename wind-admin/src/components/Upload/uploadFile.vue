@@ -14,7 +14,7 @@
       <i v-else class="el-icon-upload uploader-icon">
         {{ uploadLabel }}
       </i>
-      <div v-if="!imageUrl&&showWaringLabel" slot="tip" class="waring-label">似的发射点发{{ waringLabel }}</div>
+      <div v-if="!imageUrl&&showWaringLabel" slot="tip" class="waring-label">{{ waringLabel }}</div>
     </el-upload>
   </div>
 </template>

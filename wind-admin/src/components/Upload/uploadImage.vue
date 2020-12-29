@@ -18,7 +18,6 @@
         >
           <i class="el-icon-plus avatar-uploader-icon" />
         </el-upload>
-
       </el-col>
     </el-row>
   </div>
@@ -82,6 +81,7 @@ export default {
   methods: {
     remove(url) {
       this.imageList.splice(this.imageList.indexOf(url), 1)
+      this.emitInput(this.imageList.join(','))
     },
     emitInput(val) {
       this.$emit('input', val)
@@ -134,6 +134,7 @@ export default {
   .avatar-uploader {
     width: $value;
     height: $value;
+    margin-top: 10px;
     display: block;
   }
 
