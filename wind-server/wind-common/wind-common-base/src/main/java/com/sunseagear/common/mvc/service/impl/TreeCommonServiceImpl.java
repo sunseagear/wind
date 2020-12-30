@@ -73,4 +73,20 @@ public class TreeCommonServiceImpl<M extends BaseTreeMapper<T>, T extends Serial
         baseMapper.updateSunTreeParentIds(newChildrenParentIds, oldChildrenParentIds);
     }
 
+
+    @Override
+    public boolean deleteById(Serializable id) {
+        T entity = selectById(id);
+        baseMapper.deleteSunTree(entity.makeSelfAsNewParentIds());
+        return super.deleteById(id);
+    }
+
+    @Override
+    public void deleteBatchIds(List<Serializable> idList) {
+        for (Serializable  treeId: idList) {
+            deleteById(treeId);
+        }
+    }
+
+
 }
