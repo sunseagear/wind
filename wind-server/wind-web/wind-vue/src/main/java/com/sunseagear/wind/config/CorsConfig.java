@@ -8,6 +8,9 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * All rights Reserved, Designed By www.sunseagear.com
  *
@@ -25,8 +28,11 @@ public class CorsConfig {
     public FilterRegistrationBean corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
+        List<String> allowedOriginPatterns = new ArrayList<>();
+        allowedOriginPatterns.add("*");
+        config.setAllowedOriginPatterns(allowedOriginPatterns);
         config.setAllowCredentials(true);
-        config.addAllowedOrigin(CorsConfiguration.ALL);
+//        config.addAllowedOrigin(CorsConfiguration.ALL);
         config.addAllowedHeader(CorsConfiguration.ALL);
         config.addAllowedMethod(CorsConfiguration.ALL);
         source.registerCorsConfiguration("/**", config);
