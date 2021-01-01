@@ -55,23 +55,18 @@
         <jcaptcha.version>2.0-alpha-1</jcaptcha.version>
 
 
-
-        <!-- 缓存 -->
-        <ehcache.version>2.10.4</ehcache.version>
         <!-- 工具包 -->
         <guava.version>17.0</guava.version>
         <fastjson.version>1.2.15</fastjson.version>
-        <jackson.version>2.9.5</jackson.version>
         <jaxb.version>2.0.1</jaxb.version>
         <commons-text.version>1.8</commons-text.version>
         <commons-beanutils.version>1.9.3</commons-beanutils.version>
         <commons-io.version>2.4</commons-io.version>
-        <commons-codec.version>1.10</commons-codec.version>
         <freemarker.version>2.3.27-incubating</freemarker.version>
         <!-- 验证码 -->
         <jcaptcha.version>2.0-alpha-1</jcaptcha.version>
-        <!--网络访问-->
-        <httpclient.version>4.5.1</httpclient.version>
+
+        <jaxb.version>2.0.1</jaxb.version>
 
         <!--itextpdf工具-->
         <itextpdf.version>5.5.13</itextpdf.version>
@@ -146,7 +141,6 @@
         <dependency>
             <groupId>org.quartz-scheduler</groupId>
             <artifactId>quartz</artifactId>
-            <version>${quartz.version}</version>
         </dependency>
 
         <!-- 七牛云存储-->
@@ -198,7 +192,6 @@
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>2.8.5</version>
         </dependency>
         <dependency>
             <groupId>com.aliyun</groupId>
@@ -264,16 +257,10 @@
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
-            <version>${aspect.version}</version>
-            <type>jar</type>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
-            <version>${aspect.version}</version>
-            <type>jar</type>
-            <scope>compile</scope>
         </dependency>
 
 
@@ -313,19 +300,16 @@
             <artifactId>org.apache.oltu.oauth2.resourceserver</artifactId>
             <version>${org-apache-oltu-oauth2.version}</version>
         </dependency>
-<!--
-        <dependency>
-            <groupId>com.microsoft.sqlserver</groupId>
-            <artifactId>sqljdbc4</artifactId>
-            <version>4.0</version>
-        </dependency>
--->
+        <!--
+                <dependency>
+                    <groupId>com.microsoft.sqlserver</groupId>
+                    <artifactId>sqljdbc4</artifactId>
+                    <version>4.0</version>
+                </dependency>
+        -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql.version}</version>
-            <type>jar</type>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -347,7 +331,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-websocket</artifactId>
-            <scope>provided</scope>
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
@@ -358,7 +341,6 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-websocket</artifactId>
-            <version>5.1.9.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -412,20 +394,17 @@
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
-            <version>${commons-codec.version}</version>
         </dependency>
 
         <!-- CACHE begin -->
         <dependency><!-- Ehcache 2.x //-->
             <groupId>net.sf.ehcache</groupId>
             <artifactId>ehcache</artifactId>
-            <version>${ehcache.version}</version>
         </dependency>
         <!--jedis-->
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
-            <version>${jedis.version}</version>
         </dependency>
         <!-- CACHE end -->
 
@@ -441,22 +420,18 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
-            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
-            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-jaxb-annotations</artifactId>
-            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>com.sun.xml.bind</groupId>
@@ -474,7 +449,6 @@
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>${httpclient.version}</version>
         </dependency>
 
         <!--打水印-->
@@ -508,16 +482,9 @@
             <version>1.3</version>
         </dependency>
         <!--项目添加easypoi导出Excel支持结束-->
-        <!--删除j2cache
-        <dependency>
-            <groupId>net.oschina.j2cache</groupId>
-            <artifactId>j2cache-spring-boot2-starter</artifactId>
-            <version>${j2cache.version}</version>
-        </dependency>-->
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
-            <version>3.6.0</version>
         </dependency>
         <dependency>
             <groupId>com.belerweb</groupId>
@@ -614,7 +581,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
-                <version>2.4</version>
                 <configuration>
                     <skip>true</skip>
                 </configuration>

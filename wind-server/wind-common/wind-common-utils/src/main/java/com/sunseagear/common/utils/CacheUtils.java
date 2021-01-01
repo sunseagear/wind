@@ -1,8 +1,6 @@
 package com.sunseagear.common.utils;
 
 import com.google.gson.Gson;
-import net.sf.ehcache.CacheManager;
-import net.sf.ehcache.Element;
 import org.springframework.data.redis.core.BoundHashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 
