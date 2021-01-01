@@ -207,6 +207,14 @@ public class UserUtils extends com.sunseagear.common.utils.UserUtils {
                 }
             }
         }
+
+        //如果该用户已经分配了权限，则为该用户添加以下权限，这些权限在用于前端sysUser，sysOrganization组件和用户修改自己的密码和个人信息
+        if (!permissionsList.isEmpty()) {
+            permissionsList.add("sys:user"); // sysUser组件
+            permissionsList.add("sys:organization:list"); // sysOrganization
+            permissionsList.add("sys:dict"); //字典
+            permissionsList.add("sys:menu"); //菜单
+        }
         return permissionsList;
     }
 
