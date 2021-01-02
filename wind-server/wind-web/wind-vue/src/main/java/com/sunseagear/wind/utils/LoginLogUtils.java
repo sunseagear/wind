@@ -7,6 +7,7 @@ import com.sunseagear.common.disruptor.Task;
 import com.sunseagear.common.disruptor.TaskHelper;
 import com.sunseagear.wind.modules.monitor.entity.LoginLog;
 import com.sunseagear.wind.modules.monitor.service.ILoginLogService;
+import com.sunseagear.wind.modules.monitor.service.impl.LoginLogServiceImpl;
 import eu.bitwalker.useragentutils.UserAgent;
 
 import java.util.Date;
@@ -96,7 +97,7 @@ public class LoginLogUtils {
                 loginLog.setMsg(message);
                 loginLog.setStatus(status);
                 loginLog.setLoginTime(new Date());
-                SpringContextHolder.getBean(ILoginLogService.class).insert(loginLog);
+                SpringContextHolder.getBean(LoginLogServiceImpl.class).insert(loginLog);
             }
         };
         // 运行任务

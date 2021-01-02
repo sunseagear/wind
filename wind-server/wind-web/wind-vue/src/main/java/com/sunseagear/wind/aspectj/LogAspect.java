@@ -10,6 +10,7 @@ import com.sunseagear.common.disruptor.Task;
 import com.sunseagear.common.disruptor.TaskHelper;
 import com.sunseagear.wind.modules.monitor.entity.OperationLog;
 import com.sunseagear.wind.modules.monitor.service.IOperationLogService;
+import com.sunseagear.wind.modules.monitor.service.impl.OperationLogServiceImpl;
 import com.sunseagear.wind.modules.sys.entity.User;
 import com.sunseagear.wind.utils.UserUtils;
 import eu.bitwalker.useragentutils.UserAgent;
@@ -131,7 +132,7 @@ public class LogAspect {
                 @Override
                 public void run() {
                     // 封装对象
-                    SpringContextHolder.getBean(IOperationLogService.class).insert(operationLog);
+                    SpringContextHolder.getBean(OperationLogServiceImpl.class).insert(operationLog);
                 }
             };
             // 运行任务
