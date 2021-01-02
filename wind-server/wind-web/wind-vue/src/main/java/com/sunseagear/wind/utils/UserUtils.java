@@ -13,6 +13,9 @@ import com.sunseagear.wind.modules.sys.service.IUserService;
 import com.google.common.base.Function;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Sets;
+import com.sunseagear.wind.modules.sys.service.impl.MenuServiceImpl;
+import com.sunseagear.wind.modules.sys.service.impl.RoleServiceImpl;
+import com.sunseagear.wind.modules.sys.service.impl.UserServiceImpl;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.UnavailableSecurityManagerException;
 import org.apache.shiro.session.InvalidSessionException;
@@ -34,9 +37,9 @@ import java.util.Set;
 @SuppressWarnings("unchecked")
 public class UserUtils extends com.sunseagear.common.utils.UserUtils {
 
-    private static IUserService userService = SpringContextHolder.getBean(IUserService.class);
-    private static IRoleService roleService = SpringContextHolder.getBean(IRoleService.class);
-    private static IMenuService menuService = SpringContextHolder.getBean(IMenuService.class);
+    private static IUserService userService = SpringContextHolder.getBean(UserServiceImpl.class);
+    private static IRoleService roleService = SpringContextHolder.getBean(RoleServiceImpl.class);
+    private static IMenuService menuService = SpringContextHolder.getBean(MenuServiceImpl.class);
     public static final String USER_CACHE = "userCache";
     public static final String USER_CACHE_ID_ = "id_";
     public static final String USER_CACHE_USER_NAME_ = "username_";

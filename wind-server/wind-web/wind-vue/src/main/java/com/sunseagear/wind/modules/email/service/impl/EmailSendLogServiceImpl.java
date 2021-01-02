@@ -26,7 +26,7 @@ import java.util.Map;
  * @copyright: 2018 www.sunseagear.com Inc. All rights reserved.
  */
 @Transactional
-@Service("emailsendlogService")
+@Service("emailSendLogService")
 public class EmailSendLogServiceImpl extends CommonServiceImpl<EmailSendLogMapper, EmailSendLog> implements IEmailSendLogService {
 
 

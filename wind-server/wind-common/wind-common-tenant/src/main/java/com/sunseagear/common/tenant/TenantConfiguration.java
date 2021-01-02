@@ -1,7 +1,12 @@
 package com.sunseagear.common.tenant;
 
+import com.baomidou.mybatisplus.autoconfigure.ConfigurationCustomizer;
 import com.baomidou.mybatisplus.core.parser.ISqlParser;
+import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.handler.TenantLineHandler;
+import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.TenantLineInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.tenant.TenantHandler;
 import com.baomidou.mybatisplus.extension.plugins.tenant.TenantSqlParser;
 import lombok.AllArgsConstructor;
@@ -23,8 +28,8 @@ public class TenantConfiguration {
      * @return TenantHandler
      */
     @Bean
-    @ConditionalOnMissingBean(TenantHandler.class)
-    public TenantHandler tenantHandler() {
+    @ConditionalOnMissingBean(TenantLineHandler.class)
+    public TenantLineHandler tenantHandler() {
         return new CommonTenantHandler();
     }
 
@@ -33,16 +38,20 @@ public class TenantConfiguration {
      *
      * @param tenantHandler 自定义租户处理器
      * @return PaginationInterceptor
-     */
+     *//*
     @Bean
-    public PaginationInterceptor paginationInterceptor(TenantHandler tenantHandler) {
-        PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
+    public PaginationInnerInterceptor paginationInterceptor(TenantLineHandler tenantHandler) {
+        PaginationInnerInterceptor paginationInterceptor = new PaginationInnerInterceptor();
+        paginationInterceptor.
         List<ISqlParser> sqlParserList = new ArrayList<>();
         TenantSqlParser tenantSqlParser = new TenantSqlParser();
         tenantSqlParser.setTenantHandler(tenantHandler);
         sqlParserList.add(tenantSqlParser);
         paginationInterceptor.setSqlParserList(sqlParserList);
         return paginationInterceptor;
-    }
+    }*/
+    /**
+     * 新多租户插件配置,一缓和二缓遵循mybatis的规则,需要设置 MybatisConfiguration#useDeprecatedExecutor = false 避免缓存万一出现问题
+     */
 
 }

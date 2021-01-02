@@ -4,6 +4,7 @@ import com.sunseagear.common.utils.CacheUtils;
 import com.sunseagear.common.utils.SpringContextHolder;
 import com.sunseagear.wind.modules.sys.service.IDictService;
 import com.google.common.collect.Lists;
+import com.sunseagear.wind.modules.sys.service.impl.DictServiceImpl;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
@@ -42,7 +43,7 @@ public class DictUtils {
      */
     public static Map<String, List<Dict>> initDict() {
         Map<String, List<Dict>> dictMap = new HashMap<String, List<Dict>>();
-        for (com.sunseagear.wind.modules.sys.entity.Dict dict : SpringContextHolder.getBean(IDictService.class).selectDictList()) {
+        for (com.sunseagear.wind.modules.sys.entity.Dict dict : SpringContextHolder.getBean(DictServiceImpl.class).selectDictList()) {
             List<Dict> dictList = dictMap.get(dict.getCode());
             if (dictList != null) {
                 dictList.add(new Dict(dict.getLabel(), dict.getValue()));

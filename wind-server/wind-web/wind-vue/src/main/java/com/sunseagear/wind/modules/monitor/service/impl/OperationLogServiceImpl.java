@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @copyright: 2018 www.sunseagear.com Inc. All rights reserved.
  */
 @Transactional
-@Service("operationlogService")
+@Service("operationLogService")
 public class OperationLogServiceImpl extends CommonServiceImpl<OperationLogMapper, OperationLog> implements IOperationLogService {
 
 }

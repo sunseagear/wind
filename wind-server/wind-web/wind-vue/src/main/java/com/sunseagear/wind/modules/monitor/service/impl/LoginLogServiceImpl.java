@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @copyright: 2018 www.sunseagear.com Inc. All rights reserved.
  */
 @Transactional
-@Service("loginlogService")
+@Service("loginLogService")
 public class LoginLogServiceImpl extends CommonServiceImpl<LoginLogMapper, LoginLog> implements ILoginLogService {
 
 }

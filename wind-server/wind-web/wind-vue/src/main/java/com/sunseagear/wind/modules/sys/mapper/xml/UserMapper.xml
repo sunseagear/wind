@@ -37,51 +37,5 @@
         </if>
     </select>
 
-    <insert id="insert">
-        insert into sys_user (
-            id,
-            realname,
-            username,
-            portrait,
-            password,
-            salt,
-            email,
-            phone,
-            status,
-            organization_id,
-            tenant_id
-        )value(
-            #{id},
-            #{realname},
-            #{username},
-            #{portrait},
-            #{password},
-            #{salt},
-            #{email},
-            #{phone},
-            #{status},
-            #{organization.id},
-            #{tenantId}
-        )
-    </insert>
-
-    <update id="updateById">
-        update sys_user
-        set
-        id = #{et.id},
-        realname = #{et.realname},
-        username = #{et.username},
-        portrait = #{et.portrait},
-        password = #{et.password},
-        salt = #{et.salt},
-        email = #{et.email},
-        phone = #{et.phone},
-        status = #{et.status},
-        organization_id = #{et.organization.id}
-        <where>
-            id = #{et.id}
-        </where>
-    </update>
-
 
 </mapper>

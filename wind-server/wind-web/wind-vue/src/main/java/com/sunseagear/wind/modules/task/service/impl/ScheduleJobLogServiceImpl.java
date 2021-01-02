@@ -22,7 +22,7 @@ import java.util.Date;
  * @copyright: 2018 www.sunseagear.com Inc. All rights reserved.
  */
 @Transactional
-@Service("schedulejoblogService")
+@Service("scheduleJobLogService")
 public class ScheduleJobLogServiceImpl
         extends CommonServiceImpl<ScheduleJobLogMapper, ScheduleJobLog>
         implements IScheduleJobLogService, QuartzExecuteCallback {

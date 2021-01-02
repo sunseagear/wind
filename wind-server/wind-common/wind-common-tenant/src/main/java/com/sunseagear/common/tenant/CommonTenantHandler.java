@@ -1,6 +1,6 @@
 package com.sunseagear.common.tenant;
 
-import com.baomidou.mybatisplus.extension.plugins.tenant.TenantHandler;
+import com.baomidou.mybatisplus.extension.plugins.handler.TenantLineHandler;
 import com.sunseagear.common.utils.StringUtils;
 import com.sunseagear.common.utils.UserUtils;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import net.sf.jsqlparser.expression.StringValue;
 
 
 @AllArgsConstructor
-public class CommonTenantHandler implements TenantHandler {
+public class CommonTenantHandler implements TenantLineHandler {
 
     /**
      * 获取租户ID
@@ -39,7 +39,7 @@ public class CommonTenantHandler implements TenantHandler {
      * @return 是否进行过滤 返回true 表示不进行多租户处理
      */
     @Override
-    public boolean doTableFilter(String tableName) {
+    public boolean ignoreTable(String tableName) {
         if (!TenantProperties.getInstance().getEnable()){
             return true;
         }

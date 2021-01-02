@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @copyright: 2018 www.sunseagear.com Inc. All rights reserved.
  */
 @Transactional
-@Service("emailtemplateService")
+@Service("emailTemplateService")
 public class EmailTemplateServiceImpl extends CommonServiceImpl<EmailTemplateMapper, EmailTemplate> implements IEmailTemplateService {
 
 }

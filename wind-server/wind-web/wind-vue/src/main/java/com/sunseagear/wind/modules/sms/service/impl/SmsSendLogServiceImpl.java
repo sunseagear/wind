@@ -22,7 +22,7 @@ import java.util.List;
  * @copyright: 2018 www.sunseagear.com Inc. All rights reserved.
  */
 @Transactional
-@Service("smssendlogService")
+@Service("smsSendLogService")
 public class SmsSendLogServiceImpl extends CommonServiceImpl<SmsSendLogMapper, SmsSendLog> implements ISmsSendLogService {
 
     @Override
