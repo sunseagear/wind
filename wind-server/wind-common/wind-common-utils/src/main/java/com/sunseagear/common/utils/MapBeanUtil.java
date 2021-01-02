@@ -218,7 +218,7 @@ public class MapBeanUtil {
             Class<? extends Object> clazz = obj.getClass();
             Field[] fields = obj.getClass().getDeclaredFields();// 获得属性
             for (Field field : fields) {
-                PropertyDescriptor pd = new PropertyDescriptor(field.getName(), clazz);
+                PropertyDescriptor pd = new PropertyDescriptor((String)field.getName(), clazz);
                 Method getMethod = pd.getReadMethod();// 获得get方法
                 String filed = "";// 如果是IS开头的区两位 我也是醉了-_-!!!!
                 if (getMethod.getName().toLowerCase().startsWith(("is"))) {
