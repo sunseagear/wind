@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>wind-vue</artifactId>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <version>1.2.0.RELEASE</version>
     <properties>
         <bitwalker.version>1.19</bitwalker.version>
@@ -164,7 +164,8 @@
                     <groupId>log4j</groupId>
                     <artifactId>log4j</artifactId>
                 </exclusion>
-            </exclusions>        </dependency>
+            </exclusions>
+        </dependency>
         <!-- dwr文件上传需要commons-fileupload -->
         <dependency>
             <groupId>commons-fileupload</groupId>
@@ -524,29 +525,27 @@
                 </configuration>
             </plugin>
             <!--打包插件-->
-            <!--
-                        <plugin>
-                            <artifactId>maven-assembly-plugin</artifactId>
-                            <configuration>
-                                <descriptors>
-                                    <descriptor>src/main/assembly/assembly.xml</descriptor>
-                                </descriptors>
-                            </configuration>
-                            <executions>
-                                <execution>
-                                    <id>make-assembly</id>
-                                    <phase>package</phase>
-                                    <goals>
-                                        <goal>single</goal>
-                                    </goals>
-                                </execution>
-                            </executions>
-                        </plugin>
-            -->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptors>
+                        <descriptor>src/main/assembly/assembly.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-war-plugin</artifactId>
+                        </plugin>
 
             <!--不推送到仓库-->
             <plugin>
