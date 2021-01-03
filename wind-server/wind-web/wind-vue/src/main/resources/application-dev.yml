@@ -37,7 +37,7 @@ oss:
 
   local:
     domain: http://localhost:8080
-    upload-file-path: D:/hhaha
+    upload-file-path: D:/sunseagear
   aliyun:
     #阿里云api的内或外网域名
     endpoint: oss-cn-beijing.aliyuncs.com

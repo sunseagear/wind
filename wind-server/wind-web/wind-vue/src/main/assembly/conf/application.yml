@@ -52,7 +52,7 @@ spring:
     password: root
     url: jdbc:mysql://localhost:3306/feilian?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     type: com.alibaba.druid.pool.DruidDataSource   #这里是配置druid连接池，以下都是druid的配置信息
-    filters: config,stat,wall,log4j
+    filters: config,stat,wall,slf4j
     maxActive: 20
     initialSize: 1
     maxWait: 60000
@@ -71,7 +71,7 @@ spring:
 
 #mybatis
 mybatis:
-  mapper-locations: classpath*:com/sunseagear/web/modules/**/*Mapper.xml   #把xml文件放在com.XX.mapper.*中可能会出现找到的问题，这里把他放在resource下的mapper中
+  mapper-locations: classpath*:com/sunseagear/wind/modules/**/*Mapper.xml
   #实体扫描，多个package用逗号或者分号分隔
   typeAliasesPackage: com.sunseagear.wind.modules.*.entity  #这里是实体类的位置
   configuration:
@@ -80,7 +80,7 @@ mybatis:
 
 #mybatis
 mybatis-plus:
-  mapper-locations: classpath*:com/sunseagear/web/modules/**/*Mapper.xml
+  mapper-locations: classpath*:com/sunseagear/wind/modules/**/*Mapper.xml
   #实体扫描，多个package用逗号或者分号分隔
   type-aliases-package:  com.sunseagear.wind.modules.*.entity
   #typeEnumsPackage: com.baomidou.springboot.entity.enums
@@ -103,16 +103,17 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: false
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl #开启sql日志
   configuration-properties:
     dbType: mysql #设置全局属性用于控制数据库的类型
 
-  #logging
-  #logging:
-  #level: warn
+#  logging
+logging:
+  config: classpath:log/logback-${spring.profiles.active}.xml
 
 #shiro
 shiro:
-  filter-chain-definitions: /json/**=anon;/webjars/**=anon;/monitor/druid/**=anon;/jcaptcha*=anon;/oss/upload/**=anon;/sso/oauth2/**=anon;/**=authc
+  filter-chain-definitions: /json/oss/**=anon;/json/**=anon;/jcaptcha*=anon;/sso/oauth2/revoke_token=authc;/sso/oauth2/**=anon;/**=authc
 
 #beetl配置
 beetlsql:
@@ -133,9 +134,12 @@ oss:
   allowed_extension: mp4,bmp, gif, jpg, jpeg, png,doc, docx, xls, xlsx, ppt, pptx,html,htm,txt,rar, zip, gz, bz2,pdf
   #最大文件大小 50M
   max_size: 52428800
+  #是否需要按照日期存放文件
+  needDatePath: false
+
   local:
-    domain: http://localhost:8080
-    upload-file-path: D:/hhaha
+    domain: http://localhost:8082
+    upload-file-path: D:/sunseagear
   aliyun:
     #阿里云api的内或外网域名
     endpoint: oss-cn-beijing.aliyuncs.com
@@ -152,7 +156,7 @@ oss:
 sms:
   client-type: aliyun
   open: true
-  sign-name: 立行教育
+  sign-name: 飞廉
   aliyun:
     #阿里云api的密钥access key id
     access-key-id: 阿里云ID

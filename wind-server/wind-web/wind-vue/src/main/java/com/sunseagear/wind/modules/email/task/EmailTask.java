@@ -5,7 +5,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.sunseagear.wind.modules.email.entity.EmailSendLog;
 import com.sunseagear.wind.modules.email.service.IEmailSendLogService;
 import com.sunseagear.wind.modules.email.service.IEmailSendService;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -26,7 +27,7 @@ import java.util.Map;
  */
 @Component("emailTask")
 public class EmailTask implements ApplicationListener<ContextRefreshedEvent> {
-    public final Logger log = Logger.getLogger(this.getClass());
+    public final Logger log = LoggerFactory.getLogger(getClass());
     @Autowired
     private IEmailSendLogService emailSendLogService;
     @Autowired

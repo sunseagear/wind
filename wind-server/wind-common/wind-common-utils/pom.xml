@@ -13,8 +13,6 @@
     <url>http://www.sunseagear.com</url>
 
     <properties>
-        <!-- 缓存 -->
-        <ehcache.version>2.10.4</ehcache.version>
         <!-- 工具包 -->
         <guava.version>17.0</guava.version>
         <fastjson.version>1.2.70</fastjson.version>

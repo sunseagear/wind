@@ -4,10 +4,12 @@ import com.sunseagear.common.utils.MessageUtils;
 import com.sunseagear.wind.common.helper.SysConfigHelper;
 import com.sunseagear.wind.modules.sys.entity.SysConfig;
 import com.sunseagear.wind.utils.DictUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 public class WebStartInitListener implements ApplicationListener<ContextRefreshedEvent> {
 
@@ -27,7 +29,7 @@ public class WebStartInitListener implements ApplicationListener<ContextRefreshe
         sb.append("\r\n======================================================================\r\n");
         sb.append("\r\n    欢迎使用 " + MessageUtils.getMessage("platform.name") + " " + MessageUtils.getMessage("platform.version") + "  - " + MessageUtils.getMessage("platform.copyright") + "  " + MessageUtils.getMessage("platform.website") + "\r\n");
         sb.append("\r\n======================================================================\r\n");
-        System.out.println(sb.toString());
+        log.error(sb.toString());
         return true;
     }
 }

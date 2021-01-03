@@ -4,7 +4,7 @@ server:
 #spring
 spring:
   profiles:
-      active: dev
+    active: dev
   resources:
     static-locations: file:${oss.local.upload-file-path}
   session:
@@ -28,10 +28,10 @@ spring:
   #DATABASE CONFIG
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-#    SqlServer
-#    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    #    SqlServer
+    #    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
     type: com.alibaba.druid.pool.DruidDataSource   #这里是配置druid连接池，以下都是druid的配置信息
-    filters: config,stat,wall,log4j
+    filters: config,stat,wall,slf4j
     maxActive: 20
     initialSize: 1
     maxWait: 60000
@@ -82,12 +82,13 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: false
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl #开启sql日志
   configuration-properties:
     dbType: mysql #设置全局属性用于控制数据库的类型
 
-  #logging
-  #logging:
-  #level: warn
+#  logging
+logging:
+  config: classpath:log/logback-${spring.profiles.active}.xml
 
 #shiro
 shiro:
@@ -103,7 +104,7 @@ beetlsql:
 oss:
   client-type: local
   #默认上传目录
-  base_dir: d:\text
+  base_dir: userfiles
   #允许的文件扩展名
   allowed_extension: mp4,bmp, gif, jpg, jpeg, png,doc, docx, xls, xlsx, ppt, pptx,html,htm,txt,rar, zip, gz, bz2,pdf
   #最大文件大小 50M
