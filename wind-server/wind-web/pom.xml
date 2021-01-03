@@ -15,7 +15,7 @@
         <module>wind-vue</module>
     </modules>
     <build>
-        <finalName>${project.artifactId}</finalName>
+        <finalName>${project.parent.artifactId}</finalName>
         <plugins>
             <!-- 编码和编译和JDK版本 -->
             <plugin>

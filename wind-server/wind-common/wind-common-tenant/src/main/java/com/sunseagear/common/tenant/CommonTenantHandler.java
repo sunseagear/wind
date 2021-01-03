@@ -43,6 +43,6 @@ public class CommonTenantHandler implements TenantLineHandler {
         if (!TenantProperties.getInstance().getEnable()){
             return true;
         }
-        return StringUtils.isBlank(UserUtils.getTenantId()) || TenantProperties.getInstance().getIgnoreTables().contains(tableName);
+        return StringUtils.isEmpty(UserUtils.getTenantId()) || TenantProperties.getInstance().getIgnoreTables().contains(tableName);
     }
 }

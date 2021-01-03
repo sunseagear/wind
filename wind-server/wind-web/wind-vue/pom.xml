@@ -50,23 +50,18 @@
 
         <commons-codec.version>1.10</commons-codec.version>
 
-        <jaxb.version>2.0.1</jaxb.version>
-
         <jcaptcha.version>2.0-alpha-1</jcaptcha.version>
 
 
         <!-- 工具包 -->
         <guava.version>17.0</guava.version>
         <fastjson.version>1.2.15</fastjson.version>
-        <jaxb.version>2.0.1</jaxb.version>
         <commons-text.version>1.8</commons-text.version>
         <commons-beanutils.version>1.9.3</commons-beanutils.version>
         <commons-io.version>2.4</commons-io.version>
         <freemarker.version>2.3.27-incubating</freemarker.version>
         <!-- 验证码 -->
         <jcaptcha.version>2.0-alpha-1</jcaptcha.version>
-
-        <jaxb.version>2.0.1</jaxb.version>
 
         <!--itextpdf工具-->
         <itextpdf.version>5.5.13</itextpdf.version>
@@ -424,11 +419,6 @@
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-jaxb-annotations</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-impl</artifactId>
-            <version>${jaxb.version}</version>
         </dependency>
         <dependency>
             <groupId>net.sf.json-lib</groupId>
