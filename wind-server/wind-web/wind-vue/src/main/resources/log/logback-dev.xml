@@ -66,6 +66,6 @@
     <root level="DEBUG">
         <!--appender将会添加到这个loger-->
         <appender-ref ref="console"/>
-        <appender-ref ref="timeFileOutput"/>
+<!--        <appender-ref ref="timeFileOutput"/>-->
     </root>
 </configuration>
