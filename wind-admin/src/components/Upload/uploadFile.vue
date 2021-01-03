@@ -43,7 +43,7 @@ export default {
     limit: {
       type: Number,
       required: false,
-      default: 2
+      default: 10
     },
     basePath: {
       type: String,
@@ -56,7 +56,7 @@ export default {
   },
   data() {
     return {
-      uploadImageUrl: 'http://' + process.env.VUE_APP_BASE_API + '/json/oss/upload',
+      uploadImageUrl: 'http://' + process.env.VUE_APP_BASE_API + '/oss/attachment/upload',
       uploadData: { 'base_path': this.basePath },
       imageExtension: ['bmp', 'jpg', 'jpeg', 'png', 'gif'],
       extensions: [],
@@ -98,9 +98,13 @@ export default {
       this.$emit('input', val)
     },
     handleSuccess(response, file) {
-      this.uploadLoading = false
-      this.resultUrl = response.data
-      this.emitInput(this.resultUrl)
+      if (response.data.code === 0) {
+        this.uploadLoading = false
+        this.resultUrl = response.data
+        this.emitInput(this.resultUrl)
+      } else {
+        this.$message.error(response.data.msg)
+      }
     },
     handleError(response) {
       console.log(response)

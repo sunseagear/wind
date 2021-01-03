@@ -1,8 +1,14 @@
 package com.sunseagear.wind.modules.sys.json;
 
+import com.sunseagear.common.http.Response;
+import com.sunseagear.common.oss.exception.FileNameLengthLimitExceededException;
+import com.sunseagear.common.oss.exception.InvalidExtensionException;
 import com.sunseagear.common.utils.FileUtils;
 import com.sunseagear.common.utils.JsonUtils;
+import com.sunseagear.common.utils.MessageUtils;
+import com.sunseagear.wind.common.response.ResponseError;
 import com.sunseagear.wind.modules.oss.service.IAttachmentService;
+import org.apache.commons.fileupload.FileUploadBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 /**
  * All rights Reserved, Designed By www.sunseagear.com
@@ -38,7 +45,17 @@ public class OSSUploadJsonController {
      */
     @RequestMapping(value = "upload", method = RequestMethod.POST)
     public String upload(HttpServletRequest request, MultipartFile[] file, @RequestParam(required = false, defaultValue = "") String dir) {
-        return attachmentService.upload(request, file, dir);
+        try {
+            return JsonUtils.successMessage((Object) attachmentService.upload(request, file, dir));
+        } catch (IOException e) {
+            return JsonUtils.failMessage(MessageUtils.getMessage("upload.server.error"));
+        } catch (InvalidExtensionException e) {
+            return JsonUtils.failMessage(MessageUtils.getMessage("upload.server.error"));
+        } catch (FileUploadBase.FileSizeLimitExceededException e) {
+            return JsonUtils.failMessage(MessageUtils.getMessage("upload.server.error"));
+        } catch (FileNameLengthLimitExceededException e) {
+            return JsonUtils.failMessage(MessageUtils.getMessage("upload.server.error"));
+        }
     }
 
     @RequestMapping("imgToBase64")

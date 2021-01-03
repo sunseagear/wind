@@ -4,6 +4,11 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sunseagear.common.http.Response;
 import com.sunseagear.common.mvc.controller.BaseBeanController;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.sunseagear.common.oss.exception.FileNameLengthLimitExceededException;
+import com.sunseagear.common.oss.exception.InvalidExtensionException;
+import com.sunseagear.common.utils.MessageUtils;
+import com.sunseagear.wind.common.response.ResponseError;
+import org.apache.commons.fileupload.FileUploadBase;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import com.sunseagear.common.utils.StringUtils;
 import com.sunseagear.wind.aspectj.annotation.Log;
@@ -85,7 +90,17 @@ public class AttachmentController extends BaseBeanController<Attachment> {
      */
     @RequestMapping(value = "upload", method = RequestMethod.POST)
     public String upload(HttpServletRequest request, MultipartFile[] file, @RequestParam(required = false, defaultValue = "") String dir) {
-        return attachmentService.upload(request, file, dir);
+        try {
+            return Response.successJson((Object) attachmentService.upload(request, file, dir));
+        } catch (IOException e) {
+            return Response.error(ResponseError.NORMAL_ERROR, MessageUtils.getMessage("upload.server.error"));
+        } catch (InvalidExtensionException e) {
+            return Response.error(ResponseError.NORMAL_ERROR, MessageUtils.getMessage("upload.server.error"));
+        } catch (FileUploadBase.FileSizeLimitExceededException e) {
+            return Response.error(ResponseError.NORMAL_ERROR, MessageUtils.getMessage("upload.server.error"));
+        } catch (FileNameLengthLimitExceededException e) {
+            return Response.error(ResponseError.NORMAL_ERROR, MessageUtils.getMessage("upload.server.error"));
+        }
     }
 
 

@@ -39,27 +39,15 @@ public class AttachmentServiceImpl extends CommonServiceImpl<AttachmentMapper, A
     @Autowired
     private AttachmentHelper attachmentHelper;
 
-    public String upload(HttpServletRequest request, MultipartFile[] file, String dir) {
+    public String upload(HttpServletRequest request, MultipartFile[] file, String dir) throws InvalidExtensionException, FileUploadBase.FileSizeLimitExceededException, FileNameLengthLimitExceededException, IOException {
         List<String> attachmentList = new ArrayList<>();
 
         for (MultipartFile item : file) {
-            try {
-                Attachment attachment = attachmentHelper.upload(request, item, dir);
-                attachmentList.add(attachment.getFilePath());
-                continue;
-            } catch (IOException e) {
-                return Response.error(ResponseError.NORMAL_ERROR, MessageUtils.getMessage("upload.server.error"));
-            } catch (InvalidExtensionException e) {
-                return Response.error(ResponseError.NORMAL_ERROR, MessageUtils.getMessage("upload.server.error"));
-            } catch (FileUploadBase.FileSizeLimitExceededException e) {
-                return Response.error(ResponseError.NORMAL_ERROR, MessageUtils.getMessage("upload.server.error"));
-            } catch (FileNameLengthLimitExceededException e) {
-                return Response.error(ResponseError.NORMAL_ERROR, MessageUtils.getMessage("upload.server.error"));
-            }
+            Attachment attachment = attachmentHelper.upload(request, item, dir);
+            attachmentList.add(attachment.getFilePath());
         }
 
-        String fileList = ArrayUtils.join(attachmentList, ",");
-        return Response.successJson((Object) fileList);
+        return ArrayUtils.join(attachmentList, ",");
     }
 
 

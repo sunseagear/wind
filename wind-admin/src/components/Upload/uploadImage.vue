@@ -52,7 +52,7 @@ export default {
     return {
       imageList: [],
       resultUrl: undefined,
-      uploadImageUrl: 'http://' + process.env.VUE_APP_BASE_API + '/json/oss/upload',
+      uploadImageUrl: 'http://' + process.env.VUE_APP_BASE_API + '/oss/attachment/upload',
       uploadData: { 'base_path': this.basePath }
     }
   },
@@ -87,8 +87,20 @@ export default {
       this.$emit('input', val)
     },
     handleAvatarSuccess(response, file) {
-      this.imageList.push(response.data)
-      this.emitInput(this.imageList.join(','))
+      if (response.data.code === 0) {
+        this.imageList.push(response.data)
+        this.emitInput(this.imageList.join(','))
+      } else {
+        this.$message.error(response.data.msg)
+      }
+    },
+    handleError(response) {
+      console.log(response)
+      if (response.msg) {
+        this.$message.error(response.msg)
+      } else {
+        this.$message.error('上传失败')
+      }
     },
     beforeAvatarUpload(file) {
       const isJPG = (file.type === 'image/jpeg' || file.type === 'image/png')

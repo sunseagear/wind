@@ -218,6 +218,7 @@ public class UserUtils extends com.sunseagear.common.utils.UserUtils {
             permissionsList.add("sys:organization:list"); // sysOrganization
             permissionsList.add("sys:dict"); //字典
             permissionsList.add("sys:menu"); //菜单
+            permissionsList.add("oss:attachment"); //文件上传
         }
         return permissionsList;
     }
