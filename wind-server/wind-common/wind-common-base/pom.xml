@@ -15,7 +15,6 @@
     <properties>
         <hibernate.validator.version>5.1.1.Final</hibernate.validator.version>
         <disruptor.version>3.3.6</disruptor.version>
-        <mybatis-plus-boot-starter.version>3.1.2</mybatis-plus-boot-starter.version>
     </properties>
 
     <dependencies>
