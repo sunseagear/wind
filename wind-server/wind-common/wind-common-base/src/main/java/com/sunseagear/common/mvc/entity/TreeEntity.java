@@ -18,9 +18,9 @@ public abstract class TreeEntity<T> extends AbstractEntity<T> implements TreeNod
     protected T id; // 编号
     @TableField(value = "name")
     protected String name; // 资源名称
-    @TableField(value = "parent_id", strategy = FieldStrategy.IGNORED)
+    @TableField(value = "parent_id")
     protected T parentId; // 父编号
-    @TableField(value = "parent_ids", strategy = FieldStrategy.IGNORED)
+    @TableField(value = "parent_ids")
     protected String parentIds; // 父编号列表
 
     @TableField(value = "remarks")
