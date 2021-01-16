@@ -7,6 +7,12 @@ export function fetchOrganizationList(query) {
     params: query
   })
 }
+export function fetchOrganization(id) {
+  return request({
+    url: '/sys/organization/detail/' + id,
+    method: 'get'
+  })
+}
 
 export function createOrganization(data) {
   return request({

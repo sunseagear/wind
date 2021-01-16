@@ -87,11 +87,11 @@ export default {
       this.$emit('input', val)
     },
     handleAvatarSuccess(response, file) {
-      if (response.data.code === 0) {
+      if (response.code === 0) {
         this.imageList.push(response.data)
         this.emitInput(this.imageList.join(','))
       } else {
-        this.$message.error(response.data.msg)
+        this.$message.error(response.msg)
       }
     },
     handleError(response) {

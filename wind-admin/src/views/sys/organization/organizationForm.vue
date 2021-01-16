@@ -29,6 +29,7 @@
 
 <script>
 import { createOrganization, updateOrganization } from '@/api/sys/organization'
+import { fetchOrganization } from '../../../api/sys/organization'
 
 export default {
   name: 'OrganizationForm',
@@ -96,22 +97,30 @@ export default {
         }
       })
     },
-    handleUpdate(row) {
-      this.temp = Object.assign({}, row) // copy obj
-      if (this.temp.children !== undefined) {
-        this.temp.children.length = 0
-      }
-      if (this.temp.parentIds !== undefined) {
-        let parentIds = this.temp.parentIds.trim()
-        if (parentIds.length > 0) {
-          parentIds = parentIds.substr(0, parentIds.length - 1)
-        }
-        this.temp.parentIds = parentIds.split('\/')
-      }
+    handleUpdate(id) {
+      this.resetTemp()
       this.dialogStatus = 'update'
       this.dialogFormVisible = true
       this.$nextTick(() => {
         this.$refs['dataForm'].clearValidate()
+      })
+      fetchOrganization(id).then(response => {
+        if (response.data.code === 0) {
+          this.temp = response.data.data // copy obj
+          if (this.temp.children !== undefined) {
+            this.temp.children.length = 0
+          }
+          if (this.temp.parentIds !== undefined) {
+            let parentIds = this.temp.parentIds.trim()
+            if (parentIds.length > 0) {
+              parentIds = parentIds.substr(0, parentIds.length - 1)
+            }
+            this.temp.parentIds = parentIds.split('\/')
+          }
+        } else {
+          this.dialogFormVisible = false
+          this.$message.error(response.data.msg)
+        }
       })
     },
     updateData() {
