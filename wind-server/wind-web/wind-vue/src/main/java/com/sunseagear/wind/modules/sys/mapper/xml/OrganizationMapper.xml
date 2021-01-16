@@ -2,27 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.sunseagear.wind.modules.sys.mapper.OrganizationMapper">
 
-    <resultMap id="BaseResultMap" type="com.sunseagear.wind.modules.sys.entity.Organization">
-        <!-- 树形基础模块 -->
-        <id column="id" property="id" jdbcType="VARCHAR"/>
-        <result column="name" property="name" jdbcType="VARCHAR"/>
-        <result column="parent_id" property="parentId" jdbcType="VARCHAR"/>
-        <result column="parent_ids" property="parentIds" jdbcType="VARCHAR"/>
-        <result column="hasChildren" property="hasChildren"/>
-
-        <!-- 扩展模块 -->
-        <result column="remarks" property="remarks" jdbcType="VARCHAR"/>
-
-    </resultMap>
 
     <sql id="Base_Column_List">
-		t.id,
-		t.name,
-		t.parent_id,
-		t.parent_ids,
-		t.parent_id AS parent_id,
+		t.*,
 		p.name AS parent_name,
-		t.remarks,
 		(select count(*) from sys_organization s
 		WHERE s.parent_id=t.id) as
 		hasChildren
@@ -32,7 +15,7 @@
 		LEFT JOIN sys_organization p ON p.id = t.parent_id
 	</sql>
 
-    <select id="selectByTreeId" resultMap="BaseResultMap"
+    <select id="selectByTreeId" resultType="com.sunseagear.wind.modules.sys.entity.Organization"
             parameterType="java.lang.String">
         select
         <include refid="Base_Column_List"/>
@@ -41,7 +24,7 @@
         where t.id = #{id,jdbcType=VARCHAR}
     </select>
 
-    <select id="selectTreeList" resultMap="BaseResultMap">
+    <select id="selectTreeList" resultType="com.sunseagear.wind.modules.sys.entity.Organization">
         select
         <include refid="Base_Column_List"/>
         from sys_organization t
@@ -52,7 +35,7 @@
     </select>
 
     <!-- 通过用户ID组织机构 -->
-    <select id="findListByUserId" resultMap="BaseResultMap">
+    <select id="findListByUserId" resultType="com.sunseagear.wind.modules.sys.entity.Organization">
         SELECT
         <include refid="Base_Column_List"/>
         from sys_organization t

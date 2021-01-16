@@ -3,6 +3,7 @@ package com.sunseagear.wind.modules.sys.controller;
 import com.sunseagear.common.http.Response;
 import com.sunseagear.common.mvc.controller.BaseBeanController;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.sunseagear.wind.modules.sys.entity.DataRule;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import com.sunseagear.common.utils.StringUtils;
 import com.sunseagear.wind.aspectj.annotation.Log;
@@ -78,6 +79,14 @@ public class OrganizationController extends BaseBeanController<Organization> {
         this.checkError(entity, result);
         organizationService.insertOrUpdate(entity);
         return Response.ok("更新成功");
+    }
+
+    @GetMapping("detail/{id}")
+    @Log(logType = LogType.SELECT)
+    @RequiresPermissions("sys:organization:detail")
+    public String detail(@PathVariable("id") String id) {
+        Organization organization = organizationService.selectById(id);
+        return Response.successJson(organization);
     }
 
     @PostMapping("delete/{id}")
