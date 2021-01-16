@@ -121,7 +121,7 @@
 <script>
 import { createMenu, updateMenu } from '@/api/sys/menu'
 import iconSelector from '@/components/IconSelector'
-import { isExternal } from '../../../utils/validate'
+import { isExternal } from '@/utils/validate'
 
 export default {
   name: 'MenuForm',

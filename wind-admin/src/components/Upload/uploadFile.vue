@@ -22,7 +22,7 @@
 <script>
 import defaultImg from '@/assets/img/default_img.jpg' // 水波纹指令
 export default {
-  name: 'UploadImage',
+  name: 'UploadFile',
   props: {
     value: {
       type: String,

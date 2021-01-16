@@ -130,7 +130,7 @@ public class UserServiceImpl extends CommonServiceImpl<UserMapper, User> impleme
         if (selectCount(new QueryWrapper<User>().ne("id", user.getId()).eq("username", user.getUsername())) > 0) {
             throw new RuntimeException("账号重复");
         }
-        if (StringUtils.isEmpty(user.getId())){
+        if (!StringUtils.isEmpty(user.getId())){
             UserUtils.update(user.getId());
         }
         return super.insertOrUpdate(user);
@@ -138,7 +138,7 @@ public class UserServiceImpl extends CommonServiceImpl<UserMapper, User> impleme
 
     @Override
     public boolean update(User user) {
-        if (StringUtils.isEmpty(user.getId())){
+        if (!StringUtils.isEmpty(user.getId())){
             UserUtils.update(user.getId());
         }
         return super.update(user);
