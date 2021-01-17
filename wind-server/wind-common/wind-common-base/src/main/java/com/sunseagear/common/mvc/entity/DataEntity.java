@@ -3,6 +3,7 @@ package com.sunseagear.common.mvc.entity;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.sunseagear.common.mvc.constant.DataBaseConstant;
+import lombok.Data;
 
 import java.util.Date;
 
@@ -12,6 +13,7 @@ import java.util.Date;
  * @param <ID> 主键类型
  * @version 2016-12-03
  */
+@Data
 public abstract class DataEntity<ID> extends AbstractEntity<ID> {
 
     private static final long serialVersionUID = 1L;
