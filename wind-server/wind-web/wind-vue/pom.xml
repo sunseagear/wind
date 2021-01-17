@@ -5,12 +5,12 @@
     <parent>
         <artifactId>wind-web</artifactId>
         <groupId>com.sunseagear</groupId>
-        <version>1.2.0.RELEASE</version>
+        <version>1.2.1.RELEASE</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>wind-vue</artifactId>
     <packaging>jar</packaging>
-    <version>1.2.0.RELEASE</version>
+    <version>1.2.1.RELEASE</version>
     <properties>
         <bitwalker.version>1.19</bitwalker.version>
         <!--oauth认证-->
