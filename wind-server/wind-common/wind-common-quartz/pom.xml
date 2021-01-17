@@ -14,7 +14,7 @@
 
     <properties>
         <!-- 计划任务 -->
-        <quartz.version>2.2.1</quartz.version>
+        <quartz.version>2.3.2</quartz.version>
         <!--数据库连接-->
         <druid.version>1.0.14</druid.version>
     </properties>
