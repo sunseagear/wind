@@ -3,33 +3,23 @@
 <mapper namespace="com.sunseagear.wind.modules.sys.mapper.UserMapper">
 
     <sql id="Base_Column_List">
-        DISTINCT
-        t.id,
-        t.realname,
-        t.username,
-        t.portrait,
-        t.password,
-        t.salt,
-        t.email,
-        t.phone,
-        t.status,
-        t.organization_id,
+        t.*,
         t.organization_id as "organization.id",
         b.parent_ids as "organization.parentIds",
         b.name as "organization.name"
     </sql>
 
-    <sql id="userOrganizationJoins">
+    <sql id="tableJoins">
         left join sys_organization b on b.id = t.organization_id
     </sql>
 
     <select
-        id="selectUserList"
+        id="selectPage"
         resultType="com.sunseagear.wind.modules.sys.entity.User">
         select
         <include refid="Base_Column_List"/>
         from sys_user t
-        <include refid="userOrganizationJoins"/>
+        <include refid="tableJoins"/>
         <if test="ew.sqlSegment != '' and ew.sqlSegment != null">
             <where>
                 ${ew.sqlSegment}

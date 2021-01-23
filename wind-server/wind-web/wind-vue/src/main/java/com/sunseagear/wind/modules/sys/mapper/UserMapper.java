@@ -19,5 +19,4 @@ public interface UserMapper extends BaseMapper<User> {
      * @description: 查找用户列表
      * @return: List<User>
      */
-    List<User> selectUserList(Page page, @Param("ew") Wrapper<User> wrapper);
 }

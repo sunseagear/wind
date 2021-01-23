@@ -95,13 +95,6 @@ public class UserServiceImpl extends CommonServiceImpl<UserMapper, User> impleme
     }
 
     @Override
-    public Page<User> selectPage(Page<User> page, Wrapper<User> wrapper) {
-
-        page.setRecords(baseMapper.selectUserList(page, wrapper));
-        return page;
-    }
-
-    @Override
     public Boolean checkPassword(String userId, String password) {
         User user = selectById(userId);
         if (user == null) {
