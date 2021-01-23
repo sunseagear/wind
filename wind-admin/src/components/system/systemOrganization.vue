@@ -43,7 +43,6 @@ export default {
       immediate: true,
       handler(val) {
         this.organizationIds = val
-        console.log('this.organizationIds', this.organizationIds)
       }
     }
   },

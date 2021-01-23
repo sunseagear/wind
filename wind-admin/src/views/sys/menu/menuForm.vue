@@ -111,7 +111,8 @@
     <div slot="footer" class="dialog-footer">
       <el-button @click="dialogFormVisible = false">{{ $t('table.cancel') }}</el-button>
       <el-button v-if="dialogStatus=='create'" type="primary" @click="createData">{{ $t('table.confirm') }}</el-button>
-      <el-button v-else type="primary" @click="updateData">{{ $t('table.confirm') }}</el-button>
+      <el-button v-else type="primary" @click="updateData(true)">{{ $t('table.confirm') }}</el-button>
+      <el-button v-if="dialogStatus!='create'" type="primary" @click="updateData(false)">保存</el-button>
     </div>
 
     <icon-selector ref="iconSelector" @iconSelect="addCreateData" />
@@ -121,7 +122,7 @@
 <script>
 import { createMenu, updateMenu } from '@/api/sys/menu'
 import iconSelector from '@/components/IconSelector'
-import { isExternal } from '../../../utils/validate'
+import { isExternal } from '@/utils/validate'
 
 export default {
   name: 'MenuForm',
@@ -271,7 +272,7 @@ export default {
         this.$refs['dataForm'].clearValidate()
       })
     },
-    updateData() {
+    updateData(refresh) {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           const parentIds = this.temp.parentIds
@@ -293,7 +294,9 @@ export default {
           updateMenu(tempData).then((response) => {
             const data = response.data
             if (data.code === 0) {
-              this.getList()
+              if (refresh) {
+                this.getList()
+              }
               this.dialogFormVisible = false
               this.$message.success('更新成功')
             } else {

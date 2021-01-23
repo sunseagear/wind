@@ -1,5 +1,8 @@
 <template>
   <div class="upload-container">
+    <div v-if="resultUrl">
+      {{ resultUrl }}
+    </div>
     <el-upload
       v-loading="uploadLoading"
       :data="uploadData"
@@ -22,7 +25,7 @@
 <script>
 import defaultImg from '@/assets/img/default_img.jpg' // 水波纹指令
 export default {
-  name: 'UploadImage',
+  name: 'UploadFile',
   props: {
     value: {
       type: String,
@@ -98,16 +101,15 @@ export default {
       this.$emit('input', val)
     },
     handleSuccess(response, file) {
-      if (response.data.code === 0) {
+      if (response.code === 0) {
         this.uploadLoading = false
         this.resultUrl = response.data
         this.emitInput(this.resultUrl)
       } else {
-        this.$message.error(response.data.msg)
+        this.$message.error(response.msg)
       }
     },
     handleError(response) {
-      console.log(response)
       this.uploadLoading = false
       if (response.msg) {
         this.$message.error(response.msg)

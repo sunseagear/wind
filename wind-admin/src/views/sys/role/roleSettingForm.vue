@@ -1,16 +1,18 @@
 <template>
-  <el-dialog :visible.sync="dialogFormMenuVisible" title="设置权限"><!-- :fullscreen="true" 全屏-->
-    <el-form ref="dataForm" :model="menuTemp" label-position="left" label-width="120px" style="width: 400px; margin-left:50px;">
+  <el-dialog :visible.sync="dialogFormMenuVisible" title="设置权限" :close-on-click-modal="false">
+    <el-form ref="dataForm" :model="menuTemp" label-position="left" label-width="120px" style="width: 80%; margin-left:50px;">
       <el-form-item label="操作权限">
-        <el-tree
-          ref="menuTree"
-          :data="menuData"
-          :props="menuTreeProps"
-          :default-checked-keys="selectMenuIds"
-          default-expand-all
-          show-checkbox
-          node-key="id"
-        />
+        <el-scrollbar style="height: 60vh">
+          <el-tree
+            ref="menuTree"
+            :data="menuData"
+            :props="menuTreeProps"
+            :default-checked-keys="selectMenuIds"
+            default-expand-all
+            show-checkbox
+            node-key="id"
+          />
+        </el-scrollbar>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">

@@ -232,7 +232,7 @@ export default {
       this.$refs.form.handleCreate()
     },
     handleUpdate(row) {
-      this.$refs.form.handleUpdate(row)
+      this.$refs.form.handleUpdate(row.id)
     },
     handleModifyPassword(row) {
       this.modifyPassword.id = row.id // copy obj

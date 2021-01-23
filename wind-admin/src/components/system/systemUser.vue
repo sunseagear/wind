@@ -95,8 +95,8 @@ export default {
   data() {
     return {
       tableKey: 0,
-      list: null,
-      total: null,
+      list: [],
+      total: 0,
       listLoading: true,
       name: undefined,
       pageArray: this.$store.getters.pageArray,
@@ -118,14 +118,15 @@ export default {
   },
   created() {
     this.name = undefined
-    this.listQuery = objectMerge(this.listQuery, this.query)
-    this.getList()
   },
   methods: {
     show() {
+      this.listQuery = objectMerge(this.listQuery, this.query)
+      this.getList()
       this.dialogFormVisible = true
     },
     getList() {
+      this.list = []
       this.listLoading = true
       fetchList(this.listQuery).then(response => {
         this.list = response.data.data

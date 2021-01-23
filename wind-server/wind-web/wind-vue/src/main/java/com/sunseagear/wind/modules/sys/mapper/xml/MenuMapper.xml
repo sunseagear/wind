@@ -3,28 +3,8 @@
 <mapper namespace="com.sunseagear.wind.modules.sys.mapper.MenuMapper">
 
     <sql id="Base_Column_List">
-        t.id,
-        t.name,
-        t.parent_ids AS parentIds,
-        t.parent_id AS parentId,
+        t.*,
         p.name AS parentName,
-        t.type,
-        t.path,
-        t.url,
-        t.enabled,
-        t.sort,
-        t.icon,
-        t.redirect,
-        t.cacheable,
-        t.require_auth AS requireAuth,
-        t.component,
-        t.remarks,
-        t.create_by AS createBy,
-        t.create_date AS createDate,
-        t.update_by AS updateBy,
-        t.update_date AS updateDate,
-        t.del_flag AS delFlag,
-        t.permission AS permission,
         (select count(*) from sys_menu s
         WHERE s.parent_id=t.id) as
         hasChildren
