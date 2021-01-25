@@ -73,9 +73,9 @@ export function dictLabel(value, code) {
   value = value + ''
   const labelList = []
   value.split(',').forEach(item => {
-    const label = getDictLabel(code, value)
+    const label = getDictLabel(code, item)
     labelList.push(label)
   })
-  return labelList.join('|')
+  return labelList.join(',')
 }
 
