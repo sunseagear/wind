@@ -35,7 +35,7 @@ public class RoleMenuServiceImpl extends CommonServiceImpl<RoleMenuMapper, RoleM
                 roleMenu.setMenuId(menuId);
                 roleMenuList.add(roleMenu);
             }
-            insertOrUpdateBatch(roleMenuList);
+            insertBatch(roleMenuList);
             UserUtils.clearPermissionCache(roleId);
         }
     }

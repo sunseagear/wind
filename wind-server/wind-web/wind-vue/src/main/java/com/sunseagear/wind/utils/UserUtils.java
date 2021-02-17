@@ -161,6 +161,10 @@ public class UserUtils extends com.sunseagear.common.utils.UserUtils {
         CacheUtils.remove(USER_CACHE, CACHE_PERMISSION_LIST_ + roleId);
     }
 
+    public static void clearAllCache() {
+        CacheUtils.remove(USER_CACHE);
+    }
+
     /**
      * 获取当前用户角色列表
      *
