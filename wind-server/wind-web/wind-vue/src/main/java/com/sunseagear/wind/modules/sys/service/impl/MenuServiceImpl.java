@@ -79,12 +79,12 @@ public class MenuServiceImpl extends TreeCommonServiceImpl<MenuMapper, Menu, Str
     }
 
     @Override
-    public List<String> findPermissionByUserId(String userId) {
+    public List<Menu> findPermissionByUserId(String userId) {
         return baseMapper.findPermissionByUserId(userId);
     }
 
     @Override
-    public List<String> findPermissionByRoleId(String roleId) {
+    public List<Menu> findPermissionByRoleId(String roleId) {
         return baseMapper.findPermissionByRoleId(roleId);
     }
 

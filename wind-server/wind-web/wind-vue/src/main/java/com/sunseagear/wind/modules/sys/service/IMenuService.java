@@ -37,14 +37,14 @@ public interface IMenuService extends ITreeCommonService<Menu, String> {
      *
      * @return
      */
-    List<String> findPermissionByUserId(String userId);
+    List<Menu> findPermissionByUserId(String userId);
 
     /**
      * 通过用户ID查找菜单
      *
      * @return
      */
-    List<String> findPermissionByRoleId(String roleId);
+    List<Menu> findPermissionByRoleId(String roleId);
 
     void changeSort(String menuId, Integer sort);
 

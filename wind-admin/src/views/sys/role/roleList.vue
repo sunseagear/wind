@@ -34,7 +34,8 @@
       </el-table-column>
       <el-table-column :label="$t('table.actions')" align="center" class-name="small-padding fixed-width">
         <template v-if="scope.row.tenantId === tenantId" slot-scope="scope">
-          <el-button size="small" type="text" icon="el-icon-setting" @click="toSetMenu(scope.row)">设置权限</el-button>
+          <el-button size="small" type="text" icon="el-icon-setting" @click="toSetMenu(scope.row)">设置菜单</el-button>
+          <el-button size="small" type="text" icon="el-icon-s-operation" @click="toSetPermission(scope.row)">设置权限</el-button>
           <el-button size="small" type="text" icon="el-icon-finished" @click="toSetDataRule(scope.row)">数据权限</el-button>
           <el-button size="small" type="text" icon="el-icon-edit" @click="handleUpdate(scope.row)">{{ $t('table.edit') }}</el-button>
           <el-button size="small" type="text" icon="el-icon-delete" class="delete-text-btn" @click="handleDelete(scope.row)">{{ $t('table.delete') }}
@@ -126,7 +127,10 @@ export default {
       row.status = status
     },
     toSetMenu(row) {
-      this.$refs.settingForm.toSetMenu(row)
+      this.$refs.settingForm.toSetMenu(row, 1)
+    },
+    toSetPermission(row) {
+      this.$refs.settingForm.toSetMenu(row, 2)
     },
     handleUpdate(row) {
       this.$refs.form.handleUpdate(row)

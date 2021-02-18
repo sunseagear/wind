@@ -3,7 +3,9 @@ package com.sunseagear.wind.modules.sys.service.impl;
 import com.sunseagear.common.mvc.service.impl.CommonServiceImpl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.sunseagear.common.utils.StringUtils;
+import com.sunseagear.wind.modules.sys.entity.Menu;
 import com.sunseagear.wind.modules.sys.entity.RoleMenu;
+import com.sunseagear.wind.modules.sys.mapper.MenuMapper;
 import com.sunseagear.wind.modules.sys.mapper.RoleMenuMapper;
 import com.sunseagear.wind.modules.sys.service.IMenuService;
 import com.sunseagear.wind.modules.sys.service.IRoleMenuService;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Transactional
@@ -20,16 +23,28 @@ import java.util.List;
 public class RoleMenuServiceImpl extends CommonServiceImpl<RoleMenuMapper, RoleMenu> implements IRoleMenuService {
 
     @Autowired
-    private IMenuService menuService;
+    private MenuMapper menuMapper;
 
     @Override
     public void setMenu(String roleId, String menuIds) {
+        menuMapper.deleteRoleMenu(roleId);
+        setRoleMenu(roleId,menuIds,Menu.MENU);
+    }
+    private void setRoleMenu(String roleId, String menuIds, String type){
         if (!StringUtils.isEmpty(menuIds)) {
-            // 删除菜单关联
-            delete(new QueryWrapper<RoleMenu>().eq("role_id", roleId));
+            List<Menu> menuListAll = menuMapper.selectList(new QueryWrapper());
+            HashMap<String, Menu> menuHashMapAll = new HashMap<>();
+            menuListAll.forEach(menu -> {
+                menuHashMapAll.put(menu.getId(), menu);
+            });
+
             String[] selectMenus = menuIds.split(",");
-            List<RoleMenu> roleMenuList = new ArrayList<RoleMenu>();
+            List<RoleMenu> roleMenuList = new ArrayList<>();
             for (String menuId : selectMenus) {
+                Menu menu = menuHashMapAll.get(menuId);
+                if (!menu.getType().equals(type)){
+                    continue;
+                }
                 RoleMenu roleMenu = new RoleMenu();
                 roleMenu.setRoleId(roleId);
                 roleMenu.setMenuId(menuId);
@@ -38,6 +53,11 @@ public class RoleMenuServiceImpl extends CommonServiceImpl<RoleMenuMapper, RoleM
             insertBatch(roleMenuList);
             UserUtils.clearPermissionCache(roleId);
         }
+    }
+    @Override
+    public void setPermission(String roleId, String menuIds) {
+        menuMapper.deleteRolePermission(roleId);
+        setRoleMenu(roleId,menuIds,Menu.BUTTON);
     }
 
     @Override

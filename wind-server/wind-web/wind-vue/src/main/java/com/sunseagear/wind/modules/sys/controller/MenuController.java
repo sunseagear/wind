@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -124,8 +125,12 @@ public class MenuController extends BaseBeanController<Menu> {
     public String getPermissions() {
         //加入条件
         String uid = UserUtils.getUser().getId();
-        List<String> permissionValueList = menuService.findPermissionByUserId(uid);
-        return Response.successJson(permissionValueList);
+        List<Menu> permissionValueList = menuService.findPermissionByUserId(uid);
+        List<String> menuIdList = new ArrayList<>();
+        for (Menu menu : permissionValueList) {
+            menuIdList.add(menu.getPermission());
+        }
+        return Response.successJson(menuIdList);
     }
 
     @PostMapping("{id}/generate/button")
