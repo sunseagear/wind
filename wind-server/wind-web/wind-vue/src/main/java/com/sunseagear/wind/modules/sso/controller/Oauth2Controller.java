@@ -178,7 +178,7 @@ public class Oauth2Controller {
         UsernamePasswordToken token = new UsernamePasswordToken(username, password.toCharArray(), rememberMe, host, captcha);
         try {
             subject.login(token);
-            LoginLogUtils.recordSuccessLoginLog(UserUtils.getUser().getUsername(), "登陆成功");
+            LoginLogUtils.recordSuccessLoginLog(username, "登陆成功");
             return true;
         } catch (IncorrectCredentialsException e) {
             request.setAttribute("error", "用户名或密码错误");
