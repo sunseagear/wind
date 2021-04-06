@@ -72,7 +72,7 @@ public class CommonServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M
         if (isDemo) {
             return;
         }
-        saveOrUpdateBatch(entityList);
+        saveBatch(entityList);
 
     }
 

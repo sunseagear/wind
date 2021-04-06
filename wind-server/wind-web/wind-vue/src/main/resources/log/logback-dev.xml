@@ -54,6 +54,7 @@
 
     <!-- 减少部分debug日志 -->
     <logger name="druid.sql" level="INFO"/>
+    <logger name="org.apache.http.impl.conn.PoolingHttpClientConnectionManager" level="INFO"/>
     <logger name="org.apache.shiro" level="INFO"/>
     <logger name="org.springframework" level="INFO"/>
     <logger name="org.springframework.context" level="WARN"/>

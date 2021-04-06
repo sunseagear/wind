@@ -33,6 +33,7 @@ public class CacheUtils {
     public static <T> T getJson(String key, Class<T> clazz) {
         return getJson(SYS_CACHE, key, clazz);
     }
+
     public static <T> List<T> getJsonListBean(String key, Class<T> clazz) {
         return getJsonListBean(SYS_CACHE, key, clazz);
     }
@@ -76,9 +77,10 @@ public class CacheUtils {
         String json = (String) getCache(cacheName).get(key);
         return new Gson().fromJson(json, clazz);
     }
+
     public static <T> List<T> getJsonListBean(String cacheName, String key, Class<T> clazz) {
         String json = (String) getCache(cacheName).get(key);
-        return JsonUtils.jsonStringToListBean(json,clazz);
+        return JsonUtils.jsonStringToListBean(json, clazz);
     }
 
     /**
@@ -106,6 +108,14 @@ public class CacheUtils {
      */
     public static void remove(String cacheName, String key) {
         getCache(cacheName).delete(key);
+    }
+
+    public static void clear(String cacheName) {
+        getCache(cacheName).delete(getCache(cacheName).keys());
+    }
+
+    public static void clear() {
+        clear(SYS_CACHE);
     }
 
     /**

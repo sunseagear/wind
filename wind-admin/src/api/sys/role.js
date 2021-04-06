@@ -45,6 +45,13 @@ export function fetchRoleMenu(roleId) {
   })
 }
 
+export function fetchRolePermission(roleId) {
+  return request({
+    url: '/sys/role/' + roleId + '/permission',
+    method: 'get'
+  })
+}
+
 /**
  * 设置权限
  * @param roleId
@@ -52,6 +59,13 @@ export function fetchRoleMenu(roleId) {
 export function setMenu(data) {
   return request({
     url: '/sys/role/setMenu',
+    method: 'post',
+    data
+  })
+}
+export function setPermission(data) {
+  return request({
+    url: '/sys/role/setPermission',
     method: 'post',
     data
   })

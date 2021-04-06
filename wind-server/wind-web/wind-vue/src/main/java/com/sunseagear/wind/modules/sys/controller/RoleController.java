@@ -157,13 +157,12 @@ public class RoleController extends BaseBeanController<Role> {
 
 
     @GetMapping(value = "{roleId}/menu")
-    public String menu(@PathVariable("roleId") String roleId,
-                       HttpServletRequest request, HttpServletResponse response) {
+    public String menu(@PathVariable("roleId") String roleId) {
         Map<String, Object> dataMap = new HashMap<>();
         List<Menu> treeNodeList;
         if (roleId.equals("0")) {
             QueryWrapper<Menu> entityWrapper = new QueryWrapper<Menu>();
-            entityWrapper.orderByAsc( "sort");
+            entityWrapper.orderByAsc( "sort").ne("type",Menu.BUTTON);
             treeNodeList = menuService.selectList(entityWrapper);
         } else {
             treeNodeList = menuService.getCurrentUserAllMenus();
@@ -180,13 +179,49 @@ public class RoleController extends BaseBeanController<Role> {
         return Response.successJson(dataMap);
     }
 
+    @GetMapping(value = "{roleId}/permission")
+    public String permission(@PathVariable("roleId") String roleId) {
+        Map<String, Object> dataMap = new HashMap<>();
+        List<Menu> treeNodeList;
+        if (roleId.equals("0")) {
+            QueryWrapper<Menu> entityWrapper = new QueryWrapper<>();
+            entityWrapper.orderByAsc( "sort");
+            treeNodeList = menuService.selectList(entityWrapper);
+        } else {
+            treeNodeList = menuService.findPermissionByUserId(UserUtils.getUser().getId());
+        }
+        List<Menu> vueTreeNodes = VueTreeHelper.create().sort(treeNodeList);
+        dataMap.put("menus", vueTreeNodes);
+        // 获得选择的
+        List<Menu> menuList = menuService.findPermissionByRoleId(roleId);
+        List<String> menuIdList = new ArrayList<>();
+        for (Menu menu : menuList) {
+            menuIdList.add(menu.getId());
+        }
+        dataMap.put("selectMenuIds", menuIdList);
+        return Response.successJson(dataMap);
+    }
+
     @PostMapping(value = "/setMenu")
-    @Log(logType = LogType.OTHER, title = "菜单授权")
+    @Log(logType = LogType.OTHER, title = "菜单配置")
     public String setMenu(@RequestParam("roleId") String roleId,
                           @RequestParam("menuIds") String menuIds) {
         try {
             // 权限设置
             roleMenuService.setMenu(roleId, menuIds);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.error(ResponseError.NORMAL_ERROR, "保存失败!<br />原因:" + e.getMessage());
+        }
+        return Response.ok("保存成功");
+    }
+    @PostMapping(value = "/setPermission")
+    @Log(logType = LogType.OTHER, title = "权限配置")
+    public String setPermission(@RequestParam("roleId") String roleId,
+                          @RequestParam("menuIds") String menuIds) {
+        try {
+            // 权限设置
+            roleMenuService.setPermission(roleId, menuIds);
         } catch (Exception e) {
             e.printStackTrace();
             return Response.error(ResponseError.NORMAL_ERROR, "保存失败!<br />原因:" + e.getMessage());

@@ -211,6 +211,11 @@ export default {
           const targetRow = this.list.splice(evt.oldIndex, 1)[0]
           this.list.splice(evt.newIndex, 0, targetRow)
           // TODO：这里完成自己的业务处理
+          const temp = this.list
+          this.list = []
+          this.$nextTick(() => {
+            this.list = temp
+          })
         }
       })
     }

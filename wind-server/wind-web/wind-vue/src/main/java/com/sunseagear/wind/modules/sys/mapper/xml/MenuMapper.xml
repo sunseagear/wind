@@ -68,6 +68,7 @@
         LEFT JOIN sys_role_menu rm on t.id=rm.menu_id
         LEFT JOIN sys_user_role ur on rm.role_id=ur.role_id
         WHERE ur.user_id= #{userId}
+        and t.type <![CDATA[ <> ]]> 3
         ORDER BY sort
     </select>
 
@@ -80,29 +81,36 @@
         LEFT JOIN sys_role_menu rm on t.id=rm.menu_id
         WHERE rm.role_id= #{roleId}
         and t.enabled = 1
+        and t.type = '2'
         ORDER BY sort
     </select>
 
 
     <!-- 通过用户ID查询 -->
-    <select id="findPermissionByUserId" resultType="java.lang.String">
+    <select id="findPermissionByUserId" resultType="com.sunseagear.wind.modules.sys.entity.Menu">
         SELECT DISTINCT
-        t.permission
+        <include refid="Base_Column_List"/>
         from sys_menu t
         <include refid="parentJoins"/>
         LEFT JOIN sys_role_menu rm on t.id=rm.menu_id
         LEFT JOIN sys_user_role ur on rm.role_id=ur.role_id
-        WHERE ur.user_id= #{userId} and t.enabled = 1
+        WHERE ur.user_id= #{userId} and t.enabled = 1 ORDER BY sort
     </select>
 
     <!-- 通过角色ID查询 -->
-    <select id="findPermissionByRoleId" resultType="java.lang.String">
+    <select id="findPermissionByRoleId" resultType="com.sunseagear.wind.modules.sys.entity.Menu">
         SELECT DISTINCT
-        t.permission
+        <include refid="Base_Column_List"/>
         from sys_menu t
         <include refid="parentJoins"/>
         LEFT JOIN sys_role_menu rm on t.id=rm.menu_id
-        WHERE rm.role_id= #{roleId} and t.enabled = 1
+        WHERE rm.role_id= #{roleId} and t.enabled = 1 and t.type = '3'
     </select>
 
+    <delete id="deleteRoleMenu">
+        delete rm from sys_role_menu rm, sys_menu m where m.id = rm.menu_id and m.type = 2 and rm.role_id = #{roleId}
+    </delete>
+    <delete id="deleteRolePermission">
+        delete rm from sys_role_menu rm, sys_menu m where m.id = rm.menu_id and m.type = 3 and rm.role_id = #{roleId}
+    </delete>
 </mapper>

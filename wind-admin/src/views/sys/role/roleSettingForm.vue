@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { fetchRoleMenu, setMenu } from '@/api/sys/role'
+import { fetchRoleMenu, fetchRolePermission, setMenu, setPermission } from '@/api/sys/role'
 
 export default {
   name: 'RoleSettingForm',
@@ -33,6 +33,7 @@ export default {
       menuData: null,
       selectCurentRoleId: '',
       selectMenuIds: [],
+      type: undefined,
       menuTemp: {
         menuIds: ''
       },
@@ -43,25 +44,41 @@ export default {
     }
   },
   methods: {
-    getRoleMenus(roleId, menuModule) {
-      fetchRoleMenu(roleId, menuModule).then(response => {
+    getRoleMenus(roleId) {
+      this.menuData = []
+      this.selectMenuIds = undefined
+      fetchRoleMenu(roleId).then(response => {
         this.menuData = response.data.data.menus
         this.selectMenuIds = response.data.data.selectMenuIds
       })
     },
-    toSetMenu(row) {
+    getRolePermission(roleId) {
+      this.menuData = []
+      this.selectMenuIds = undefined
+      fetchRolePermission(roleId).then(response => {
+        this.menuData = response.data.data.menus
+        this.selectMenuIds = response.data.data.selectMenuIds
+      })
+    },
+    toSetMenu(row, type) {
       this.selectCurentRoleId = row.id
       this.dialogFormMenuVisible = true
-      this.getRoleMenus(this.selectCurentRoleId, this.menuTemp.module)
+      this.type = type
+      if (type === 1) {
+        this.getRoleMenus(this.selectCurentRoleId)
+      } else {
+        this.getRolePermission(this.selectCurentRoleId)
+      }
     },
     changeMenu() {
-      this.getRoleMenus(this.selectCurentRoleId, this.menuTemp.module)
+      this.getRoleMenus(this.selectCurentRoleId)
     },
     handleChangeMenus() {
       const checkedKeys = this.$refs.menuTree.getCheckedKeys()
       const menuIds = checkedKeys.join(',')
-      const postData = { roleId: this.selectCurentRoleId, menuIds: menuIds, module: this.menuTemp.module }
-      setMenu(postData).then(response => {
+      const postData = { roleId: this.selectCurentRoleId, menuIds: menuIds }
+      var postFun = this.type !== 1 ? setPermission : setMenu
+      postFun(postData).then(response => {
         const data = response.data
         if (data.code === 0) {
           this.dialogFormMenuVisible = false

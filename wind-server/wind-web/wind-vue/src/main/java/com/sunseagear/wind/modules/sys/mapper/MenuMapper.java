@@ -37,7 +37,7 @@ public interface MenuMapper extends BaseTreeMapper<Menu> {
      * @description: 通过用户查找菜单
      * @return: List<Menu>
      */
-    List<String> findPermissionByUserId(String userId);
+    List<Menu> findPermissionByUserId(String userId);
 
     /**
      * @param roleId
@@ -46,6 +46,10 @@ public interface MenuMapper extends BaseTreeMapper<Menu> {
      * @description: 通过角色查找菜单
      * @return: List<Menu>
      */
-    List<String> findPermissionByRoleId(String roleId);
+    List<Menu> findPermissionByRoleId(String roleId);
+
+    void deleteRoleMenu(String roleId);
+
+    void deleteRolePermission(String roleId);
 
 }

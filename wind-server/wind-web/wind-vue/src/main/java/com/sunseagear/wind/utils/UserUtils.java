@@ -5,6 +5,7 @@ import com.sunseagear.common.utils.ObjectUtils;
 import com.sunseagear.common.utils.SpringContextHolder;
 import com.sunseagear.common.utils.StringUtils;
 import com.sunseagear.common.utils.entity.Principal;
+import com.sunseagear.wind.modules.sys.entity.Menu;
 import com.sunseagear.wind.modules.sys.entity.Role;
 import com.sunseagear.wind.modules.sys.entity.User;
 import com.sunseagear.wind.modules.sys.service.IMenuService;
@@ -161,6 +162,10 @@ public class UserUtils extends com.sunseagear.common.utils.UserUtils {
         CacheUtils.remove(USER_CACHE, CACHE_PERMISSION_LIST_ + roleId);
     }
 
+    public static void clearAllCache() {
+        CacheUtils.remove(USER_CACHE);
+    }
+
     /**
      * 获取当前用户角色列表
      *
@@ -233,7 +238,12 @@ public class UserUtils extends com.sunseagear.common.utils.UserUtils {
         getRoleList().forEach(item -> {
            permissionList.addAll(CacheUtils.getJsonListBean(USER_CACHE, CACHE_PERMISSION_LIST_ + item.getId(), String.class));
             if (ObjectUtils.isNullOrEmpty(permissionList)) {
-                permissionList.addAll(menuService.findPermissionByRoleId(item.getId()));
+                List<Menu> permissionValueList = menuService.findPermissionByRoleId(item.getId());
+                List<String> menuIdList = new ArrayList<>();
+                for (Menu menu : permissionValueList) {
+                    menuIdList.add(menu.getPermission());
+                }
+                permissionList.addAll(menuIdList);
                 // 不加入缓存
                 CacheUtils.putJson(USER_CACHE, CACHE_PERMISSION_LIST_ + item.getId(), permissionList);
             }
