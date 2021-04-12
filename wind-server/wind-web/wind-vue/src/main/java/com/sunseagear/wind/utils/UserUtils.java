@@ -163,7 +163,7 @@ public class UserUtils extends com.sunseagear.common.utils.UserUtils {
     }
 
     public static void clearAllCache() {
-        CacheUtils.remove(USER_CACHE);
+        CacheUtils.clear(USER_CACHE);
     }
 
     /**
