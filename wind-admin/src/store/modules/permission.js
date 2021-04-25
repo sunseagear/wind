@@ -1,5 +1,6 @@
 import { asyncRoutes, constantRoutes, constantMenus } from '@/router'
 import { getMenus, fetchPermissionList } from '@/api/sys/menu'
+import store from '../index'
 
 const _import = require('@/router/_import_vue')
 import Layout from '@/layout'
@@ -58,6 +59,7 @@ export function filterAsyncMenus(routes) {
 const state = {
   routes: [],
   menus: [],
+  addMenus: [],
   addRoutes: [],
   fetchRoutes: [],
   permissions: []
@@ -75,11 +77,27 @@ const mutations = {
     state.fetchRoutes = routers
   },
   SET_MENUS: (state, menus) => {
-    state.menus = constantMenus.concat(menus)
+    state.menus = menus
+  },
+  SET_ADD_MENUS: (state, menus) => {
+    state.addMenus = menus
   }
 }
 
 const actions = {
+  toggleMenu({ commit, state }) {
+    if (store.state.settings.topMenu) {
+      commit('SET_MENUS', state.fetchRoutes[0].children)
+    } else {
+      commit('SET_MENUS', constantMenus.concat(state.fetchRoutes))
+    }
+  },
+  updateMenu({ commit, state }, menu) {
+    const result = state.addMenus.find(item => {
+      return item.id === menu.id
+    })
+    commit('SET_MENUS', result.children)
+  },
   generateRoutes({ commit }, roles) {
     return new Promise(resolve => {
       let accessedRoutes
@@ -104,7 +122,13 @@ const actions = {
           commit('SET_ROUTES', accessedRouters)
           const accessedMenus = response.data.data
           // console.log('accessedMenus', accessedMenus)
-          commit('SET_MENUS', accessedMenus)
+          // console.log('store', store)
+          if (store.state.settings.topMenu) {
+            commit('SET_MENUS', accessedMenus[0].children)
+          } else {
+            commit('SET_MENUS', constantMenus.concat(accessedMenus))
+          }
+          commit('SET_ADD_MENUS', accessedMenus)
         }
         resolve()
       }).catch(error => {
@@ -131,6 +155,7 @@ const actions = {
       commit('SET_ROUTES', [])
       commit('SET_FETCHROUTES', [])
       commit('SET_MENUS', [])
+      commit('SET_ADD_MENUS', [])
     })
   }
 }

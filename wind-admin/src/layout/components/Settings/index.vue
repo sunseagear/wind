@@ -1,7 +1,7 @@
 <template>
   <div>
     <svg-icon icon-class="setting" @click="click" />
-    <el-drawer :visible.sync="show" :size="300">
+    <el-drawer :visible.sync="show" size="400">
       <div class="drawer-container">
         <h3 class="drawer-title">{{ $t('settings.title') }}</h3>
 
@@ -67,6 +67,7 @@ export default {
           key: 'topMenu',
           value: val
         })
+        this.$store.dispatch('permission/toggleMenu')
       }
     },
     tagsView: {
