@@ -168,6 +168,7 @@ export default {
   settings: {
     title: 'Page style setting',
     theme: 'Theme Color',
+    topMenu: 'Open Top-Menu',
     tagsView: 'Open Tags-View',
     fixedHeader: 'Fixed Header',
     sidebarLogo: 'Sidebar Logo'

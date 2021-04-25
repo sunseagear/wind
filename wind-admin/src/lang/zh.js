@@ -172,6 +172,7 @@ export default {
   settings: {
     title: '系统布局配置',
     theme: '主题色',
+    topMenu: '开启 顶部菜单',
     tagsView: '开启 Tags-View',
     fixedHeader: '固定 Header',
     sidebarLogo: '侧边栏 Logo'

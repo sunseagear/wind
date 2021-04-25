@@ -9,6 +9,12 @@ module.exports = {
 
   /**
    * @type {boolean} true | false
+   * @description Whether need topMenu
+   */
+  topMenu: true,
+
+  /**
+   * @type {boolean} true | false
    * @description Whether need tagsView
    */
   tagsView: true,

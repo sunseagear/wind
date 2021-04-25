@@ -168,6 +168,7 @@ export default {
   settings: {
     title: 'システムテーマ',
     theme: 'テーマ色',
+    topMenu: 'Top-Menu 開く',
     tagsView: 'Tags-View 開く',
     fixedHeader: 'Fixed Header',
     sidebarLogo: 'Sidebar Logo'

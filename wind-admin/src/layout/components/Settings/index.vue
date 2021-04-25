@@ -1,7 +1,7 @@
 <template>
   <div>
     <svg-icon icon-class="setting" @click="click" />
-    <el-drawer :visible.sync="show" size="200">
+    <el-drawer :visible.sync="show" :size="300">
       <div class="drawer-container">
         <h3 class="drawer-title">{{ $t('settings.title') }}</h3>
 
@@ -13,6 +13,11 @@
         <div class="drawer-item">
           <span>{{ $t('settings.tagsView') }}</span>
           <el-switch v-model="tagsView" class="drawer-switch" />
+        </div>
+
+        <div class="drawer-item">
+          <span>{{ $t('settings.topMenu') }}</span>
+          <el-switch v-model="topMenu" class="drawer-switch" />
         </div>
 
         <div class="drawer-item">
@@ -49,6 +54,17 @@ export default {
       set(val) {
         this.$store.dispatch('settings/changeSetting', {
           key: 'fixedHeader',
+          value: val
+        })
+      }
+    },
+    topMenu: {
+      get() {
+        return this.$store.state.settings.topMenu
+      },
+      set(val) {
+        this.$store.dispatch('settings/changeSetting', {
+          key: 'topMenu',
           value: val
         })
       }
