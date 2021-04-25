@@ -87,7 +87,12 @@ const mutations = {
 const actions = {
   toggleMenu({ commit, state }) {
     if (store.state.settings.topMenu) {
-      commit('SET_MENUS', state.fetchRoutes[0].children)
+      for (let i = 0; i < state.fetchRoutes.length; i++) {
+        const accessedMenusKey = state.fetchRoutes[i]
+        if (accessedMenusKey.children && accessedMenusKey.children.length !== 0) {
+          commit('SET_MENUS', state.fetchRoutes[i].children)
+        }
+      }
     } else {
       commit('SET_MENUS', constantMenus.concat(state.fetchRoutes))
     }
@@ -124,7 +129,12 @@ const actions = {
           // console.log('accessedMenus', accessedMenus)
           // console.log('store', store)
           if (store.state.settings.topMenu) {
-            commit('SET_MENUS', accessedMenus[0].children)
+            for (let i = 0; i < accessedMenus.length; i++) {
+              const accessedMenusKey = accessedMenus[i]
+              if (accessedMenusKey.children && accessedMenusKey.children.length !== 0) {
+                commit('SET_MENUS', accessedMenus[0].children)
+              }
+            }
           } else {
             commit('SET_MENUS', constantMenus.concat(accessedMenus))
           }

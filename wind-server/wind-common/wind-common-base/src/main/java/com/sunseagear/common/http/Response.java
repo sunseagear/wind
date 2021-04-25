@@ -149,6 +149,10 @@ public class Response {
         return getGson(includesProperties).toJson(new PageResult(object));
     }
 
+    public static <T> String successJson(T object, String includesProperties, boolean isInclude) {
+        return getGson(includesProperties, isInclude).toJson(new Result(object));
+    }
+
     public static String successPageJson(Page object, String includesProperties, boolean isInclude) {
         return getGson(includesProperties, isInclude).toJson(new PageResult(object));
     }

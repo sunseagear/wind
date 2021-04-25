@@ -54,6 +54,7 @@
 <script>
 import { mapGetters, mapState } from 'vuex'
 import Hamburger from '@/components/Hamburger'
+import Breadcrumb from '@/components/Breadcrumb'
 import ErrorLog from '@/components/ErrorLog'
 import Screenfull from '@/components/Screenfull'
 import SizeSelect from '@/components/SizeSelect'
@@ -68,6 +69,7 @@ export default {
     TopMenu,
     Setting,
     Hamburger,
+    Breadcrumb,
     ErrorLog,
     Screenfull,
     SizeSelect,

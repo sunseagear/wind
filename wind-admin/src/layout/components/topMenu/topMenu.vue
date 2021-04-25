@@ -1,17 +1,20 @@
 <template>
   <el-menu :default-active="activeIndex" mode="horizontal">
+
     <template v-for="(item, index) in menu">
-      <el-menu-item v-if="index < visibleNumber" :key="item.id" :index="item.id" @click="click(item)">
+      <!-- 最后一级菜单 -->
+      <el-menu-item v-if="!item.hidden && index < visibleNumber" :key="item.id" :index="item.id" @click="click(item)">
         <i :class="item.meta.icon" />
         <span slot="title">{{ item.meta.title }}</span>
       </el-menu-item>
     </template>
     <!-- 顶部菜单超出数量折叠 -->
-    <el-submenu v-if="menu.length > visibleNumber" index="more">
+    <el-submenu v-if="menu.length >= visibleNumber" index="more">
       <template slot="title">更多菜单</template>
       <template v-for="(item, index) in menu">
-        <el-menu-item v-if="index >= visibleNumber" :key="item.id" :index="item.id" @click="click(item)">
-          <svg-icon :icon-class="item.meta.icon" />
+        <!-- 最后一级菜单 -->
+        <el-menu-item v-if="!item.hidden && index >= visibleNumber" :key="item.id" :index="item.id" @click="click(item)">
+          <i :class="item.meta.icon" />
           <span slot="title">{{ item.meta.title }}</span>
         </el-menu-item>
       </template>
@@ -23,13 +26,14 @@
 <script>
 import { deepClone } from '@/utils'
 import { mapState } from 'vuex'
+import { isExternal } from '@/utils/validate'
 
 export default {
   name: 'TopMenu',
   data() {
     return {
       activeIndex: undefined,
-      visibleNumber: 5
+      visibleNumber: 10
     }
   },
   computed: {
@@ -40,9 +44,15 @@ export default {
       const list = []
       this.addMenus.forEach(item => {
         const menu = deepClone(item)
+        if (menu.children && menu.children.length !== 0) {
+          menu.hasChildren = true
+        } else {
+          menu.hasChildren = false
+        }
         menu.children = undefined
         list.push(menu)
       })
+      console.log('list', list)
       return list
     }
   },
@@ -64,13 +74,22 @@ export default {
     window.removeEventListener('resize', this.setVisibleNumber)
   },
   methods: {
+    isExternalUrl(path) {
+      return isExternal(path)
+    },
     // 根据宽度计算设置显示栏数
     setVisibleNumber() {
       const width = document.body.getBoundingClientRect().width / 3
       this.visibleNumber = parseInt(width / 85)
     },
     click(menu) {
-      this.$store.dispatch('permission/updateMenu', menu)
+      if (isExternal(menu.path)) {
+        window.open(menu.path, '_blank')
+      } else if (!menu.hasChildren) {
+        this.$router.push({ path: menu.path })
+      } else {
+        this.$store.dispatch('permission/updateMenu', menu)
+      }
     }
   }
 
