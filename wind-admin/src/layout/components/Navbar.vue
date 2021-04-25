@@ -1,8 +1,8 @@
 <template>
   <div class="navbar">
     <hamburger id="hamburger-container" :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
-
-    <top-menu class="breadcrumb-container" />
+    <breadcrumb v-if="!topMenu" id="breadcrumb-container" class="breadcrumb-container" />
+    <top-menu v-else class="topmenu-container" />
 
     <div class="right-menu">
       <template v-if="device!=='mobile'">
@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import Hamburger from '@/components/Hamburger'
 import ErrorLog from '@/components/ErrorLog'
 import Screenfull from '@/components/Screenfull'
@@ -80,6 +80,9 @@ export default {
       'avatar',
       'device'
     ]),
+    ...mapState({
+      topMenu: state => state.settings.topMenu
+    }),
     avatarUrl() {
       if (this.avatar === undefined) {
         return defaultAvatar
@@ -123,7 +126,10 @@ export default {
   .breadcrumb-container {
     float: left;
   }
-
+  .topmenu-container {
+    position: absolute;
+    left: 50px;
+  }
   .errLog-container {
     display: inline-block;
     vertical-align: top;
