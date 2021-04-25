@@ -1,29 +1,32 @@
 <template>
-  <div class="drawer-container">
-    <div>
-      <h3 class="drawer-title">{{ $t('settings.title') }}</h3>
+  <div>
+    <svg-icon icon-class="setting" @click="click" />
+    <el-drawer :visible.sync="show" size="200">
+      <div class="drawer-container">
+        <h3 class="drawer-title">{{ $t('settings.title') }}</h3>
 
-      <div class="drawer-item">
-        <span>{{ $t('settings.theme') }}</span>
-        <theme-picker style="float: right;height: 26px;margin: -3px 8px 0 0;" @change="themeChange" />
+        <div class="drawer-item">
+          <span>{{ $t('settings.theme') }}</span>
+          <theme-picker style="float: right;height: 26px;margin: -3px 8px 0 0;" @change="themeChange" />
+        </div>
+
+        <div class="drawer-item">
+          <span>{{ $t('settings.tagsView') }}</span>
+          <el-switch v-model="tagsView" class="drawer-switch" />
+        </div>
+
+        <div class="drawer-item">
+          <span>{{ $t('settings.fixedHeader') }}</span>
+          <el-switch v-model="fixedHeader" class="drawer-switch" />
+        </div>
+
+        <div class="drawer-item">
+          <span>{{ $t('settings.sidebarLogo') }}</span>
+          <el-switch v-model="sidebarLogo" class="drawer-switch" />
+        </div>
+
       </div>
-
-      <div class="drawer-item">
-        <span>{{ $t('settings.tagsView') }}</span>
-        <el-switch v-model="tagsView" class="drawer-switch" />
-      </div>
-
-      <div class="drawer-item">
-        <span>{{ $t('settings.fixedHeader') }}</span>
-        <el-switch v-model="fixedHeader" class="drawer-switch" />
-      </div>
-
-      <div class="drawer-item">
-        <span>{{ $t('settings.sidebarLogo') }}</span>
-        <el-switch v-model="sidebarLogo" class="drawer-switch" />
-      </div>
-
-    </div>
+    </el-drawer>
   </div>
 </template>
 
@@ -31,9 +34,12 @@
 import ThemePicker from '@/components/ThemePicker'
 
 export default {
+  name: 'Setting',
   components: { ThemePicker },
   data() {
-    return {}
+    return {
+      show: false
+    }
   },
   computed: {
     fixedHeader: {
@@ -76,6 +82,9 @@ export default {
         key: 'theme',
         value: val
       })
+    },
+    click() {
+      this.show = true
     }
   }
 }

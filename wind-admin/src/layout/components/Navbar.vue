@@ -18,6 +18,7 @@
 
         <lang-select class="right-menu-item hover-effect" />
 
+        <setting class="right-menu-item hover-effect" />
       </template>
 
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
@@ -60,9 +61,11 @@ import SizeSelect from '@/components/SizeSelect'
 import LangSelect from '@/components/LangSelect'
 import Search from '@/components/HeaderSearch'
 import defaultAvatar from '@/assets/img/avatar.png'
+import Setting from './Settings'
 
 export default {
   components: {
+    Setting,
     Breadcrumb,
     Hamburger,
     ErrorLog,
