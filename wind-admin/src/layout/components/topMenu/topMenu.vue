@@ -73,6 +73,10 @@ export default {
   beforeDestroy() {
     window.removeEventListener('resize', this.setVisibleNumber)
   },
+  created() {
+    // this.setVisibleNumber()
+    this.updateActiveIndex()
+  },
   methods: {
     isExternalUrl(path) {
       return isExternal(path)
@@ -90,6 +94,25 @@ export default {
       } else {
         this.$store.dispatch('permission/updateMenu', menu)
       }
+    },
+    updateActiveIndex() {
+      const path = this.$route.path
+      this.activeIndex = this.findIndex(this.addMenus, path)
+      console.log('this.activeIndex', this.activeIndex)
+    },
+    findIndex(menuList, path) {
+      const menu = menuList.find(item => {
+        if (item.path === path) {
+          return true
+        }
+        if (item.children && item.children.length !== 0) {
+          const subMenu = this.findIndex(item.children, path)
+          if (subMenu) {
+            return true
+          }
+        }
+      })
+      return menu ? menu.id : undefined
     }
   }
 
