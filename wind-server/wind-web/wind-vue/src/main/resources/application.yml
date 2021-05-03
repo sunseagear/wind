@@ -5,8 +5,6 @@ server:
 spring:
   profiles:
     active: dev
-  resources:
-    static-locations: file:${oss.local.upload-file-path}
   session:
     store-type: none
   devtools:
@@ -22,7 +20,7 @@ spring:
   thymeleaf: #关闭默认模板引擎
     cache: false
     enabled: false
-  aop:  #使用CGLIB来实现AOP的时候
+  aop: #使用CGLIB来实现AOP的时候
     proxy-target-class: true
 
   #DATABASE CONFIG
@@ -47,21 +45,15 @@ spring:
     maxPoolPreparedStatementPerConnectionSize: 20
     publicKey: MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCYVbEFPqEMp6PGoHcTRLjOnFKSHMT3EGrxneHax7lHie0ZQcO3GNLsgLBWfUmSXb+geWsgM0A9vQ+g14QUbMfvjk82Ii3v5u3zbKoupudUbD/f+e6450DOtU5PBaIiALdB66+2M5SRJg57H5eLQ0I23RQ6cUyXHymVwURM72fvOwIDAQAB
     connection-properties: druid.stat.merggSql=ture;druid.stat.slowSqlMillis=5000;config.decrypt=false;config.decrypt.key=${spring.datasource.publicKey}
-
-#mybatis
-mybatis:
-  mapper-locations: classpath*:com/sunseagear/wind/modules/**/*Mapper.xml
-  #实体扫描，多个package用逗号或者分号分隔
-  typeAliasesPackage: com.sunseagear.wind.modules.*.entity  #这里是实体类的位置
-  configuration:
-    map-underscore-to-camel-case: true
-    cache-enabled: false
+  web:
+    resources:
+      static-locations: file:${oss.local.upload-file-path}
 
 #mybatis
 mybatis-plus:
   mapper-locations: classpath*:com/sunseagear/wind/modules/**/*Mapper.xml
   #实体扫描，多个package用逗号或者分号分隔
-  type-aliases-package:  com.sunseagear.wind.modules.*.entity
+  type-aliases-package: com.sunseagear.wind.modules.*.entity
   #typeEnumsPackage: com.baomidou.springboot.entity.enums
   global-config:
     db-config:
@@ -71,19 +63,12 @@ mybatis-plus:
       select-strategy: NOT_EMPTY
       insert-strategy: NOT_EMPTY
       update-strategy: IGNORED
-      #驼峰下划线转换
-      db-column-underline: true
-      #刷新mapper 调试神器
-      refresh-mapper: true
-      #数据库大写下划线转换
-      #capital-mode: true
       #逻辑删除配置（下面3个配置）
       logic-delete-value: 0
       logic-not-delete-value: 1
-      # SQL 解析缓存，开启后多租户 @SqlParser 注解生效
-      sql-parser-cache: true
   configuration:
     jdbc-type-for-null: 'null'
+    #数据库大写下划线转换
     map-underscore-to-camel-case: true
     cache-enabled: false
     log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl #开启sql日志

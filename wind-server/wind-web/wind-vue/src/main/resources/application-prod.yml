@@ -36,8 +36,10 @@ spring:
 oss:
 
   local:
+    #文件域名
     domain: http://localhost:8080
-    upload-file-path: D:/hhaha
+    #存储路径
+    upload-file-path: D:/wind
   aliyun:
     #阿里云api的内或外网域名
     endpoint: oss-cn-beijing.aliyuncs.com
