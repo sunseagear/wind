@@ -62,7 +62,7 @@ import LangSelect from '@/components/LangSelect'
 import Search from '@/components/HeaderSearch'
 import defaultAvatar from '@/assets/img/avatar.png'
 import Setting from './Settings'
-import TopMenu from '@/layout/components/topMenu/topMenu'
+import TopMenu from '@/layout/components/TopMenu/topMenu'
 
 export default {
   components: {

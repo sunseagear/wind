@@ -52,7 +52,7 @@ export default {
         menu.children = undefined
         list.push(menu)
       })
-      console.log('list', list)
+      // console.log('list', list)
       return list
     }
   },
@@ -112,7 +112,7 @@ export default {
           }
         }
       })
-      return menu ? menu.id : undefined
+      return menu ? menu.id : menuList[0].id
     }
   }
 

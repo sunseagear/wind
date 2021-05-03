@@ -58,7 +58,7 @@
 <script>
 import { createUser, updateUser } from '@/api/sys/user'
 import { fetchOrganizationList } from '@/api/sys/organization'
-import SystemOrganization from '@/components/system/systemOrganization'
+import SystemOrganization from '@/components/System/systemOrganization'
 import { fetchUser } from '@/api/sys/user'
 import UploadImage from '../../../components/Upload/uploadImage'
 

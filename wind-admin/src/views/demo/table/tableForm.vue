@@ -43,7 +43,7 @@
 import { createTable, updateTable, getTable } from '@/api/demo/table'
 import { isIntegerGEZRule } from '@/utils/validate'
 import Tinymce from '@/components/Tinymce'
-import SystemUser from '@/components/system/systemUser'
+import SystemUser from '@/components/System/systemUser'
 
 const calendarTypeOptions = [
   { key: 'CN', display_name: 'China' },
