@@ -49,8 +49,14 @@ gitee:https://gitee.com/sunseagear/wind
 github:https://github.com/sunseagear/wind
 ### 在线预览
 http://www.sunseagear.com/dist/
+
+    演示系统数据无法修改
 ### 在线文档
 http://www.sunseagear.com/
+### 文鳐地址
+与飞廉配套的H5开发框架文鳐
+
+https://gitee.com/sunseagear/wenyao
 
     演示系统数据无法修改
 ### 系统要求(推荐)
