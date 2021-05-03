@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sunseagear.common.http.Response;
 import com.sunseagear.common.mvc.controller.BaseBeanController;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.sunseagear.wind.utils.DictUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import com.sunseagear.common.utils.StringUtils;
 import com.sunseagear.wind.aspectj.annotation.Log;
@@ -58,6 +59,7 @@ public class DictGroupController extends BaseBeanController<DictGroup> {
         // 验证错误
         this.checkError(entity, result);
         dictGroupService.insert(entity);
+        DictUtils.initDict();
         return Response.ok("添加成功");
     }
 
@@ -69,6 +71,7 @@ public class DictGroupController extends BaseBeanController<DictGroup> {
         // 验证错误
         this.checkError(entity, result);
         dictGroupService.insertOrUpdate(entity);
+        DictUtils.initDict();
         return Response.ok("更新成功");
     }
 
@@ -76,21 +79,8 @@ public class DictGroupController extends BaseBeanController<DictGroup> {
     @RequiresPermissions("sys:dict:group:delete")
     public String delete(@PathVariable("id") String id) {
         dictGroupService.deleteById(id);
+        DictUtils.initDict();
         return Response.ok("删除成功");
-    }
-
-    @RequestMapping(value = "/forceRefresh", method = RequestMethod.POST)
-    @ResponseBody
-    @Log(logType = LogType.OTHER, title = "字典刷新")
-    @RequiresPermissions("sys:dict:force:refresh")
-    public String forceRefresh(HttpServletRequest request, HttpServletResponse response) {
-        try {
-            // DictUtils.clear();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return Response.error("字典刷新失败" + e.getMessage());
-        }
-        return Response.ok("字典刷新成功");
     }
 
 }

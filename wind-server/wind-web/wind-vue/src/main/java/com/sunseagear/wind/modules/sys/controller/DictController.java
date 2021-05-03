@@ -91,6 +91,7 @@ public class DictController extends BaseBeanController<Dict> {
         // 验证错误
         this.checkError(entity, result);
         dictService.insert(entity);
+        DictUtils.initDict();
         return Response.ok("添加成功");
     }
 
@@ -102,6 +103,7 @@ public class DictController extends BaseBeanController<Dict> {
         // 验证错误
         this.checkError(entity, result);
         dictService.insertOrUpdate(entity);
+        DictUtils.initDict();
         return Response.ok("更新成功");
     }
 
@@ -110,6 +112,7 @@ public class DictController extends BaseBeanController<Dict> {
     @RequiresPermissions("sys:dict:delete")
     public String delete(@PathVariable("id") String id) {
         dictService.deleteById(id);
+        DictUtils.initDict();
         return Response.ok("删除成功");
     }
 
@@ -119,6 +122,7 @@ public class DictController extends BaseBeanController<Dict> {
     public String batchDelete(@RequestParam("ids") String[] ids) {
         List<Serializable> idList = Arrays.asList(ids);
         dictService.deleteBatchIds(idList);
+        DictUtils.initDict();
         return Response.ok("删除成功");
     }
 

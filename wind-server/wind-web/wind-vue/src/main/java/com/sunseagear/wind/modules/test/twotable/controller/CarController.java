@@ -87,18 +87,4 @@ public class CarController extends BaseBeanController<Car> {
         return Response.ok("删除成功");
     }
 
-    @RequestMapping(value = "/forceRefresh", method = RequestMethod.POST)
-    @ResponseBody
-    @Log(logType = LogType.OTHER, title = "字典刷新")
-    @RequiresPermissions("test:twotable:car:force:refresh")
-    public String forceRefresh(HttpServletRequest request, HttpServletResponse response) {
-        try {
-            // DictUtils.clear();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return Response.error("字典刷新失败" + e.getMessage());
-        }
-        return Response.ok("字典刷新成功");
-    }
-
 }

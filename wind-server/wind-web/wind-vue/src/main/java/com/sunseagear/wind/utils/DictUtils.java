@@ -32,16 +32,16 @@ public class DictUtils {
         if (CacheUtils.get(DICT_CACHE_NAME, DICT_CACHE_KEY) == null) {
             initDict();
         }
-        initDict();
         return (Map<String, List<Dict>>) CacheUtils.get(DICT_CACHE_NAME, DICT_CACHE_KEY);
     }
 
     /**
      * 数据字典初始化
      *
-     * @return
+     * @return 整个字典集合
      */
     public static Map<String, List<Dict>> initDict() {
+        clear();
         Map<String, List<Dict>> dictMap = new HashMap<String, List<Dict>>();
         for (com.sunseagear.wind.modules.sys.entity.Dict dict : SpringContextHolder.getBean(DictServiceImpl.class).selectDictList()) {
             List<Dict> dictList = dictMap.get(dict.getCode());
