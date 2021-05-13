@@ -124,7 +124,7 @@ public class CacheUtils {
      * @param cacheName
      * @return
      */
-    private static BoundHashOperations getCache(String cacheName) {
+    public static BoundHashOperations getCache(String cacheName) {
         if (redisTemplate == null) {
             redisTemplate = SpringContextHolder.getBean("redisTemplate");
         }
