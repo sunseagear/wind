@@ -3,6 +3,10 @@ server:
 
 #spring
 spring:
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 100MB
   resources:
     static-locations: file:${oss.local.upload-file-path}
   session:
