@@ -67,7 +67,7 @@
     "vue-splitpane": "1.0.4",
     "vuedraggable": "2.20.0",
     "vuex": "3.1.0",
-    "xlsx": "0.14.1"
+    "xlsx": "^0.14.1"
   },
   "devDependencies": {
     "@babel/core": "7.0.0",
@@ -84,7 +84,6 @@
     "@vue/cli-service": "3.5.3",
     "@vue/test-utils": "1.0.0-beta.29",
     "autoprefixer": "^9.5.1",
-    "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "10.0.1",
     "babel-jest": "23.6.0",
     "chalk": "2.4.2",
