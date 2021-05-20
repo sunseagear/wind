@@ -12,6 +12,7 @@
           :data="uploadData"
           :action="uploadImageUrl"
           :show-file-list="false"
+          :headers="myHeaders"
           :on-success="handleAvatarSuccess"
           :before-upload="beforeAvatarUpload"
           class="avatar-uploader"
@@ -24,6 +25,8 @@
 </template>
 
 <script>
+import { getToken } from '@/utils/auth'
+
 export default {
   name: 'UploadImage',
   props: {
@@ -52,6 +55,7 @@ export default {
     return {
       imageList: [],
       resultUrl: undefined,
+      myHeaders: { access_token: getToken() },
       uploadImageUrl: 'http://' + process.env.VUE_APP_BASE_API + '/oss/attachment/upload',
       uploadData: { 'base_path': this.basePath }
     }

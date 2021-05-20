@@ -85,7 +85,7 @@ logging:
 
 #shiro
 shiro:
-  filter-chain-definitions: /json/oss/**=anon;/json/**=anon;/jcaptcha*=anon;/oss/attachment/upload/**=anon;/sso/oauth2/revoke_token=authc;/sso/oauth2/**=anon;/**=authc
+  filter-chain-definitions: /json/oss/**=anon;/json/**=anon;/jcaptcha*=anon;/sso/oauth2/revoke_token=authc;/sso/oauth2/**=anon;/**=authc
 
 #beetl配置
 beetlsql:

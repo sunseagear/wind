@@ -8,6 +8,7 @@
       :data="uploadData"
       :action="uploadImageUrl"
       :show-file-list="false"
+      :headers="myHeaders"
       :on-success="handleSuccess"
       :on-error="handleError"
       :before-upload="beforeUpload"
@@ -23,6 +24,7 @@
 </template>
 
 <script>
+import { getToken } from '@/utils/auth'
 import defaultImg from '@/assets/img/default_img.jpg' // 水波纹指令
 export default {
   name: 'UploadFile',
@@ -61,6 +63,7 @@ export default {
     return {
       uploadImageUrl: 'http://' + process.env.VUE_APP_BASE_API + '/oss/attachment/upload',
       uploadData: { 'base_path': this.basePath },
+      myHeaders: { access_token: getToken() },
       imageExtension: ['bmp', 'jpg', 'jpeg', 'png', 'gif'],
       extensions: [],
       uploadLoading: false,
