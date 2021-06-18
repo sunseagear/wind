@@ -19,20 +19,6 @@ public class MenuServiceImpl extends TreeCommonServiceImpl<MenuMapper, Menu, Str
     @Override
     public List<Menu> getCurrentUserMenus() {
         List<Menu> treeNodeList = baseMapper.findMenuByUserId(UserUtils.getUser().getId());
-        List<Menu> list = getMenus(treeNodeList);
-        List<Menu> newList = new ArrayList<>();
-        for (Menu menu : list) {
-            if (menu.getType().equals(Menu.BUTTON)) {
-                continue;
-            }
-            newList.add(menu);
-        }
-        return newList;
-    }
-
-    @Override
-    public List<Menu> getCurrentUserAllMenus() {
-        List<Menu> treeNodeList = baseMapper.findAllMenuByUserId(UserUtils.getUser().getId());
         return getMenus(treeNodeList);
     }
 
@@ -69,8 +55,14 @@ public class MenuServiceImpl extends TreeCommonServiceImpl<MenuMapper, Menu, Str
 
 
     @Override
+    public List<Menu> findMenuAndPermissionByUserId(String userId) {
+        return getMenus(baseMapper.findMenuAndPermissionByUserId(userId));
+    }
+
+
+    @Override
     public List<Menu> findMenuByUserId(String userId) {
-        return baseMapper.findMenuByUserId(userId);
+        return baseMapper.findMenuAndPermissionByUserId(userId);
     }
 
     @Override

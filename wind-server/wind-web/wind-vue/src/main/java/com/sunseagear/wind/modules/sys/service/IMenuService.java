@@ -16,7 +16,7 @@ public interface IMenuService extends ITreeCommonService<Menu, String> {
 
     List<Menu> getCurrentUserMenus();
 
-    List<Menu> getCurrentUserAllMenus();
+    List<Menu> findMenuAndPermissionByUserId(String userId);
 
     /**
      * 通过用户ID查找菜单
