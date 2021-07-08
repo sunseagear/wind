@@ -4,8 +4,8 @@
 
     <sql id="Base_Column_List">
        a.*,
-       b.realname as `user.realname`,
-       b.username as `user.username`
+       b.realname as "user.realname",
+       b.username as "user.username"
 	</sql>
     <sql id="tableJoins">
         left join sys_user b on b.id = a.author

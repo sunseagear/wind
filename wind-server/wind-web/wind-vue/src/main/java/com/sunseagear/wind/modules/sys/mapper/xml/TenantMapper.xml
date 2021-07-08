@@ -4,7 +4,7 @@
 
     <sql id="Base_Column_List">
        a.*,
-       b.username as 'username'
+       b.username as "username"
 	</sql>
     <sql id="tableJoins">
     left join sys_user b on b.id = a.user_id

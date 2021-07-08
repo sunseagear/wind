@@ -4,7 +4,7 @@
 
     <sql id="Base_Column_List">
         t.*,
-        p.name AS parentName,
+        p.name AS "parentName",
         (select count(*) from sys_menu s
         WHERE s.parent_id=t.id) as
         hasChildren
