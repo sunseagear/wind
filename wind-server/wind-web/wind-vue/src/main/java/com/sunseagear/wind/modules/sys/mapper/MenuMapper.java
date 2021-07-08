@@ -16,9 +16,9 @@ public interface MenuMapper extends BaseTreeMapper<Menu> {
      * @description: 通过用户查找菜单
      * @return: List<Menu>
      */
-    List<Menu> findMenuByUserId(String userId);
+    List<Menu> findMenuAndPermissionByUserId(String userId);
 
-    List<Menu> findAllMenuByUserId(String userId);
+    List<Menu> findMenuByUserId(String userId);
 
     /**
      * @param roleId

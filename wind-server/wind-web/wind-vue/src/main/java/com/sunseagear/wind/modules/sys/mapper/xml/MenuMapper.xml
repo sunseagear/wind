@@ -49,7 +49,7 @@
     </delete>
 
     <!-- 通过用户ID查询 -->
-    <select id="findMenuByUserId" resultType="com.sunseagear.wind.modules.sys.entity.Menu">
+    <select id="findMenuAndPermissionByUserId" resultType="com.sunseagear.wind.modules.sys.entity.Menu">
         SELECT DISTINCT
         <include refid="Base_Column_List"/>
         from sys_menu t
@@ -60,7 +60,7 @@
         ORDER BY sort
     </select>
     <!-- 通过用户ID查询 -->
-    <select id="findAllMenuByUserId" resultType="com.sunseagear.wind.modules.sys.entity.Menu">
+    <select id="findMenuByUserId" resultType="com.sunseagear.wind.modules.sys.entity.Menu">
         SELECT DISTINCT
         <include refid="Base_Column_List"/>
         from sys_menu t

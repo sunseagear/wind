@@ -21,7 +21,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -165,7 +164,7 @@ public class RoleController extends BaseBeanController<Role> {
             entityWrapper.orderByAsc( "sort").ne("type",Menu.BUTTON);
             treeNodeList = menuService.selectList(entityWrapper);
         } else {
-            treeNodeList = menuService.getCurrentUserAllMenus();
+            treeNodeList = menuService.getCurrentUserMenus();
         }
         List<Menu> vueTreeNodes = VueTreeHelper.create().sort(treeNodeList);
         dataMap.put("menus", vueTreeNodes);
@@ -188,7 +187,7 @@ public class RoleController extends BaseBeanController<Role> {
             entityWrapper.orderByAsc( "sort");
             treeNodeList = menuService.selectList(entityWrapper);
         } else {
-            treeNodeList = menuService.findPermissionByUserId(UserUtils.getUser().getId());
+            treeNodeList = menuService.findMenuAndPermissionByUserId(UserUtils.getUser().getId());
         }
         List<Menu> vueTreeNodes = VueTreeHelper.create().sort(treeNodeList);
         dataMap.put("menus", vueTreeNodes);
