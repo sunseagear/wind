@@ -312,6 +312,17 @@
                     <version>4.0</version>
                 </dependency>
         -->
+        <!-- 添加oracle jdbc driver -->
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc11</artifactId>
+            <version>21.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle.database.nls</groupId>
+            <artifactId>orai18n</artifactId>
+            <version>19.7.0.0</version>
+        </dependency>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>

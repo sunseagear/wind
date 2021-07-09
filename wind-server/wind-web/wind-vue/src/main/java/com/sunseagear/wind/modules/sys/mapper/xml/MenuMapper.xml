@@ -39,7 +39,7 @@
         CONCAT(#{newParentIds},substring(parent_ids,
         <if test="_databaseId == 'mysql'">length(#{oldParentIds})+1,length(parent_ids)+1))</if>
         <if test="_databaseId == 'sqlServer'">len(#{oldParentIds})+1,len(parent_ids)+1))</if>
-        where parent_ids like concat(#{oldParentIds}, '%')
+        where t.parent_ids like concat(#{oldParentIds}, '%')
     </update>
 
     <!-- 删除子树 -->
@@ -57,7 +57,7 @@
         LEFT JOIN sys_role_menu rm on t.id=rm.menu_id
         LEFT JOIN sys_user_role ur on rm.role_id=ur.role_id
         WHERE ur.user_id= #{userId}
-        ORDER BY sort
+        ORDER BY t.sort
     </select>
     <!-- 通过用户ID查询 -->
     <select id="findMenuByUserId" resultType="com.sunseagear.wind.modules.sys.entity.Menu">
@@ -69,7 +69,7 @@
         LEFT JOIN sys_user_role ur on rm.role_id=ur.role_id
         WHERE ur.user_id= #{userId}
         and t.type <![CDATA[ <> ]]> 3
-        ORDER BY sort
+        ORDER BY t.sort
     </select>
 
     <!-- 通过用户ID查询 -->
@@ -82,7 +82,7 @@
         WHERE rm.role_id= #{roleId}
         and t.enabled = 1
         and t.type = '2'
-        ORDER BY sort
+        ORDER BY t.sort
     </select>
 
 
@@ -94,7 +94,7 @@
         <include refid="parentJoins"/>
         LEFT JOIN sys_role_menu rm on t.id=rm.menu_id
         LEFT JOIN sys_user_role ur on rm.role_id=ur.role_id
-        WHERE ur.user_id= #{userId} and t.enabled = 1 ORDER BY sort
+        WHERE ur.user_id= #{userId} and t.enabled = 1 ORDER BY t.sort
     </select>
 
     <!-- 通过角色ID查询 -->
