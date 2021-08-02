@@ -4,7 +4,7 @@
 
       <div class="title-container">
         <h3 class="title">
-          欢迎使用飞廉
+          {{ title }}
         </h3>
         <lang-select class="set-language" />
       </div>
@@ -85,6 +85,7 @@ import LangSelect from '@/components/LangSelect'
 import SocialSign from './components/SocialSignin'
 import { mapState } from 'vuex'
 import { Message } from 'element-ui'
+import { configureWebpack } from '../../../vue.config'
 
 export default {
   name: 'Login',
@@ -98,6 +99,7 @@ export default {
       }
     }
     return {
+      title: configureWebpack.name,
       isLogin: false,
       coverImgUrl: require('@/assets/img/bg6.jpg'),
       loginForm: {
