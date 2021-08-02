@@ -9,6 +9,7 @@ spring:
       max-request-size: 100MB
   profiles:
     active: dev
+
   session:
     store-type: none
   devtools:
@@ -29,9 +30,12 @@ spring:
 
   #DATABASE CONFIG
   datasource:
+    #    Mysql
     driver-class-name: com.mysql.cj.jdbc.Driver
     #    SqlServer
     #    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    #    Oracle
+    #driver-class-name: oracle.jdbc.driver.OracleDriver
     type: com.alibaba.druid.pool.DruidDataSource   #这里是配置druid连接池，以下都是druid的配置信息
     filters: config,stat,wall,slf4j
     maxActive: 20
@@ -40,7 +44,7 @@ spring:
     minIdle: 1
     timeBetweenEvictionRunsMillis: 60000
     minEvictableIdleTimeMillis: 300000
-    validationQuery: select 'x'
+    validationQuery: select count(*) from sys_user
     testWhileIdle: true
     testOnBorrow: false
     testOnReturn: false
