@@ -103,8 +103,8 @@ export default {
       isLogin: false,
       coverImgUrl: require('@/assets/img/bg6.jpg'),
       loginForm: {
-        username: 'admin',
-        password: '123456'
+        username: process.env.NODE_ENV === 'development' ? 'admin' : undefined,
+        password: process.env.NODE_ENV === 'development' ? '123456' : undefined
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur' }],
