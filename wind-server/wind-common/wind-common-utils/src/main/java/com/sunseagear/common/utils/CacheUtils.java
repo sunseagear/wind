@@ -111,7 +111,7 @@ public class CacheUtils {
     }
 
     public static void clear(String cacheName) {
-        getCache(cacheName).delete(getCache(cacheName).keys());
+        redisTemplate.delete(cacheName);
     }
 
     public static void clear() {
