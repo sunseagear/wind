@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import {configureWebpack} from '../../../../vue.config'
+
 export default {
   name: 'SidebarLogo',
   props: {
@@ -24,7 +26,7 @@ export default {
   },
   data() {
     return {
-      title: '飞廉开发平台',
+      title: configureWebpack.name,
       logo: 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
     }
   }
