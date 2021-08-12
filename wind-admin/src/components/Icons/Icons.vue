@@ -42,10 +42,12 @@ export default {
   }
 }
 </script>
-<style lang="stylus" scoped>
-  .colBox
-    display: flex
-    align-items: center
-    .col-span
+<style lang="scss" scoped>
+  .colBox {
+    display: flex;
+    align-items: center;
+    .col-span {
       padding-left: 5px
+    }
+  }
 </style>

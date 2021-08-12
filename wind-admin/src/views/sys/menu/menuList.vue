@@ -135,7 +135,7 @@ export default {
   }
 }
 </script>
-<style lang="stylus">
+<style lang="scss">
   .active {
     background-color: #0088CC;
     color: #FFFFFF;
@@ -176,10 +176,5 @@ export default {
   }
   .input::-ms-clear { display: none; }
   .input:valid + .clear { display: inline; }
-
-  #iconBox
-    .el-input__inner
-      border: none
-      padding-left: 5px
 </style>
 
