@@ -16,7 +16,7 @@
         <!-- 阿里云SDK -->
         <aliyun.oss.version>2.5.0</aliyun.oss.version>
         <!-- 七牛云存储 -->
-        <qiniu.oss.version>[7.0.0, 7.1.99]</qiniu.oss.version>
+        <qiniu.oss.version>7.1.3</qiniu.oss.version>
         <!-- 腾讯云COS -->
         <qcloud.cos.version>3.3</qcloud.cos.version>
         <!-- 文件上传 -->
