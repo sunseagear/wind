@@ -92,9 +92,9 @@ export default {
     }
   },
   created() {
-    this.extension = this.extension.replace(/(^\s+)|(\s+$)/g, '')
-    this.extension = this.extension.replace(/\s/g, '')
-    this.extensions = this.extension.split(',')
+    var extension = this.extension.replace(/(^\s+)|(\s+$)/g, '')
+    extension = extension.replace(/\s/g, '')
+    this.extensions = extension.split(',')
     if (this.dir !== '') {
       this.uploadImageUrl += '?dir=' + this.dir
     }

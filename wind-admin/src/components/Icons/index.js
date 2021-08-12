@@ -1,7 +1,7 @@
 import IconsCompontent from './Icons.vue'
 const Icons = {
   install(Vue) {
-    Vue.component('ui-icons', IconsCompontent)
+    Vue.component('UiIcons', IconsCompontent)
   }
 }
 export default Icons

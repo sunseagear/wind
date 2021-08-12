@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import {configureWebpack} from '../../../../vue.config'
+import { configureWebpack } from '../../../../vue.config'
 
 export default {
   name: 'SidebarLogo',
