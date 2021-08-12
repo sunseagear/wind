@@ -4,8 +4,8 @@
       <img src="https://wpimg.wallstcn.com/e7d23d71-cf19-4b90-a1cc-f56af8c0903d.png">
     </div>
     <div style="position:relative;">
-      <pan-thumb :image="avatarUrl" class="panThumb" />
-      <mallki class-name="mallki-text" text="wind-admin" />
+      <pan-thumb :image="avatar" class="panThumb" />
+      <mallki class-name="mallki-text" text="vue-element-admin" />
       <div style="padding-top:35px;" class="progress-item">
         <span>Vue</span>
         <el-progress :percentage="70" />
@@ -15,7 +15,7 @@
         <el-progress :percentage="18" />
       </div>
       <div class="progress-item">
-        <span>Css</span>
+        <span>CSS</span>
         <el-progress :percentage="12" />
       </div>
       <div class="progress-item">
@@ -30,7 +30,6 @@
 import { mapGetters } from 'vuex'
 import PanThumb from '@/components/PanThumb'
 import Mallki from '@/components/TextHoverEffect/Mallki'
-import defaultAvatar from '@/assets/img/avatar.png'
 
 export default {
   components: { PanThumb, Mallki },
@@ -57,25 +56,19 @@ export default {
       'name',
       'avatar',
       'roles'
-    ]),
-    avatarUrl() {
-      if (this.avatar === undefined) {
-        return defaultAvatar
-      }
-      return this.avatar
-    }
+    ])
   }
 }
 </script>
 
-<style rel="stylesheet/scss" lang="scss" >
+<style lang="scss" >
 .box-card-component{
   .el-card__header {
     padding: 0px!important;
   }
 }
 </style>
-<style rel="stylesheet/scss" lang="scss" scoped>
+<style lang="scss" scoped>
 .box-card-component {
   .box-card-header {
     position: relative;
@@ -108,7 +101,7 @@ export default {
     background-color: #fff;
     margin: auto;
     box-shadow: none!important;
-    /deep/ .pan-info {
+    ::v-deep .pan-info {
       box-shadow: none!important;
     }
   }
