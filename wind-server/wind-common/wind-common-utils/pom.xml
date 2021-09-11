@@ -17,7 +17,7 @@
         <guava.version>17.0</guava.version>
         <fastjson.version>1.2.70</fastjson.version>
         <commons-text.version>1.9</commons-text.version>
-        <commons-beanutils.version>1.9.3</commons-beanutils.version>
+        <commons-beanutils.version>1.9.4</commons-beanutils.version>
         <commons-io.version>2.4</commons-io.version>
         <!-- 验证码 -->
         <jcaptcha.version>2.0-alpha-1</jcaptcha.version>
