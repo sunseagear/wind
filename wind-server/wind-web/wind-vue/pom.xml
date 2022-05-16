@@ -44,7 +44,7 @@
 
         <commons-beanutils.version>1.9.3</commons-beanutils.version>
 
-        <commons-io.version>2.4</commons-io.version>
+        <commons-io.version>2.7</commons-io.version>
 
         <commons-codec.version>1.10</commons-codec.version>
 
